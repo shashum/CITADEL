@@ -17,9 +17,11 @@ from sentence_transformers import SentenceTransformer
 # Claude API 라이브러리
 import anthropic
 
-client = anthropic.Anthropic(
-    # defaults to os.environ.get("ANTHROPIC_API_KEY")
-    api_key="")
+# Get API key from environment variable
+api_key = os.environ.get("ANTHROPIC_API_KEY")
+if not api_key:
+    raise ValueError("ANTHROPIC_API_KEY environment variable not set")
+client = anthropic.Anthropic(api_key=api_key)
 
 def read_file(file_path: str) -> str:
     """텍스트 파일 읽기 헬퍼."""

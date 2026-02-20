@@ -11,7 +11,9 @@ from sentence_transformers import SentenceTransformer
 from datetime import datetime
 
 # --- API 설정 ---
-api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+api_key = os.environ.get("ANTHROPIC_API_KEY")
+if not api_key:
+    raise ValueError("ANTHROPIC_API_KEY environment variable not set")
 client = anthropic.Anthropic(api_key=api_key)
 MODEL_NAME = "claude-opus-4-1-20250805" # 사용할 LLM 모델 이름 설정
             # claude-sonnet-4-5-20250929
