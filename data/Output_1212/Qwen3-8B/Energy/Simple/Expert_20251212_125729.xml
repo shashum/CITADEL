@@ -1,0 +1,51 @@
+<Scenario>
+    <title>RedDelta Modified PlugX Attack on Energy Sector Infrastructure</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        A sophisticated cyberattack targeting energy sector operations through phishing and public-facing application exploitation, culminating in critical system disruption.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=RedDelta Modified PlugX Infection Chain Operations</campaign_or_group>
+        <motivation>Disrupt energy grid operations</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Application Log, Target Artifact (Privileges)
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Application Log Content (Mechanism), Modify System Partition
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-38475 (Suggested): Apache HTTP Server contains an improper escaping of output vulnerability in mod_rewrite that allows an attacker to map URLs to filesystem locations that are permitted to be served by the server but are not intentionally/directly reachable by any URL, resulting in code execution or source code disclosure.</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The attacker lures employees with malicious email attachments containing exploit code, exploiting vulnerabilities in internet-facing assets to establish initial access. The phishing campaign leverages crafted URLs that exploit improper output escaping in web servers to deliver payloads.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>CVE-2010-2568 (Suggested): Microsoft Windows incorrectly parses shortcuts in such a way that malicious code may be executed when the operating system displays the icon of a malicious shortcut file.</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker deploys PlugX malware via compromised Remote Desktop Protocol (RDP) sessions or unpatched software, exploiting vulnerabilities in application logs to execute arbitrary code. Malicious shortcut files are triggered through log content manipulation, enabling persistent execution.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Modify System Partition</technique_name>
+            <surface>Target Artifact (Privileges)</surface>
+            <vector>Modify System Partition</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-638: Altered Component Firmware</capec>
+            <description>The attacker manipulates SCADA systems by modifying system partitions to alter firmware configurations, creating grid instability or forced shutdowns. This disrupts operational technology (OT) systems through privilege escalation and direct modification of critical infrastructure controls.</description>
+        </stage>
+    </attack_flow>
+    <summary>A RedDelta-affiliated group executes a targeted attack on energy sector infrastructure through phishing and application exploitation, ultimately compromising SCADA systems to induce grid disruptions. The operation demonstrates advanced persistence techniques and leverages known vulnerabilities in both software and hardware components.</summary>
+</Scenario>

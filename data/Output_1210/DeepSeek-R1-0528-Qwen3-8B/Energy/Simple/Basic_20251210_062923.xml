@@ -1,0 +1,77 @@
+<Scenario>
+    <title>APT41 DUST Attack Scenario</title>
+    <overview>
+        <Target>Energy Sector Infrastructure</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a targeted attack against energy sector organizations, leveraging phishing for initial compromise followed by command execution and data extraction.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=APT41 DUST</campaign_or_group>
+        <motivation>Espionage and Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Email Systems, Web Servers, User Workstations
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Phishing, Social Engineering, Malicious Link Clicking
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An adversary initiates contact through deceptive emails designed to trick recipients into revealing credentials or clicking malicious links. These emails may appear legitimate, exploiting trust relationships within the energy sector.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1202: Indirect Command Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-9: Buffer Overflow in Local Command-Line Utilities</capec>
+            <description>Upon successful phishing, the attacker executes malicious commands on the compromised endpoint, potentially leveraging vulnerabilities in command-line tools to run unauthorized scripts or binaries, escalating privileges or accessing restricted areas.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Persistence Mechanism Not Specified</technique_name>
+            <surface>User Account</surface>
+            <vector>Scheduled Task Creation</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>Infered from typical APT behaviors, the attacker establishes persistence by creating a scheduled task linked to their command-and-control server, ensuring ongoing access to the energy network endpoints.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Privilege Escalation Technique Not Specified</technique_name>
+            <surface>System Binary</surface>
+            <vector>Kerberoasting Attack</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>Exploiting weaknesses in authentication protocols, the attacker elevates privileges to gain domain admin rights, facilitating broader control over the energy sector's IT and OT environments.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Defense Evasion Method Not Specified</technique_name>
+            <surface>Process Integrity</surface>
+            <vector>Process Impersonation</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>To evade detection, the attacker uses process impersonation to mask malicious activities within legitimate processes, blending with normal traffic on energy sector networks.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1074: Data Staged</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-231: Oversized Serialized Data Payloads</capec>
+            <description>The final stage involves gathering and preparing sensitive data for exfiltration, potentially causing operational disruption by overwhelming systems with large data transfers aimed at stealing intellectual property or grid control information.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        A straightforward attack chain beginning with phishing to breach defenses, progressing through command execution and evasion tactics, culminating in data theft impacting energy sector operations.
+    </summary>
+</Scenario>

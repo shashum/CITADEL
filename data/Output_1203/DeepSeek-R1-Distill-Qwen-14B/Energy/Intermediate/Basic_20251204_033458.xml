@@ -1,0 +1,69 @@
+<Scenario>
+    <overview>
+        <title>Energetic Intrusion: APT41 DUST Targets Energy Sector</title>
+        <Target>Energy</Target>
+        <Complexity>Intermediate</Complexity>
+        <summary>A Basic-level threat actor, likely part of the APT41 DUST campaign, executes a multi-stage cyber attack targeting the energy sector. The attack begins with a spear phishing email to gain initial access, followed by execution of malicious payloads, establishment of persistence, privilege escalation, defense evasion, and ultimately impacts the target through SCADA system manipulation.</summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=APT41 DUST</campaign_or_group>
+        <motivation>Military espionage and industrial sabotage</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing Email</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Email</vector>
+            <kev>CVE-2022-24112 (Suggested)</kev>
+            <capec>CAPEC ID: 163 Name: Spear Phishing</capec>
+            <description>The attack commences with a spear phishing email campaign targeting employees of the energy company. The email appears legitimate, often mimicking internal communications, and contains a malicious attachment or link. Exploiting CVE-2022-24112, the payload establishes an initial foothold on the compromised device.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Mimikatz</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Malicious Process Injection</vector>
+            <kev>CVE-2025-31201 (Suggested)</kev>
+            <capec>CAPEC ID: 467 Name: Cross Site Identification</capec>
+            <description>Once initial access is achieved, Mimikatz is executed to harvest credentials and manipulate the environment. This technique leverages known vulnerabilities in system processes to inject malicious code, enabling unauthorized access and lateral movement within the network.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Registry Key Creation</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>System Configuration</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 203 Name: Manipulate Registry Information</capec>
+            <description>To ensure long-term presence, the attacker creates a registry key that ensures the malicious payload is executed at system startup. This persistence mechanism guarantees access across reboots, maintaining a continuous presence within the network.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploitation of Vulnerable Services</technique_name>
+            <surface>Vulnerable Network Services</surface>
+            <vector>Network Exploitation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 278 Name: Web Services Protocol Manipulation</capec>
+            <description>The attacker identifies and exploits vulnerabilities in exposed network services, such as outdated SCADA systems. By compromising these services, the attacker escalates privileges to gain higher levels of access within the energy grid infrastructure.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>File Deletion</technique_name>
+            <surface>Log Files and System Artifacts</surface>
+            <vector>File System Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 149 Name: Explore for Predictable Temporary File Names</capec>
+            <description>To avoid detection, the attacker deletes log files and other system artifacts that could reveal the breach. This activity covers the tracks of the attack, making it difficult for defenders to trace the source and extent of the intrusion.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>SCADA System Manipulation</technique_name>
+            <surface>Industrial Control Systems (ICS)</surface>
+            <vector>Direct System Interaction</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522 Name: Malicious Hardware Component Replacement</capec>
+            <description>The final stage involves direct manipulation of SCADA systems, leading to potential operational disruptions or outages. This could result in significant financial loss and pose risks to public safety, demonstrating the critical nature of securing industrial control systems.</description>
+        </stage>
+    </attack_flow>
+    <summary>This scenario details a multi-phase cyber attack on the energy sector by the APT41 DUST campaign. The attack progresses from initial access via spear phishing to impactful SCADA system manipulation, showcasing the evolving tactics of Basic-level adversaries targeting critical infrastructure.</summary>
+</Scenario>

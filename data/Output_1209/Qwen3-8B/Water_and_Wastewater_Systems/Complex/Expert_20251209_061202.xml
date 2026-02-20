@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Maroochy Water Breach: Industrial Control System Compromise</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated cyberattack targeting a water treatment facility's SCADA systems, leveraging AI-driven reconnaissance, custom malware, and privilege escalation to disrupt critical infrastructure operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Maroochy Water Breach</campaign_or_group>
+        <motivation>Sabotage and Disruption</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Open Source Intelligence, Script, Internet-facing assets, Target System Artifact, Windows Registry, Network Traffic, OS Process, Process, Domain Name Registrar
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Script Execution (Mechanism), Delivery Method, Exploit TEE Vulnerability, Windows Registry Key Creation (Mechanism), Network Traffic Content (Mechanism), Process Injection, Process Creation (Mechanism), Reg.exe Utility, Pass the Hash, Exfiltration Over C2 Channel, Process Creation (Mechanism), Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker uses artificial intelligence to analyze publicly available data about the water treatment facility's network architecture, vendor software, and personnel, identifying vulnerabilities in industrial control protocols.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T0802: Automated Collection</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>The threat actor develops custom scripts to automate the collection of SCADA system details, focusing on weaknesses in industrial control protocols used by the facility's legacy systems.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1027.008: Stripped Payloads</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-231: Oversized Serialized Data Payloads</capec>
+            <description>The attacker compromises engineer credentials via spear-phishing emails containing malicious attachments, delivering stripped payloads to gain initial access to the facility's network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1405: Exploit TEE Vulnerability</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exploit TEE Vulnerability</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-67: String Format Overflow in syslog()</capec>
+            <description>Malware is deployed to exploit vulnerabilities in outdated supervisory control systems, enabling arbitrary code execution on critical infrastructure components.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>Persistent access is established through scheduled tasks configured in the Windows Registry, ensuring continued control over key control nodes.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0812: Default Credentials</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-70: Try Common or Default Usernames and Passwords</capec>
+            <description>Elevated privileges are achieved by exploiting weak authentication mechanisms on remote maintenance interfaces, granting access to administrative controls.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is injected into legitimate SCADA monitoring processes to evade detection and maintain stealth during operations.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>Credentials are exfiltrated from operator workstations during lateral movement by manipulating software deployment tools to harvest login details.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>Network traffic is monitored using the Reg.exe utility to map the facility's internal network, identifying critical control systems and redundant pathways.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>The attacker moves laterally across the network using stolen credentials to access restricted control panels and escalate control over the infrastructure.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>Operational data is collected and transmitted over a command-and-control channel to analyze system behavior prior to disruption.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1219.001: IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <description>Sensitive configuration files are exfiltrated using process creation techniques to avoid detection by traditional network monitoring tools.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1641: Data Manipulation</technique_name>
+            <surface>OS Process</surface>
+            <vector>Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-153: Input Data Manipulation</capec>
+            <description>Critical systems are manipulated by altering input data to overload wastewater pumps and override safety protocols, resulting in sewage overflow incidents.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Maroochy Water Breach demonstrates a multi-stage attack on industrial control systems, combining AI-driven reconnaissance, custom malware, and privilege escalation to disrupt critical infrastructure. The attack highlights vulnerabilities in legacy SCADA systems and poor security practices in water and wastewater management networks.
+    </summary>
+</Scenario>

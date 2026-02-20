@@ -1,0 +1,81 @@
+<Scenario>
+    <metadata>
+        <title>Oldsmar Treatment Plant Intrusion Scenario</title>
+        <date>2021</date>
+        <author>Threat Intelligence Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        Briefly, the Oldsmar treatment plant intrusion was a real-world attack that occurred in 2021. The attackers targeted the energy sector, exploiting basic vulnerabilities to achieve their goals.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Oldsmar Treatment Plant Intruders</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            System Image
+            Target System Artifact
+            Logon Session
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Delivery Method
+            File Creation (Mechanism)
+            Misconfigured RDP
+            Logon Session Creation (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2013-1347 (Suggested): This vulnerability may corrupt memory in a way that could allow an attacker to execute arbitrary code in the context of the current user within Internet Explorer.</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An employee with poor password hygiene may fall victim to phishing emails sent over the internet, allowing the attackers to gain initial access to the system.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1219.002: Remote Desktop Software</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2021-31956 (Suggested): Microsoft Windows New Technology File System (NTFS) contains an unspecified vulnerability that allows attackers to escalate privileges via a specially crafted application.</kev>
+            <capec>CAPEC-555: Remote Services with Stolen Credentials</capec>
+            <description>The attackers exploited an outdated software vulnerability in the energy company's internet-facing assets, allowing them to gain further access to the system.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1491.001: Internal Defacement</technique_name>
+            <surface>System Image</surface>
+            <vector>File Creation (Mechanism)</vector>
+            <kev>CVE-2019-3010 (Suggested): Oracle Solaris component: XScreenSaver contains an unspecified vulnerability that allows for privilege escalation.</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attackers moved laterally through the network due to an unsecured network connection, allowing them to deface the system image.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Misconfigured RDP</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Misconfigured RDP</vector>
+            <kev>CVE-2022-21882 (Suggested): Microsoft Win32k contains an unspecified vulnerability that allows for privilege escalation.</kev>
+            <capec>N/A</capec>
+            <description>The attackers exploited a misconfigured RDP connection on an unmonitored machine to gain further access to the system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0860: Wireless Compromise</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-606: Weakening of Cellular Encryption</capec>
+            <description>The attackers compromised the logon session, manipulating settings to disrupt operations at the treatment plant.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The attackers exploited basic vulnerabilities in the energy company's systems, gaining initial access through phishing emails and remote desktop software. They then moved laterally through the network, executing malicious actions and ultimately causing disruption to the treatment plant's operations.
+    </summary>
+</Scenario>

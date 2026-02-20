@@ -1,0 +1,161 @@
+<Scenario>
+    <metadata>
+        <title>Operation CuckooBees Transportation Systems Attack Scenario</title>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Operation CuckooBees</campaign>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        Operation CuckooBees aims to disrupt transportation systems by exploiting vulnerabilities in various stages, starting with reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and finally impact.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation CuckooBees</campaign_or_group>
+        <motivation>Disruption of Transportation Systems</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            File
+            Target Artifact (Tasks)
+            Application Log
+            File System
+            User Account
+            Credential Store
+            Network Traffic
+            Alternate Protocols
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Email
+            Delivery Method
+            Artificial Intelligence
+            File Modification (Mechanism)
+            Network Traffic Content (Mechanism)
+            Scheduled Task/Job
+            Application Log Content (Mechanism)
+            File Metadata (Mechanism)
+            User Account Authentication (Mechanism)
+            Reg.exe Utility
+            Network Traffic Flow (Mechanism)
+            File Access (Mechanism)
+            Exfiltration Over Alternative Protocol
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attackers gather information about transportation systems using publicly available sources.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1070.010: Relocate Malware</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-542: Targeted Malware</capec>
+            <description>The attackers develop custom malware for the attack.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2020-8193 (Suggested): Citrix ADC, Citrix Gateway, and multiple Citrix SD-WAN WANOP appliance models contain an authorization bypass vulnerability that may allow unauthenticated access to certain URL endpoints. The attacker must have access to the NetScaler IP (NSIP) in order to perform exploitation.</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attackers use targeted phishing emails to trick employees into revealing login credentials.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>CVE-2022-0028 (Suggested): A Palo Alto Networks PAN-OS URL filtering policy misconfiguration could allow a network-based attacker to conduct reflected and amplified TCP denial-of-service (RDoS) attacks.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attackers compromise employee devices through drive-by downloads.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1603: Scheduled Task/Job</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attackers schedule tasks to maintain persistence on compromised devices.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attackers exploit vulnerabilities in public-facing applications to gain elevated privileges.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1027.010: Command Obfuscation</technique_name>
+            <surface>File</surface>
+            <vector>File Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-191: Read Sensitive Constants Within an Executable</capec>
+            <description>The attackers obfuscate malware code to evade detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attackers attempt brute-force attacks on authentication protocols.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attackers scan the network to identify potential targets.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers use remote services to move laterally within the network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attackers collect sensitive data from local systems.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1639: Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Target Artifact (Alternate)</surface>
+            <vector>Exfiltration Over Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>The attackers exfiltrate collected data over alternative protocols.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attackers disrupt transportation systems with DoS attacks.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation CuckooBees uses a complex multi-stage attack plan targeting transportation systems, involving reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </summary>
+</Scenario>

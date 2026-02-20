@@ -1,0 +1,73 @@
+<Scenario>
+    <metadata>
+        <title>Critical Communications Network Attack Scenario</title>
+        <date>2024-07-26</date>
+        <author>Threat Intelligence Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Simple</Complexity>
+        <brief_summary>A basic attack scenario targeting communications networks using drive-by downloads and exploitation of public-facing applications.</brief_summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Versa Director Zero Day Exploitation</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Drive-by Download</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        <available_surfaces>
+            <surface>Internet-facing assets</surface>
+            <surface>Internal Networks</surface>
+        </available_surfaces>
+    </attack_surface>
+    <attack_vector>
+        <available_vectors>
+            <vector>Drive-by Download</vector>
+            <vector>Exploit Public-Facing Applications</vector>
+            <vector>Custom Command and Control Protocol</vector>
+            <vector>Automated Exfiltration</vector>
+        </available_vectors>
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2015-0313 (Suggested): Use-after-free vulnerability in Adobe Flash Player allows remote attackers to execute code.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker uses a drive-by download to exploit an unpatched vulnerability in SD-WAN devices, allowing them to compromise the device via a delivery method.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2018-2628 (Suggested): Oracle WebLogic Server contains an unspecified vulnerability which can allow an unauthenticated attacker with T3 network access to compromise the server.</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker exploits an unpatched vulnerability in a public-facing application to gain access to the network via a delivery method.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1094: Custom Command and Control Protocol</technique_name>
+            <surface>Target Artifact (Protocols)</surface>
+            <vector>Custom Command and Control Protocol</vector>
+            <kev>CVE-2022-3723 (Suggested): Google Chromium V8 Engine contains a type confusion vulnerability that allows a remote attacker to potentially exploit heap corruption via a crafted HTML page.</kev>
+            <capec>CAPEC-248: Command Injection</capec>
+            <description>The attacker establishes a custom command and control channel to maintain persistence on the compromised network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attacker exfiltrates sensitive data from the compromised network, potentially including communications-related information.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This attack scenario involves a basic attack chain targeting communications networks using drive-by downloads and exploitation of public-facing applications. The attacker gains initial access through unpatched vulnerabilities in SD-WAN devices and public-facing applications, then establishes a custom command and control protocol to maintain persistence. Finally, they exfiltrate sensitive data from the compromised network.
+    </summary>
+</Scenario>

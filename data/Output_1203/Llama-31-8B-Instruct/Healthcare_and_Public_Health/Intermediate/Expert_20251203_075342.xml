@@ -1,0 +1,101 @@
+<Scenario>
+    <title>Operation Spalax Healthcare Sector Attack Scenario</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Intermediate</Complexity>
+        A sophisticated threat actor, part of Operation Spalax, has been targeting the healthcare sector with intermediate-level attacks. Their goal is to gain unauthorized access to sensitive information while evading detection.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Spalax</campaign_or_group>
+        <motivation>Financial Gain and Intellectual Property Theft</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Device theft, Weak passwords, Improper configuration, Vulnerability, Internet-facing assets, Shared DB or directory, Obsolete products, Injection flaws, Custom APIs, Autonomous system numbers(ASNs), SSL Certificates and Attribution, WHOIS records, contacts and history, TCP/IP ports, Public and private cloud, Web server services such as emails and databases, Shadow IT, Poor implementation of access controls, Malicious insiders, Social engineering, Insufficient physical security controls, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: External/Removable media, Loss or Theft of equipment, Attrition, Web, Account takeover, Inadequate encryption, Browser-based attack, Application compromise, Open port, Vulnerability exploit, Ransomware, Malware, Man in The Middle(MiTM), Session hijacking, Brute-force attack, Distributed Denial of Service(DDoS), Watering-hole, Compromised and weak credentials, SIM Swap, Security misconfigurations and vulnerabilities, Web forms, IP address and IP blocks, Domains and subdomains, Botnet, Credential compromise, Telephony Denial of Service(TDoS), Replay Attack, Cryptanalysis Attacks, Side Channel Attacks, Hardware Trojans, Covert Attacks, Sleep Deprivation Attack, Clock Skewing, Attacks Targeting System Reputation, Data and Command Integrity Attack, Eavesdropping, Command and Control Attacks, Phishing, Impersonations/Spoofing, Improper usage, Dumpster diving, Advanced Persistent Threat(APT), Baiting, Shoulder surfing, Reverse social engineering, Business Email Compromise(BEC), Advanced Fee, Extortion
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing via Compromised Email Account</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2022-26138 (Suggested)</kev>
+            <capec>163</capec>
+            <description>The attackers send spear phishing emails to healthcare professionals using compromised email accounts to trick them into revealing sensitive information.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2021-25369 (Suggested)</kev>
+            <capec>535</capec>
+            <description>The attackers exploit vulnerabilities in healthcare websites or patient portals to infect devices with malware during drive-by compromises.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Code Injection</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2010-5326 (Suggested)</kev>
+            <capec>242</capec>
+            <description>The attackers inject malicious code into healthcare software or systems to disrupt operations or steal data.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Web Shell</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>650</capec>
+            <description>The attackers establish a web shell on a healthcare system to maintain persistent access and control.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Lateral Movement</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>429</capec>
+            <description>The attackers move laterally within the healthcare network to access sensitive areas and escalate privileges.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Anti-forensic Tools</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>636</capec>
+            <description>The attackers use anti-forensic tools to erase evidence of the attack and avoid detection.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>System Misconfiguration: Insufficient Session Expiration</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>593</capec>
+            <description>The attackers take advantage of weak session management to maintain persistence and evade detection.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Destruction</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>675</capec>
+            <description>The attackers destroy or manipulate sensitive healthcare data to cause maximum disruption and impact.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service (DoS)</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>469</capec>
+            <description>The attackers disrupt healthcare services and cause denial of service to patients and staff.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Spalax is a sophisticated threat actor that uses intermediate-level attacks to target the healthcare sector. They employ techniques like spear phishing, drive-by compromise, code injection, web shells, lateral movement, anti-forensic tools, and system misconfiguration to gain unauthorized access, maintain persistence, and cause significant disruption.
+    </summary>
+</Scenario>

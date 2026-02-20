@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Unitronics Defacement Campaign</campaign>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        <summary>A sophisticated cyber attack orchestrated by the Unitronics Defacement Campaign targets transportation systems with a multi-stage approach. The attackers engage in extensive reconnaissance to map out the network topology, acquire necessary infrastructure for command and control, and exploit vulnerabilities for initial access. They maintain persistence, escalate privileges, evade defenses, access credentials, discover further systems, move laterally, collect sensitive data, exfiltrate information, and finally impact operations through defacement.</summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Unitronics Defacement Campaign</campaign_or_group>
+        <motivation>Disruption and Data Theft</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Supply Chain Compromise</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Command & Control Server, Network Traffic, Public IP/Network Block, File, Logon Session, Target System Artifact
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method, Network Traffic Flow (Mechanism), Response Metadata (Mechanism), Application Log Content (Mechanism), File Modification (Mechanism), Network Service Scanning, Network Traffic Flow (Mechanism), Logon Session Creation (Mechanism), Exfiltration Over C2 Channel, Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>The attackers conduct active scanning to map the network topology of the transportation systems, identifying potential entry points and vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attackers establish command and control servers and other resources needed to support the operation, ensuring communication channels remain covert.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0862: Supply Chain Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-439: Manipulation During Distribution</capec>
+            <description>By compromising a supplier or partner, the attackers gain initial access to the transportation system's network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attackers exploit known vulnerabilities in public-facing transportation management systems to execute malicious payloads.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Command & Control Server</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-650: Upload a Web Shell to a Web Server</capec>
+            <description>To maintain access, the attackers deploy a web shell on the compromised server, providing a backdoor for continuous interaction.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attackers exploit weaknesses to elevate their privileges, gaining administrative control over critical system components.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1601: Modify System Image</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-532: Altered Installed BIOS</capec>
+            <description>To avoid detection, the attackers alter system images and logs to erase evidence of their presence and actions.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-226: Session Credential Falsification through Manipulation</capec>
+            <description>The attackers steal credentials to facilitate lateral movement within the network using tools like Mimikatz.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>After obtaining credentials, the attackers scan the network to identify additional systems and services for further exploitation.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers leverage remote services like RDP or SSH to move laterally across the network, expanding their reach.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0811: Data from Information Repositories</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>The attackers gather sensitive data from repositories, focusing on operational procedures and schedules.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>Stolen data is transferred to attacker-controlled servers using established command and control channels.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1491: Defacement</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attackers disrupt operations by altering visual content, such as changing signage or dashboard displays, consistent with the 'Unitronics Defacement Campaign'.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Unitronics Defacement Campaign employs a complex, multi-stage cyber attack strategy targeting transportation systems. With expert skills, they meticulously plan and execute each phase, from reconnaissance to impact, leaving no stone unturned in their quest for disruption and data theft.
+    </summary>
+</Scenario>

@@ -1,0 +1,51 @@
+<Scenario>
+    <title>FunnyDream Campaign: Targeted Phishing and Data Exfiltration in Communications Sector</title>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Simple</Complexity>
+        A sophisticated spear-phishing campaign targeting communications infrastructure, leveraging internet-facing assets and script-based exploitation to exfiltrate sensitive data.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=FunnyDream</campaign_or_group>
+        <motivation>Espionage/Data Theft</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Script File, Command
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Command and Scripting Interpreter, Command Execution (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2015-2502 (CWE-119): Microsoft Internet Explorer memory corruption vulnerability allowing code execution</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker sends targeted emails containing malicious hyperlinks to employees, exploiting the vulnerability in internet-facing assets to deliver phishing payloads that compromise endpoint systems.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Command and Scripting Interpreter</technique_name>
+            <surface>Script File</surface>
+            <vector>Command and Scripting Interpreter</vector>
+            <kev>CVE-2016-20017 (CWE-78): Command injection vulnerability in D-Link DSL-2750B devices</kev>
+            <capec>CAPEC-160: Exploit Script-Based APIs</capec>
+            <description>Malicious scripts are executed on compromised endpoints, leveraging script file vulnerabilities to deploy a backdoor that establishes persistent access to the network infrastructure.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attacker initiates automated data exfiltration processes, using encrypted command execution mechanisms to steal sensitive communications data from compromised systems.</description>
+        </stage>
+    </attack_flow>
+    <summary>A multi-stage attack beginning with spear-phishing, progressing to script-based exploitation, and culminating in automated data exfiltration targeting communications infrastructure.</summary>
+</Scenario>

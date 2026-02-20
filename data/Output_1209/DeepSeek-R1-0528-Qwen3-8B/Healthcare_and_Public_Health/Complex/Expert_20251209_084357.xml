@@ -1,0 +1,103 @@
+```xml
+<Scenario>
+    <title>Healthcare Infrastructure Attack Scenario</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        This attack targets healthcare organizations and public health systems, leveraging expert-level tactics to conduct reconnaissance, develop custom malware, achieve persistence, escalate privileges, evade defenses, harvest credentials, discover network assets, move laterally, collect sensitive data, exfiltrate information, and deliver denial-of-service impacts.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0017</campaign_or_group>
+        <motivation>Espionage and disruption for potential financial gain or strategic advantage.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Open Source Intelligence (OSINT)</initial_attack_surface>
+        <initial_attack_vector>Artificial Intelligence</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Open Source Intelligence (OSINT), Firmware, Internet-facing assets, Command, File, Domain Name Registrar, Public IP/Network Block, DNS Record, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Delivery Method, File Deletion, Cloud Service Modification, File Access, Serverless Execution, Mimikatz Tool, Network Service Scanning, Pass the Hash, Data from Local System, Exfiltration Over Alternative Protocol, Disable Network Hardware
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 184, Name: Software Integrity Attack, Description: An attacker initiates a series of events designed to cause a user, program, server, or device to perform actions which undermine the integrity of software code, device data structures, or device firmware, achieving the modification of the ta</capec>
+            <description>Attackers employ artificial intelligence algorithms to analyze publicly available data sources, such as organizational websites, social media profiles, and open repositories, gathering detailed information on network architectures, employee roles, and potential vulnerabilities to inform subsequent attack phases.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1495: Firmware Corruption</technique_name>
+            <surface>Firmware</surface>
+            <vector>Firmware Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 682, Name: Exploitation of Firmware or ROM Code with Unpatchable Vulnerabilities, Description: An adversary may exploit vulnerable code (i.e., firmware or ROM) that is unpatchable. Unpatchable devices exist due to manufacturers intentionally or inadvertently designing devices incapable of updating security flaws.</capec>
+            <description>In preparation for the attack, adversaries develop specialized malware tailored to exploit unpatchable firmware vulnerabilities commonly found in medical devices or legacy systems within healthcare environments, ensuring it can persistently operate without easy remediation.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0866: Exploitation of Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 603, Name: Blockage, Description: An adversary blocks the delivery of an important system resource causing the system to fail or stop working. Abstraction: Standard, Typical Severity: High, Likelihood Of Attack: Medium, Consequences: SCOPE:Availability: TECHNICAL IMPACT:Other: NOTE: Blocking a resource can lead to denial of service or disruption of operations.</capec>
+            <description>By compromising exposed internet-facing applications, often running deprecated software like older Java or .NET frameworks, attackers execute blocking strategies as outlined in CAPEC-603 to disable normal service functions and gain entry points, facilitating unauthorized access to internal systems.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 663, Name: Exploitation of Transient Instruction Execution, Description: An adversary exploits a hardware design flaw in a CPU implementation of transient instruction execution to expose sensitive data and bypass/subvert access control over restricted resources. Typically, the adversary conditions the processor to execute unintended instructions.</capec>
+            <description>Once initial access is established, attackers run pre-injected malicious commands or scripts on endpoint devices, capitalizing on transient instruction execution flaws identified in CAPEC-663 to manipulate system behaviors and automate processes without requiring direct user intervention.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1070.009: Clear Persistence</technique_name>
+            <surface>File</surface>
+            <vector>File Deletion (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 675, Name: Retrieve Data from Decommissioned Devices, Description: An adversary obtains decommissioned, recycled, or discarded systems and devices that can include an organization’s intellectual property, employee data, and other types of controlled information. Systems and devices that have been improperly disposed of pose significant risks.</capec>
+            <description>To maintain long-term presence, attackers embed malware in critical file locations, such as boot sectors or autorun files, or alter registry keys—a form of clear persistence—as referenced in CAPEC-675, ensuring the malicious code survives reboots and system updates by leveraging file-based mechanisms that avoid standard removal paths.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1552.006: Group Policy Preferences</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 576, Name: Group Permission Footprinting, Description: An adversary exploits functionality meant to identify information about user groups and their permissions on the target system to an authorized user. By mapping group policies, the adversary gains elevated access rights beyond intended levels.</capec>
+            <description>Exploiting group policy preferences allows attackers to elevate their privileges by accessing or modifying configuration files that dictate user permissions, thereby gaining administrative control over the healthcare IT infrastructure as detailed in CAPEC-576, enabling deeper system compromises.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1648: Serverless Execution</technique_name>
+            <surface>Cloud Service</surface>
+            <vector>Cloud Service Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 663, Name: Exploitation of Transient Instruction Execution, Description: An adversary exploits a hardware design flaw in a CPU implementation of transient instruction execution to expose sensitive data and bypass/subvert access control over restricted resources. Typically, the adversary conditions the processor to execute unintended instructions.</capec>
+            <description>Attackers evade detection by utilizing serverless execution capabilities on cloud services, modifying configurations or exploiting transient states as per CAPEC-663 to hide forensic artifacts during post-exploitation scans, thus avoiding identification in highly monitored public health networks.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 226, Name: Session Credential Falsification through Manipulation, Description: An attacker manipulates an existing credential in order to gain access to a target application. Session credentials allow users to identify themselves to a service after an initial authentication without needing to log in repeatedly.</capec>
+            <description>Through OS credential dumping, attackers extract hashed passwords or plaintext credentials from memory or storage, often using tools like Mimikatz as indicated in the rationale, to gain unauthorized access to accounts and systems within the healthcare environment, supporting lateral movements and data collection.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309, Name: Network Topology Mapping, Description: An adversary engages in scanning activities to map network nodes, hosts, devices, and routes. Adversaries usually perform this type of network reconnaissance during the early stages of attack against an external network. Many types of scanning can reveal host names, operating system types, and version numbers.</capec>
+            <description>Attackers scan network services and topology starting from public IP addresses or network blocks to identify active hosts, open ports, and running services, mapping out the internal structure to pinpoint valuable assets like patient databases or research servers as part of their discovery phase.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 461, Name: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness, Description: An adversary utilizes a hash function extension/padding weakness, to modify the parameters passed to the web service requesting authentication by generating their own call in order to gain unauthorized access

@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Energy Sector Cyber Espionage Campaign C0027</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated multi-stage attack targeting energy sector infrastructure leverages AI-driven reconnaissance, firmware corruption, and credential theft to compromise operational systems and exfiltrate sensitive data.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0027</campaign_or_group>
+        <motivation>Industrial Sabotage</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Target Artifact (Tasks), Firmware, Internet-facing assets, Application Log, Windows Registry, Network Traffic, OS Process, Credential Store, File, Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Firmware Modification, Delivery Method, Application Log Content, Windows Registry Key Creation, Network Traffic Content, Process Injection, Keylogging, Reg.exe Utility, Pass the Hash, File Modification, Process Creation
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker employs AI algorithms to analyze publicly available data on energy sector infrastructure and employee schedules, identifying high-value targets and potential vulnerabilities in operational workflows.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1495: Firmware Corruption</technique_name>
+            <surface>Firmware</surface>
+            <vector>Firmware Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-682: Exploitation of Firmware or ROM Code with Unpatchable Vulnerabilities</capec>
+            <description>The threat actor develops custom malware payloads using open-source frameworks like Metasploit, embedding them in firmware to bypass traditional security controls and establish persistent footholds.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2016-9079 (Suggested): Mozilla Firefox, Firefox ESR, and Thunderbird contain a use-after-free vulnerability in SVG Animation</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The attacker deploys spear-phishing emails with malicious Word/Excel attachments containing embedded macros, exploiting CVE-2016-9079 to execute payload delivery and establish initial command-and-control communication.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1499.004: Application or System Exploitation</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>CVE-2017-0148 (Suggested): The SMBv1 server in Microsoft allows remote attackers to execute arbitrary code via crafted packets</kev>
+            <capec>CAPEC-574: Services Footprinting</capec>
+            <description>The attacker triggers malicious code execution via compromised Office documents, leveraging CVE-2017-0148 to exploit SMBv1 vulnerabilities and deploy the initial payload across the network.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker creates scheduled tasks in the Windows Registry to maintain persistent access, ensuring continued operation of the malware even after system reboots or remediation attempts.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1595.002: Vulnerability Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>The attacker scans internal network traffic patterns to identify unpatched systems and exploit known elevation-of-privilege vulnerabilities, gaining administrative access to critical infrastructure.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attacker injects malicious code into legitimate system processes to evade detection by security software while maintaining covert control over compromised endpoints.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1417.001: Keylogging</technique_name>
+            <surface>Target Artifact (Accessibility)</surface>
+            <vector>Keylogging</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-568: Capture Credentials via Keylogger</capec>
+            <description>A keylogger is deployed to capture login credentials during user sessions, enabling the attacker to extract usernames and passwords for further lateral movement and data exfiltration.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker uses the Reg.exe utility to monitor network traffic and map internal network architecture, identifying critical assets and potential pathways for data exfiltration.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>The attacker moves laterally across the network using stolen credentials via the "Pass the Hash" technique, accessing additional systems without requiring direct authentication.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker harvests sensitive operational data from servers, including SCADA configurations and maintenance logs, before corrupting files to erase forensic evidence of the breach.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1219.001: IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <description>Data is exfiltrated through encrypted tunnels created by malicious processes, masking the traffic as normal network activity to avoid detection by perimeter defenses.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The final stage involves corrupting industrial control system files to trigger operational disruptions, such as power grid outages or equipment malfunctions, achieving strategic impact on energy infrastructure.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The C0027 campaign demonstrates a coordinated attack lifecycle targeting energy sector infrastructure, combining low-skill phishing with advanced firmware exploitation and data destruction to achieve both espionage and operational disruption.
+    </summary>
+</Scenario>

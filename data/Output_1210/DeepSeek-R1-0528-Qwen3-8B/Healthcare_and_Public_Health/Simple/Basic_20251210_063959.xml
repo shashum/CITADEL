@@ -1,0 +1,65 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Juicy Mix</campaign>
+    </metadata>
+    
+    <overview>
+        <Target>Healthcare and Public Health organizations</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a straightforward cyber attack campaign known as "Juicy Mix," which exploits human error through phishing to achieve basic compromise and data exfiltration, typical of novice threat actors targeting vulnerable sectors.
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=Juicy Mix</campaign_or_group>
+        <motivation>To disrupt operations and steal sensitive patient data via automated means, capitalizing on low-skill opportunities.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method
+    </attack_vector>
+    
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The attacker initiates contact through spearphishing emails directed at healthcare staff, presenting deceptive links or attachments designed to trick recipients into revealing credentials or executing commands, thereby gaining unauthorized access to systems.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1202: Indirect Command Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-9: Buffer Overflow in Local Command-Line Utilities</capec>
+            <description>Upon successful phishing, the attacker executes a command-line script downloaded during the initial access phase, exploiting a potential buffer overflow vulnerability in local utilities to run arbitrary code and establish persistence without requiring advanced technical knowledge.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The compromised system triggers an automated script that exfiltrates sensitive patient data or records by sending stolen information covertly over the network, potentially overwhelming filters due to large data transfers, leading to significant operational and reputational harm.</description>
+        </stage>
+    </attack_flow>
+    
+    <summary>
+        This simple attack chain demonstrates how basic phishing techniques combined with indirect command execution can lead to quick impact in healthcare settings, highlighting the importance of employee training and robust security measures against such prevalent threats.
+    </summary>
+</Scenario>

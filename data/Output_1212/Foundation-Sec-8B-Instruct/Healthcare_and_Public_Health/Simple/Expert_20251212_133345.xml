@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>HomeLand Justice</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        A sophisticated group named HomeLand Justice targets healthcare organizations using expert-level skills to gain initial access through exploiting public-facing applications, execute malicious scripts, and impact operations by encrypting data for ransom.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=HomeLand Justice</campaign_or_group>
+        <motivation>Ransom and Disruption</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Script File, Target Artifact (Key)
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Command and Scripting Interpreter, Data Encrypted for Impact
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2021-30713 (Suggested): Apple macOS Transparency, Consent, and Control (TCC) contains an unspecified permissions issue which may allow a malicious application to bypass privacy preferences.</kev>
+            <capec>CAPEC ID: 121; Name: Exploit Non-Production Interfaces</capec>
+            <description>The attackers exploit a known vulnerability in the healthcare system's internet-facing application to gain unauthorized access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1623: Command and Scripting Interpreter</technique_name>
+            <surface>Script File</surface>
+            <vector>Command and Scripting Interpreter</vector>
+            <kev>CVE-2020-1464 (Suggested): Microsoft Windows contains a spoofing vulnerability when Windows incorrectly validates file signatures, allowing an attacker to bypass security features and load improperly signed files.</kev>
+            <capec>CAPEC ID: 160; Name: Exploit Script-Based APIs</capec>
+            <description>Using stolen credentials obtained during Initial Access, the attackers execute malicious scripts on internal systems to establish a foothold.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1471: Data Encrypted for Impact</technique_name>
+            <surface>Target Artifact (Key)</surface>
+            <vector>Data Encrypted for Impact</vector>
+            <kev></kev>
+            <capec>CAPEC ID: 609; Name: Cellular Traffic Intercept</capec>
+            <description>The attackers deploy ransomware to encrypt critical data, rendering it inaccessible until a ransom is paid for the decryption key.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The HomeLand Justice group employs a straightforward yet effective approach to compromise healthcare systems. They exploit known vulnerabilities in public-facing applications to gain entry, execute malicious scripts to maintain control, and finally encrypt sensitive data to extort payment.
+    </summary>
+</Scenario>

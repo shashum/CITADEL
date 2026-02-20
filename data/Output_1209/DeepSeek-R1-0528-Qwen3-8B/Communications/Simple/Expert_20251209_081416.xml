@@ -1,0 +1,53 @@
+<Scenario>
+    <title>FrostyGoop Attack Scenario</title>
+    <overview>
+        <Target>Telecommunications Infrastructure</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a targeted attack against a telecommunications provider using phishing to gain initial access, executing commands via buffer overflow exploitation, and disrupting services through network flooding.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=FrostyGoop</campaign_or_group>
+        <motivation>Cause Denial of Service</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Digital Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Telecommunications Equipment, Communication Platform Interfaces, User Terminals, Network Gateways, Customer Premises Equipment (CPE)
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Digital Email, Social Engineering, Command Line Interface (CLI), Malicious Code, Buffer Overflow Exploitation, Network Flooding
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Deceptive Email Transmission</technique_name>
+            <surface>Communication System Users</surface>
+            <vector>Email Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An adversary crafts highly convincing phishing emails impersonating legitimate telecom support channels or internal IT notices. These messages prompt recipients to click malicious links or open compromised attachments related to software updates or account verification, thereby enabling credential theft.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Remote Command Manipulation</technique_name>
+            <surface>Command-Line Tools</surface>
+            <vector>Buffer Overflow Exploit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-9: Buffer Overflow in Local Command-Line Utilities</capec>
+            <description>After gaining credentials via phishing, the attacker leverages known or zero-day buffer overflow vulnerabilities within standard command-line utilities accessible over SSH or directly on administrative workstations managing telecom infrastructure. By sending malformed inputs, they execute arbitrary code on the affected host, potentially compromising core routing or switching systems.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Network Resource Exhaustion</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Denial of Service Attack</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The compromised system is used to generate massive outbound traffic aimed at saturating upstream internet bandwidth providers or internal carrier networks. Alternatively, amplification DNS queries may be employed to overwhelm downstream servers, causing widespread disruption to voice calls, SMS services, and data connectivity across the operator's customer base.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        FrostyGoop executed a multi-stage attack beginning with targeted phishing emails designed to compromise Telecom staff accounts. Following successful credential acquisition, exploits leveraging buffer overflow vulnerabilities in CLI tools allowed remote code execution. Finally, the attackers deployed a resource exhaustion strategy to disrupt essential communication services.
+    </summary>
+</Scenario>

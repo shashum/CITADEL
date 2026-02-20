@@ -1,0 +1,161 @@
+<Scenario>
+    <metadata>
+        <title>Ukraine Electric Power Grid Attack Scenario</title>
+        <target_industry>Communications</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>2015 Ukraine Electric Power Attack</campaign>
+    </metadata>
+    <overview>
+        <Target>Power Grid Systems</Target>
+        <Complexity>Complex</Complexity>
+        The attackers aim to disrupt the Ukraine electric power grid by exploiting various vulnerabilities and gaining unauthorized access to critical systems.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>2015 Ukraine Electric Power Attack</campaign_or_group>
+        <motivation>Disruption of Critical Infrastructure</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Power Grid Industry</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Cloud Instance
+            Target Artifact (Tasks)
+            File System
+            User Account
+            Credential Store
+            Network Traffic
+            Application Log
+            Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Delivery Method
+            Process Creation (Mechanism)
+            Artificial Intelligence
+            Code Injection
+            Command Execution (Mechanism)
+            Application Log Content (Mechanism)
+            OS API Execution (Mechanism)
+            User Account Metadata (Mechanism)
+            Reg.exe Utility
+            Network Traffic Flow (Mechanism)
+            File Access (Mechanism)
+            Network Traffic Content (Mechanism)
+            File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attackers gather information about Ukrainian power grid systems using artificial intelligence.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Cloud Instance</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>The attackers create custom malware to evade detection in cloud instances.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2019-17026 (Suggested): Mozilla Firefox and Thunderbird contain a type confusion vulnerability due to incorrect alias information in the IonMonkey JIT compiler when setting array elements.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attackers use a compromised website to infect systems with BlackEnergy3 via drive-by download.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Code Injection</vector>
+            <kev>CVE-2021-26084 (Suggested): Atlassian Confluence Server and Data Server contain an Object-Graph Navigation Language (OGNL) injection vulnerability that may allow an unauthenticated attacker to execute code.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attackers inject malicious code into infected systems.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1505.006: vSphere Installation Bundles</technique_name>
+            <surface>File System</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-516: Hardware Component Substitution During Baselining</capec>
+            <description>The attackers install a rootkit to maintain persistence.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0890: Exploitation for Privilege Escalation</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attackers gain elevated privileges on infected systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T0834: Native API</technique_name>
+            <surface>Process</surface>
+            <vector>OS API Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-388: Application API Button Hijacking</capec>
+            <description>The attackers disable antivirus software to avoid detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1201: Password Policy Discovery</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-565: Password Spraying</capec>
+            <description>The attackers discover weak passwords for lateral movement.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attackers scan networks for vulnerable systems.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers move laterally through remote services.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attackers collect data from infected systems.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1071.002: File Transfer Protocols</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>The attackers exfiltrate collected data using FTP.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1653: Power Settings</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-681: Exploitation of Improperly Controlled Hardware Security Identifiers</capec>
+            <description>The attackers disrupt power grid operations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The attackers employ a complex attack chain involving reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact to disrupt the Ukraine electric power grid.
+    </summary>
+</Scenario>

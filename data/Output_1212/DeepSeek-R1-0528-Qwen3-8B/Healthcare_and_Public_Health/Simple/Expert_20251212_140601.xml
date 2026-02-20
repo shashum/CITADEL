@@ -1,0 +1,53 @@
+<Scenario>
+    <title>J-Magic Campaign Attack Scenario</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a targeted attack against organizations in the Healthcare and Public Health sector, leveraging expert-level tactics to disrupt services through network compromise.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=J-magic Campaign</campaign_or_group>
+        <motivation>Potentially seeking to cause service disruptions or gather sensitive information due to the high-stakes nature of healthcare networks.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Script File, Target Artifact (Stored)
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Process Creation (Mechanism), Stored Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1592.004: Client Configurations</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2013-2597: Stack-based buffer overflow vulnerability in Code Aurora audio driver allowing privilege escalation</kev>
+            <capec>CAPEC-220: Client-Server Protocol Manipulation – Exploiting weaknesses in communication protocols to perform unauthorized actions</capec>
+            <description>The attacker gains initial entry by exploiting a well-known vulnerability in Juniper routers' management interfaces, specifically targeting configurations that allow remote access. This is achieved through a delivery method involving crafted network packets sent over the internet, compromising exposed devices common in healthcare settings.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1546.016: Installer Packages</technique_name>
+            <surface>Script File</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>CVE-2020-5410: Path traversal vulnerability in Spring Cloud Config allowing arbitrary file access</kev>
+            <capec>CAPEC-532: Altered Installed BIOS – Sending malicious updates to maintain persistent access</capec>
+            <description>Upon successful initial access, the attacker executes a malicious script obtained from the compromised system. This script, likely modified from variants associated with the J-magic Campaign, leverages process creation mechanisms to run automatically, enabling further commands and ensuring the foothold remains active for ongoing operations.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1492: Stored Data Manipulation</technique_name>
+            <surface>Target Artifact (Stored)</surface>
+            <vector>Stored Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-153: Input Data Manipulation – Controlling input formats to alter system behavior or data integrity</capec>
+            <description>The attackers manipulate stored data within the affected router or network artifacts, leading to significant disruption. This could involve rerouting network traffic to deny legitimate services or initiating distributed denial-of-service attacks using amplified ICMP floods, thereby impacting critical communications and operations in healthcare environments.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The J-magic Campaign targets healthcare IT infrastructure with a straightforward attack chain focusing on exploiting vulnerable internet-facing devices for initial access, executing scripts for persistence, and causing operational impacts through data manipulation.
+    </summary>
+</Scenario>

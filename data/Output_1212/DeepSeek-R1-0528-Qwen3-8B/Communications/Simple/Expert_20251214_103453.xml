@@ -1,0 +1,53 @@
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Operation Dream Job</campaign>
+    </metadata>
+    <title>Operation Dream Job Cyber Attack</title>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a straightforward cyber attack targeting the communications industry, initiated through phishing techniques to gain initial access, followed by remote script execution to escalate privileges and automate data exfiltration.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Dream Job</campaign_or_group>
+        <motivation>Espionage or data theft aimed at compromising communication systems for strategic advantage.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>AVALIABLE_SURFACES: Not specified in the document.</attack_surface>
+    <attack_vector>AVALIABLE_VECTORS: Not specified in the document.</attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-41710 (Suggested): Mitel 6800 Series, 6900 Series, and 6900w Series SIP Phones, including the 6970 Conference Unit, contain an argument injection vulnerability due to insufficient parameter sanitization during the boot process. Successful exploitation may allow an attacker to execute arbitrary commands within the context of the system.</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The threat actor begins by deploying a spear-phishing campaign against communication industry employees, using targeted emails to诱骗 credentials. This exploits vulnerabilities in Internet-facing Mitel SIP phones, as indicated by CVE-2024-41710, allowing arbitrary command execution when users interact with infected devices. The CAPEC-164 Mobile Phishing technique facilitates this by leveraging mobile or web-based delivery methods to bypass traditional defenses.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>System Script Proxy Execution</technique_name>
+            <surface>Script File</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>CVE-2010-4398 (Suggested): Stack-based buffer overflow in the RtlQueryRegistryValues function in win32k.sys in Microsoft Windows allows local users to gain privileges, and bypass the User Account Control (UAC) feature.</kev>
+            <capec>CAPEC-465: Transparent Proxy Abuse</capec>
+            <description>Upon gaining initial access via phishing, the attacker executes a malicious script file on compromised internal systems using command execution mechanisms. This exploits the CVE-2010-4398 vulnerability in Microsoft Windows, enabling privilege escalation and bypass of User Account Control features. The CAPEC-465 Transparent Proxy Abuse technique may be involved to intercept and manipulate commands for stealthier automation of tasks within the communication network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>In the final phase, the attacker automates the exfiltration of sensitive communication data, such as emails or chat logs, by utilizing commands executed through the compromised environment. This leverages the CAPEC-24 Filter Failure through Buffer Overflow technique to circumvent security filters, ensuring covert transmission of data out of the network and achieving the desired impact on confidentiality.</description>
+        </stage>
+    </attack_flow>
+    <summary>This simple attack campaign, 'Operation Dream Job', starts with phishing to breach defenses, escalates privileges via script execution exploiting known vulnerabilities, and culminates in automated data theft affecting communication infrastructures.</summary>
+</Scenario>

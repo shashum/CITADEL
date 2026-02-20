@@ -1,0 +1,53 @@
+<Scenario>
+    <title>ArcaneDoor Healthcare Cyber Attack Scenario</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        A skilled attacker targets healthcare organizations using two initial access techniques: exploiting public-facing applications and drive-by compromise.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>ArcaneDoor</campaign_or_group>
+        <motivation>Financial gain</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Device theft", "Weak passwords", "Improper configuration", "Vulnerability", "Internet-facing assets", "Shared DB or directory", "Obsolete products", "Injection flaws", "Custom APIs", "Autonomous system numbers(ASNs)", "SSL Certificates and Attribution", "WHOIS records, contacts and history", "TCP/IP ports", "Public and private cloud", "Web server services such as emails and databases", "Shadow IT", "Poor implementation of access controls", "Malicious insiders", "Social engineering", "Insufficient physical security controls", "Authentication issues"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["External/Removable media", "Loss or Theft of equipment", "Attrition", "Web", "Account takeover", "Inadequate encryption", "Browser-based attack", "Application compromise", "Open port", "Vulnerability exploit", "Ransomware", "Malware", "Man in The Middle(MiTM)", "Session hijacking", "Brute-force attack", "Distributed Denial of Service(DDoS)", "Watering-hole", "Compromised and weak credentials", "SIM Swap", "Security misconfigurations and vulnerabilities", "Web forms", "IP address and IP blocks", "Domains and subdomains", "Botnet", "Credential compromise", "Telephony Denial of Service(TDoS)", "Replay Attack", "Cryptanalysis Attacks", "Side Channel Attacks", "Hardware Trojans", "Covert Attacks", "Sleep Deprivation Attack", "Clock Skewing", "Attacks Targeting System Reputation", "Data and Command Integrity Attack", "Eavesdropping", "Command and Control Attacks", "Phishing", "Impersonations/Spoofing", "Improper usage", "Dumpster diving", "Advanced Persistent Threat(APT)", "Baiting", "Shoulder surfing", "Reverse social engineering", "Business Email Compromise(BEC)", "Advanced Fee", "Extortion"]
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2023-1671 (Suggested)</kev>
+            <capec>121</capec>
+            <description>The attacker exploits a vulnerability in a public-facing application to gain unauthorized access to the healthcare organization's network.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2024-35250 (Suggested)</kev>
+            <capec>535</capec>
+            <description>The attacker compromises a website or ad visited by users to infect their devices with malware, gaining unauthorized access to the healthcare organization's network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Exfiltration</technique_name>
+            <surface>Vulnerable systems</surface>
+            <vector>Network</vector>
+            <kev>N/A</kev>
+            <capec>24</capec>
+            <description>The attacker steals sensitive patient data from the compromised systems.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The ArcaneDoor group uses simple tactics to breach healthcare organizations, exploiting public-facing applications and drive-by compromise to gain initial access, followed by data exfiltration to steal sensitive patient data.
+    </summary>
+</Scenario>

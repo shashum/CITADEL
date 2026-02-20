@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Energy</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>FunnyDream</campaign>
+    </metadata>
+    <overview>
+        <Target>Energy Sector</Target>
+        <Complexity>Complex</Complexity>
+        The FunnyDream campaign, with basic skill levels, targets the Energy sector with a multi-stage complex cyber attack. The attackers engage in extensive reconnaissance, resource development, and employ sophisticated techniques to gain initial access, maintain persistence, escalate privileges, evade defenses, access credentials, discover network details, move laterally, collect sensitive data, exfiltrate information, and finally impact the system by inhibiting recovery efforts.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=FunnyDream</campaign_or_group>
+        <motivation>Financial Gain and Espionage</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, Scheduled Task, Public IP/Network Block, Domain Name Registrar, File, Target System Artifact, Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Network Traffic Flow (Mechanism), Response Metadata (Mechanism), Command Execution (Mechanism), Scheduled Task/Job, Application Log Content (Mechanism), User Account Authentication (Mechanism), Network Service Scanning, Remote Desktop Protocol, File Access (Mechanism), Exfiltration Over C2 Channel, Process Creation (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309 Name: Network Topology Mapping</capec>
+            <description>The attackers initiate their operation by conducting active scanning to map out the network topology of the energy sector target, identifying potential entry points and vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522 Name: Malicious Hardware Component Replacement</capec>
+            <description>To support their operations, the attackers acquire infrastructure such as fake domains and servers to host phishing pages and malware.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 164 Name: Mobile Phishing</capec>
+            <description>Using the acquired infrastructure, attackers send phishing emails with malicious attachments or links to trick unsuspecting employees into granting initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 663 Name: Exploitation of Transient Instruction Execution</capec>
+            <description>Once inside, the attackers trick users into executing malicious files, leading to further compromise.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1603: Scheduled Task/Job</technique_name>
+            <surface>Scheduled Task</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654 Name: Credential Prompt Impersonation</capec>
+            <description>To maintain access, attackers create scheduled tasks that execute malware periodically.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 121 Name: Exploit Non-Production Interfaces</capec>
+            <description>Attackers find and exploit vulnerabilities in public-facing applications to escalate their privileges within the system.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1629.003: Disable or Modify Tools</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Disable or Modify Tools</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 578 Name: Disable Security Software</capec>
+            <description>They impair defensive capabilities by disabling antivirus software to avoid detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 49 Name: Password Brute Forcing</capec>
+            <description>Attempting to gain credentials through repeated login attempts, the attackers brute-force weak accounts.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309 Name: Network Topology Mapping</capec>
+            <description>After gaining access, attackers identify network services and vulnerabilities to plan lateral movement.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1076: Remote Desktop Protocol</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Remote Desktop Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 220 Name: Client-Server Protocol Manipulation</capec>
+            <description>Utilizing credentials obtained, attackers move laterally across the network via RDP.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 328 Name: TCP 'RST' Flag Checksum Probe</capec>
+            <description>Attackers extract sensitive data from compromised machines to gather valuable information.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 24 Name: Filter Failure through Buffer Overflow</capec>
+            <description>Stolen data is transferred back to attacker-controlled infrastructure using command and control channels.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1490: Inhibit System Recovery</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 607 Name: Obstruction</capec>
+            <description>Finally, attackers destroy backups or render them inaccessible, ensuring no recovery is possible.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The FunnyDream campaign represents a sophisticated yet basic-skilled threat actor targeting the energy sector with a multi-faceted approach. From initial reconnaissance to final impact, the attackers demonstrate a systematic methodology, employing various techniques to infiltrate, persist, and ultimately disrupt critical systems while evading detection.
+    </summary>
+</Scenario>

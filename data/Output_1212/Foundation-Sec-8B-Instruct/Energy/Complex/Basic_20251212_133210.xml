@@ -1,0 +1,135 @@
+<Scenario>
+    <metadata>
+        <target_industry>Energy</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>ShadowRay</campaign>
+    </metadata>
+    <overview>
+        <Target>Energy Sector</Target>
+        <Complexity>Complex</Complexity>
+        <summary>The ShadowRay campaign, a group with basic skill levels, targets the energy sector with a multi-stage complex cyber attack. They begin with reconnaissance to identify potential targets, acquire infrastructure for phishing, gain initial access through phishing emails exploiting known vulnerabilities, establish persistence with web shells, escalate privileges, evade defenses, steal credentials, discover network layouts, move laterally, collect sensitive data, exfiltrate it over command and control channels, and finally impact operations by disrupting critical services.</summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=ShadowRay</campaign_or_group>
+        <motivation>Financial Gain & Disruption</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email Delivery</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Target Artifact (Sites), Application Log, Credential Store, File, Windows Service
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Email, Search Engines, Response Metadata, Delivery Method, Command and Scripting Interpreter, Web Shell, Application Log Content, File Access, Exfiltration Over C2 Channel, File Modification
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1593: Search Open Websites/Domains</technique_name>
+            <surface>Target Artifact (Sites)</surface>
+            <vector>Search Open Websites/Domains</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-169: Footprinting</capec>
+            <description>The attacker searches open websites and domains to identify potential targets within the energy sector, gathering information to plan the attack.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attacker sets up phishing domains mimicking energy company suppliers to be used in subsequent phases of the attack.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2015-1187 (Suggested): Remote code execution via ping tool in certain devices</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The attacker sends crafted emails with a CVE-2023-48022 lure to employees, leading to exploitation and gaining initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1623: Command and Scripting Interpreter</technique_name>
+            <surface>Script File</surface>
+            <vector>Command and Scripting Interpreter</vector>
+            <kev>CVE-2013-3897 (Suggested): Remote code execution via CDisplayPointer in IE</kev>
+            <capec>CAPEC-160: Exploit Script-Based APIs</capec>
+            <description>Post-phishing success, the attacker executes malicious scripts to achieve further objectives.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Script File</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-650: Upload a Web Shell to a Web Server</capec>
+            <description>To maintain access, the attacker deploys a web shell on the compromised server.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0890: Exploitation for Privilege Escalation</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attacker gains higher-level permissions once the initial foothold is established.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1629.003: Disable or Modify Tools</technique_name>
+            <surface>Target Artifact (Security tools)</surface>
+            <vector>Disable or Modify Tools</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-578: Disable Security Software</capec>
+            <description>The attacker impairs security tools to avoid detection and continue the operation undetected.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1555: Credentials from Password Stores</technique_name>
+            <surface>Credential Store</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attacker steals credentials to facilitate lateral movement throughout the network.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1422: System Network Configuration Discovery</technique_name>
+            <surface>Target Artifact (Discovery)</surface>
+            <vector>System Network Configuration Discovery</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>The attacker understands the network layout to plan lateral movement effectively.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1550: Use Alternate Authentication Material</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-151: Identity Spoofing</capec>
+            <description>The attacker moves across the network using stolen credentials.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1074: Data Staged</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-231: Oversized Serialized Data Payloads</capec>
+            <description>The attacker gathers sensitive data before exfiltration.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target Artifact (Channel)</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The collected data is transferred to attacker-controlled infrastructure.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0881: Service Stop</technique_name>
+            <surface>Windows Service</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-551: Modify Existing Service</capec>
+            <description>The attacker disrupts operations by stopping critical services.</description>
+        </stage>
+    </attack_flow>
+</Scenario>

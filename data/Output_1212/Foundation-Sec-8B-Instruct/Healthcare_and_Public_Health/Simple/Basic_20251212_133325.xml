@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Maroochy Water Breach</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        A basic cyber attack targeting healthcare organizations involves initial access through phishing emails, execution of malicious files, and impact through data destruction.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Maroochy Water Breach</campaign_or_group>
+        <motivation>Disruption of services</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, File System, File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Reg.exe Utility, File Modification
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2020-13965 (Suggested): Roundcube Webmail contains a cross-site scripting (XSS) vulnerability allowing manipulation of data via a malicious XML attachment.</kev>
+            <capec>CAPEC ID: 164; Name: Mobile Phishing</capec>
+            <description>An attacker sends a phishing email containing a malicious attachment to trick employees into opening it, gaining initial access to the system.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1204.002: Malicious File</technique_name>
+            <surface>File System</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>CVE-2021-1789 (Suggested): A type confusion issue affecting multiple Apple products allows processing of maliciously crafted web content, leading to arbitrary code execution.</kev>
+            <capec>CAPEC ID: 635; Name: Alternative Execution Due to Deceptive Filenames</capec>
+            <description>The malicious attachment executes when opened, utilizing the reg.exe utility to run unauthorized commands on the victim's machine.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 675; Name: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker gains control over the system and proceeds to delete or modify critical files, disrupting operations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This simple cyber attack begins with phishing to gain entry, followed by executing malicious files to establish a foothold, culminating in data destruction, mirroring the Maroochy Water Breach's disruptive tactics.
+    </summary>
+</Scenario>

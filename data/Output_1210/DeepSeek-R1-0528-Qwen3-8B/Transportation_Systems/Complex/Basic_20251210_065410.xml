@@ -1,0 +1,16 @@
+```xml
+<Scenario>
+    <title>Operation CuckooBees Attack Scenario</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        A multi-stage cyber attack campaign employing various TTPs to infiltrate, persist, and disrupt transportation infrastructure systems, leveraging basic attacker skills and readily available tools.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation CuckooBees</campaign_or_group>
+        <motivation>Espionage or Financial Theft</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <

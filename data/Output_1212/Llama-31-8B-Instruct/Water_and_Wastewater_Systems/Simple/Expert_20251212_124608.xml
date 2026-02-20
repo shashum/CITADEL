@@ -1,0 +1,83 @@
+<Scenario>
+    <metadata>
+        <title>Water Treatment Plant Cyber Attack Scenario</title>
+        <date>2023-07-25</date>
+        <author>Cybersecurity Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        <Summary>A sophisticated cyber attack on a water treatment plant, leveraging spear phishing and exploitation of vulnerabilities in various systems.</Summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>FunnyDream</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        <AVAILABLE_SURFACES>
+            <surface>Internet-facing assets</surface>
+            <surface>Network Traffic</surface>
+            <surface>Target Artifact (Application)</surface>
+            <surface>Network Traffic</surface>
+            <surface>Command</surface>
+        </AVAILABLE_SURFACES>
+    </attack_surface>
+    <attack_vector>
+        <AVAILABLE_VECTORS>
+            <vector>Delivery Method</vector>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <vector>Code Injection</vector>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <vector>Command Execution (Mechanism)</vector>
+        </AVAILABLE_VECTORS>
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-38035 (Suggested): Ivanti Sentry, formerly known as MobileIron Sentry, contains an authentication bypass vulnerability that may allow an attacker to bypass authentication controls on the administrative interface due to an insufficiently restrictive Apache HTTPD configuration.</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attacker sends a spear-phishing email to a water treatment plant employee, tricking them into revealing their login credentials, which are then used to gain access to the plant's internal network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>CVE-2023-41990 (Suggested): Apple iOS, iPadOS, macOS, tvOS, and watchOS contain an unspecified vulnerability that allows for code execution when processing a font file.</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attacker uses the compromised credentials to establish a remote connection to the SCADA system, exploiting the vulnerability to execute arbitrary code.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Code Injection</vector>
+            <kev>CVE-2022-33891 (Suggested): Apache Spark contains a command injection vulnerability via Spark User Interface (UI) when Access Control Lists (ACLs) are enabled.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attacker injects malicious code into the control system software, allowing them to manipulate the water quality parameters.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker causes a denial-of-service condition by manipulating the network traffic, effectively disabling the water treatment plant's ability to function properly.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attacker steals sensitive information about the water treatment process by executing commands on the compromised system.</description>
+        </stage>
+    </attack_flow>
+    <summary>This attack scenario demonstrates a sophisticated cyber attack on a water treatment plant, leveraging spear phishing and exploitation of vulnerabilities in various systems to disrupt operations and steal sensitive information.</summary>
+</Scenario>

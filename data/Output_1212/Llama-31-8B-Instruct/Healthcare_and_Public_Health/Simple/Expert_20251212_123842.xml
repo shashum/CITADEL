@@ -1,0 +1,67 @@
+<Scenario>
+    <metadata>
+        <title>Healthcare Industry Attack Scenario</title>
+        <date>2023-07-26</date>
+        <author>Threat Intelligence Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        <brief_summary>A targeted spear-phishing campaign against healthcare employees leads to initial access, followed by exploitation of vulnerabilities using PowerShell and creation of scheduled tasks for persistence.</brief_summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>C0010</campaign_or_group>
+        <motivation>Espionage</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email Delivery</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        <AVAILABLE_SURFACES>
+            <surface>Internet-facing assets</surface>
+            <surface>PowerShell Interpreter</surface>
+            <surface>Target Artifact (Tasks)</surface>
+            <surface>Command</surface>
+        </AVAILABLE_SURFACES>
+    </attack_surface>
+    <attack_vector>
+        <AVAILABLE_VECTORS>
+            <vector>Delivery Method</vector>
+            <vector>PowerShell Script</vector>
+            <vector>Scheduled Task/Job</vector>
+            <vector>Command Execution (Mechanism)</vector>
+        </AVAILABLE_VECTORS>
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2014-4123 (Suggested): Microsoft Internet Explorer contains an unspecified vulnerability that allows remote attackers to gain privileges via a crafted web site.</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attacker sends a targeted email to healthcare employees containing a link to a malicious website designed to trick them into revealing their login credentials.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1086: PowerShell</technique_name>
+            <surface>PowerShell Interpreter</surface>
+            <vector>PowerShell Script</vector>
+            <kev>CVE-2018-8453 (Suggested): Microsoft Windows Win32k contains a vulnerability that allows an attacker to escalate privileges.</kev>
+            <capec>CAPEC-108: Command Line Execution through SQL Injection</capec>
+            <description>The attacker uses PowerShell for lateral movement and privilege escalation within the network by executing malicious scripts.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attacker exfiltrates sensitive patient data for espionage purposes using automated tools.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        A sophisticated attack targeting healthcare employees involves spear-phishing, exploitation of vulnerabilities using PowerShell, and creation of scheduled tasks for persistence, ultimately leading to the exfiltration of sensitive patient data.
+    </summary>
+</Scenario>

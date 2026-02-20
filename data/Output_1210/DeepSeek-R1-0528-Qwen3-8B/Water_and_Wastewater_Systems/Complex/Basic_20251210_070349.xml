@@ -1,0 +1,35 @@
+<Scenario>, and I must output ONLY the XML block.
+
+From the output format example:
+
+```xml
+<Scenario>
+    <title>[Concise scenario title]</title>
+    <overview>
+        <Target>[Industry]</Target>
+        <Complexity>[Complexity]</Complexity>
+        [Brief summary of the attack]
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=[Group or Campaign]</campaign_or_group>
+        <motivation>[Motivation]</motivation>
+        <skill_level>[Skill Level]</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>[Industry]</industry>
+        <initial_attack_surface>[Surface]</initial_attack_surface>
+        <initial_attack_vector>[Vector]</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: [List]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: [List]
+    </attack_vector>
+    <attack_flow complexity_level="[Complexity]">
+        [Attack stages]
+    </attack_flow>
+    <summary>
+        [Brief summary]
+    </summary>
+</Scenario>

@@ -1,0 +1,77 @@
+<Scenario>
+    <metadata>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>SolarWinds Compromise</campaign>
+    </metadata>
+    <threat_actor_profile>
+        <campaign_or_group>SolarWinds Compromise</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Target Artifact (Protocols), PowerShell Interpreter, File, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Custom Command and Control Protocol, PowerShell Script, File Modification (Mechanism), Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2025-42999 (Suggested): SAP NetWeaver Visual Composer Metadata Uploader contains a deserialization vulnerability that allows a privileged attacker to compromise the confidentiality, integrity, and availability of the host system by deserializing untrusted or malicious content.</kev>
+            <capec>CAPEC ID: 535</capec>
+            <description>The attacker compromises the victim's device through a drive-by download, exploiting the SAP NetWeaver Visual Composer Metadata Uploader deserialization vulnerability.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-9379 (Suggested): Ivanti Cloud Services Appliance (CSA) contains a SQL injection vulnerability in the admin web console in versions prior to 5.0.2, which can allow a remote attacker authenticated as administrator to run arbitrary SQL statements.</kev>
+            <capec>CAPEC ID: 121</capec>
+            <description>The attacker exploits the SQL injection vulnerability in the Ivanti Cloud Services Appliance (CSA) admin web console to gain unauthorized access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1094: Custom Command and Control Protocol</technique_name>
+            <surface>Target Artifact (Protocols)</surface>
+            <vector>Custom Command and Control Protocol</vector>
+            <kev>CVE-2025-1316 (Suggested): Edimax IC-7100 IP camera contains an OS command injection vulnerability due to improper input sanitization that allows an attacker to achieve remote code execution via specially crafted requests.</kev>
+            <capec>CAPEC ID: 248</capec>
+            <description>The attacker establishes a custom command and control protocol using the Edimax IC-7100 IP camera's OS command injection vulnerability.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1086: PowerShell</technique_name>
+            <surface>PowerShell Interpreter</surface>
+            <vector>PowerShell Script</vector>
+            <kev>CVE-2020-35730 (Suggested): Roundcube Webmail contains a cross-site scripting (XSS) vulnerability that allows an attacker to send a plain text e-mail message with Javascript in a link reference element that is mishandled by linkref_addinindex in rcube_string_replacer.php.</kev>
+            <capec>CAPEC ID: 108</capec>
+            <description>The attacker uses PowerShell to execute malicious scripts on the compromised device.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC ID: 675</capec>
+            <description>The attacker deletes or corrupts files on the compromised device, causing data destruction.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC ID: 583</capec>
+            <description>The attacker disrupts network traffic, causing a denial of service to the transportation system.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The SolarWinds Compromise campaign targets transportation systems with basic-level attacks, compromising initial access through drive-by downloads and public-facing application exploitation. The attackers then establish a custom command and control protocol, execute malicious scripts using PowerShell, and cause impact through data destruction and denial of service.
+    </summary>
+</Scenario>

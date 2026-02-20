@@ -1,0 +1,83 @@
+<Scenario>
+    <metadata>
+        <title>Leviathan Australian Intrusions Water and Wastewater Attack Scenario</title>
+        <target_industry>Water and Wastewater Systems</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Leviathan Australian Intrusions</campaign>
+    </metadata>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        This attack scenario involves basic exploitation techniques targeting water and wastewater systems in Australia.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Leviathan Australian Intrusions</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Active Directory, Scheduled Task, Network Traffic, File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method, Custom Command and Control Protocol, Scheduled Task/Job, Network Traffic Content (Mechanism), File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker exploits public-facing applications with known vulnerabilities to gain initial access.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker compromises websites visited by employees, infecting them with malware through drive-by downloads.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1094: Custom Command and Control Protocol</technique_name>
+            <surface>Active Directory</surface>
+            <vector>Custom Command and Control Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-248: Command Injection</capec>
+            <description>The attacker uses custom command and control protocols to communicate with compromised devices and execute malicious commands.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1603: Scheduled Task/Job</technique_name>
+            <surface>Scheduled Task</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker creates scheduled tasks to run malicious code at specific times, maintaining persistence and executing malicious actions.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker disrupts network traffic, disabling critical system resources and preventing them from functioning as intended.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker deletes critical data stored in files, causing significant financial losses and damage to infrastructure.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This attack scenario demonstrates how basic exploitation techniques can be used to compromise water and wastewater systems in Australia, resulting in significant disruptions and financial losses.
+    </summary>
+</Scenario>

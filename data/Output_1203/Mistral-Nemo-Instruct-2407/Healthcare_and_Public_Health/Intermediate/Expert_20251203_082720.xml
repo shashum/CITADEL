@@ -1,0 +1,76 @@
+<Scenario>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Intermediate</Complexity>
+        The Frankenstein campaign targeted healthcare employees using spear-phishing techniques to gain initial access, then employed PowerShell for command execution, created scheduled tasks for persistence, bypassed UAC for privilege escalation, signed malicious files to evade defenses, and ultimately exfiltrated sensitive data.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Frankenstein</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Web server services such as emails and databases, Shared DB or directory, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Email, Web, Phishing, Vulnerability exploit
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Spear-Phishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Email</vector>
+            <kev>CVE-2025-5777 [CWE-22]: Spear phishing vulnerability exploited to deliver malicious attachment</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>The attackers crafted personalized emails targeting healthcare employees, exploiting a vulnerability (CVE-2025-5777) to deliver a malicious attachment via email.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>PowerShell</technique_name>
+            <surface>Web server services such as emails and databases</surface>
+            <vector>Web</vector>
+            <kev>CVE-2021-38648 [CWE-94]: PowerShell remoting vulnerability exploited to execute commands</kev>
+            <capec>CAPEC-579: Replace Winlogon Helper DLL</capec>
+            <description>Upon successful delivery of the malicious attachment, PowerShell was used to execute commands and download additional payloads, exploiting a vulnerability (CVE-2021-38648) in PowerShell remoting.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attackers created scheduled tasks to ensure persistence and re-execute the malware upon system reboot, allowing them to maintain access to shared databases and directories.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Bypass User Account Control (UAC)</technique_name>
+            <surface>Authentication issues</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-575: Account Footprinting</capec>
+            <description>To gain higher privileges, the attackers exploited vulnerabilities to bypass User Account Control (UAC), enabling them to perform unauthorized actions within the authentication process.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Code Signing</technique_name>
+            <surface>Web server services such as emails and databases</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-206: Signing Malicious Code</capec>
+            <description>To evade detection by security software, the attackers signed malicious files with valid certificates, making them appear legitimate.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Exfiltration</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The final stage involved exfiltrating sensitive patient data and intellectual property from shared databases and directories to external servers controlled by the attacker.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Frankenstein campaign demonstrated expert-level skills by employing a multi-stage attack against the healthcare industry, ultimately resulting in the exfiltration of sensitive data.
+    </summary>
+</Scenario>

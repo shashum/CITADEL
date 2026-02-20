@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Versa Director Zero Day Exploitation</campaign>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        An expert-level threat actor group named Versa Director conducts a zero-day exploitation campaign targeting internet-facing assets of transportation systems. They aim to disrupt operations through data destruction.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Versa Director</campaign_or_group>
+        <motivation>Disruption of Transportation Services</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Script File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Command and Scripting Interpreter, File Modification
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-28204 (Suggested): Sensitive information disclosure via out-of-bounds read in WebKit</kev>
+            <capec>CAPEC ID: 121; Name: Exploit Non-Production Interfaces</capec>
+            <description>An attacker exploits a zero-day vulnerability in Versa Director servers to gain initial access to the network, bypassing authentication mechanisms.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1623: Command and Scripting Interpreter</technique_name>
+            <surface>Script File</surface>
+            <vector>Command and Scripting Interpreter</vector>
+            <kev>CVE-2025-34028 (Suggested): Arbitrary code execution via path traversal in Commvault Command Center</kev>
+            <capec>CAPEC ID: 160; Name: Exploit Script-Based APIs</capec>
+            <description>Following initial access, the attacker executes malicious scripts using command-line interfaces to gain further control over compromised systems.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC ID: 675; Name: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker proceeds to delete critical files, causing disruption to transportation system operations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        An expert-level threat actor group exploits a zero-day vulnerability in Versa Director servers to gain unauthorized access to a transportation system's network. After gaining entry, they execute malicious scripts to escalate their privileges and ultimately cause data destruction, disrupting the targeted services.
+    </summary>
+</Scenario>

@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Outer Space</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated cyber attack orchestrated by the 'Outer Space' campaign targets the healthcare sector with the aim of exfiltrating sensitive data and disrupting operations. Utilizing advanced techniques, the attackers meticulously plan and execute their strategy to infiltrate networks, maintain persistence, escalate privileges, evade defenses, access credentials, discover valuable resources, move laterally, collect data, exfiltrate information, and ultimately encrypt data for impact, demanding ransom.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Outer Space</campaign_or_group>
+        <motivation>Ransom and Data Theft</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Supply Chain Compromise</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, Application Log, Script File, Windows Registry, Network Traffic, Target Artifact (Mobile device), Logon Session, Target Artifact (Channel)
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Network Traffic Flow (Mechanism), Application Log Content (Mechanism), Web Shell, Time Providers, Reg.exe Utility, Mimikatz Tool, Network Service Scanning, Network Traffic Flow (Mechanism), Logon Session Creation (Mechanism), Exfiltration Over C2 Channel, Data Encrypted for Impact
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309 Name: Network Topology Mapping</capec>
+            <description>The attackers engage in active scanning activities to map out the network topology of the healthcare systems, identifying potential entry points and vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522 Name: Malicious Hardware Component Replacement</capec>
+            <description>The attackers setup command and control servers and other necessary infrastructure to support the attack campaign.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0862: Supply Chain Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2021-27876 (Veritas Backup Exec Agent Vulnerability)</kev>
+            <capec>CAPEC ID: 439 Name: Manipulation During Distribution</capec>
+            <description>The attackers compromise the software update mechanism to distribute malware, gaining initial access to the healthcare network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>CVE-2019-16057 (D-Link DNS-320 Vulnerability)</kev>
+            <capec>CAPEC ID: 121 Name: Exploit Non-Production Interfaces</capec>
+            <description>The attackers exploit known vulnerabilities in public-facing health portals or applications to execute malicious code.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Script File</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 650 Name: Upload a Web Shell to a Web Server</capec>
+            <description>To maintain persistent access, the attackers upload a web shell onto the compromised server.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1209: Time Providers</technique_name>
+            <surface>Target Artifact (Time)</surface>
+            <vector>Time Providers</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 295 Name: Timestamp Request</capec>
+            <description>The attackers leverage weaknesses in time synchronization mechanisms to escalate their privileges within the network.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1112: Modify Registry</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 203 Name: Manipulate Registry Information</capec>
+            <description>The attackers disable security tools and logging mechanisms by modifying the Windows Registry settings.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 226 Name: Session Credential Falsification through Manipulation</capec>
+            <description>The attackers steal credentials using tools like Mimikatz to facilitate lateral movement within the network.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Target Artifact (Mobile device)</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309 Name: Network Topology Mapping</capec>
+            <description>The attackers scan the network to identify critical services and data stores.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 324 Name: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers utilize remote services like RDP or SSH to move across the network undetected.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0811: Data from Information Repositories</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 277 Name: Data Interchange Protocol Manipulation</capec>
+            <description>The attackers extract sensitive patient data from repositories within the network.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target Artifact (Channel)</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 24 Name: Filter Failure through Buffer Overflow</capec>
+            <description>The attackers transfer the collected data to attacker-controlled servers using established command and control channels.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1471: Data Encrypted for Impact</technique_name>
+            <surface>Target Artifact (Key)</surface>
+            <vector>Data Encrypted for Impact</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 609 Name: Cellular Traffic Intercept</capec>
+            <description>The attackers encrypt data to disrupt operations and demand ransom, impacting the healthcare institution's ability to function.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Outer Space campaign employs a multi-stage complex attack targeting the healthcare sector, utilizing sophisticated techniques to gain initial access, persist within the network, elevate privileges, evade detection, harvest credentials, and exfiltrate sensitive data before finally encrypting it for impact, aiming to extort financial gains.
+    </summary>
+</Scenario>

@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Oldsmar Treatment Plant Intrusion</campaign>
+    </metadata>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a basic cyber attack targeting a communication sector entity using phishing techniques to gain initial access, executing malicious files to compromise the system, and causing impact through data manipulation.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Oldsmar Treatment Plant Intrusion</campaign_or_group>
+        <motivation>Disruption</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, File System, OS Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Reg.exe Utility, Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-28432: Information Disclosure in MinIO Cluster Deployment</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An attacker sends a phishing email with a malicious attachment or link to trick employees into downloading and opening it, providing initial access to the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1204.002: Malicious File</technique_name>
+            <surface>File System</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>CVE-2020-9054: Command Injection Vulnerability in Zyxel NAS Devices</kev>
+            <capec>CAPEC-635: Alternative Execution Due to Deceptive Filenames</capec>
+            <description>The victim opens the malicious attachment/link, triggering the execution of malware on their machine.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1641: Data Manipulation</technique_name>
+            <surface>OS Process</surface>
+            <vector>Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-153: Input Data Manipulation</capec>
+            <description>The attacker manipulates communications data by altering settings or injecting false information into the systems, causing disruption and potential data corruption.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        In this simple attack scenario, a basic-level attacker uses phishing to gain entry into a communication sector company, followed by executing malicious files to compromise the system. Finally, they cause impact by manipulating data, potentially disrupting services or compromising integrity.
+    </summary>
+</Scenario>

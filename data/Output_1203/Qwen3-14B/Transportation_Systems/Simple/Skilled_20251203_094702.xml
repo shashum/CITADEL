@@ -1,0 +1,52 @@
+<Scenario>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        The J-magic Campaign targeted transportation systems by exploiting vulnerable Juniper routers to disrupt critical infrastructure operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=J-magic Campaign</campaign_or_group>
+        <motivation>Disruption of critical infrastructure operations</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Vulnerability exploit</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Internet-facing assets"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Vulnerability exploit"]
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2015-2424 [CWE-20]: Junos OS HTTP API allows remote code execution</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>Attackers exploited a known vulnerability (CVE-2015-2424) in Juniper routers' HTTP API, enabling remote code execution on internet-facing devices to gain initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Command and Scripting Interpreter</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2021-30807 [CWE-20]: Junos OS allows arbitrary command execution via crafted packets</kev>
+            <capec>CAPEC-160: Exploit Script-Based APIs</capec>
+            <description>Attackers deployed the J-magic backdoor using command-line interpreters on compromised routers, establishing persistent control over the device.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Impairment of Availability</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Security misconfigurations and vulnerabilities</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-607: Obstruction</capec>
+            <description>Attackers manipulated routing configurations or triggered denial-of-service conditions to disrupt transportation systems like traffic lights and train signals.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The J-magic Campaign exploited unpatched Juniper routers via remote code execution vulnerabilities, deploying backdoors to disrupt transportation infrastructure operations.
+    </summary>
+</Scenario>

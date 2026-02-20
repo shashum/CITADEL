@@ -1,0 +1,77 @@
+<Scenario>
+    <title>Water and Wastewater Infrastructure Targeting via Spear-Phishing and Drive-by Compromise</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        Initial Access is gained through targeted spear-phishing and drive-by compromises, leading to execution of malicious payloads and ultimately impacting water/wastewater operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0027</campaign_or_group>
+        <motivation>Sabotage of critical infrastructure</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Employees</initial_attack_surface>
+        <initial_attack_vector>Email, Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Employees, Internet-facing assets, Shared DB or directory, Vulnerability
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Email, Web, Phishing, Vulnerability exploit
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spear-Phishing Attachment</technique_name>
+            <surface>Employees</surface>
+            <vector>Email</vector>
+            <kev>CVE-2015-2360 [CWE-22]: Microsoft Office memory corruption vulnerability</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>The threat actor sends targeted phishing emails to employees with relevant access to water/wastewater systems, exploiting a vulnerability in Microsoft Office to deliver a malicious attachment.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2016-8735 [CWE-200]: Adobe Flash Player use-after-free vulnerability</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The threat actor exploits a vulnerability in Adobe Flash Player on compromised legitimate websites frequently visited by target employees, leading to drive-by downloads of malware.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>PowerShell</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2024-21338 [CWE-94]: Windows PowerShell remoting service unauthenticated access vulnerability</kev>
+            <capec>CAPEC-579: Replace Winlogon Helper DLL</capec>
+            <description>Upon successful initial access, the threat actor uses PowerShell to download and execute additional payloads, taking advantage of a vulnerability in the PowerShell remoting service.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Remote File Copy</technique_name>
+            <surface>Vulnerability</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2020-17496 [CWE-918]: Apache HTTP Server request smuggling vulnerability</kev>
+            <capec>CAPEC-253: Remote Code Inclusion</capec>
+            <description>The threat actor exploits a vulnerability in the Apache HTTP Server to remotely copy web shells or backdoors onto the system, enabling persistent access.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Encryption for Impact</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Phishing</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-620: Drop Encryption Level</capec>
+            <description>After gaining persistence, the threat actor encrypts critical data related to water/wastewater operations using ransomware, demanding payment in exchange for the decryption key.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disruption of Services</technique_name>
+            <surface>Vulnerability</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-548: Contaminate Resource</capec>
+            <description>The threat actor manipulates or disrupts SCADA systems controlling water/wastewater infrastructure, causing operational disruptions and potential safety hazards.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This scenario outlines a simple yet effective attack against water and wastewater systems, leveraging targeted spear-phishing, drive-by compromises, and exploitation of vulnerabilities to gain initial access, execute malicious payloads, and ultimately impact critical operations.
+    </summary>
+</Scenario>

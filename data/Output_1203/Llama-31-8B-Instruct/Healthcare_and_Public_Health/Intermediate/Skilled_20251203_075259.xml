@@ -1,0 +1,93 @@
+<Scenario>
+    <title>ShadowRay Healthcare Attack Scenario</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Intermediate</Complexity>
+        ShadowRay attackers target healthcare organizations with sophisticated phishing campaigns and drive-by compromises to gain initial access, execute malicious payloads, and persist within the environment.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>ShadowRay</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Device theft, Weak passwords, Improper configuration, Vulnerability, Internet-facing assets, Shared DB or directory, Obsolete products, Injection flaws, Custom APIs, Autonomous system numbers(ASNs), SSL Certificates and Attribution, WHOIS records, contacts and history, TCP/IP ports, Public and private cloud, Web server services such as emails and databases, Shadow IT, Poor implementation of access controls, Malicious insiders, Social engineering, Insufficient physical security controls, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: External/Removable media, Loss or Theft of equipment, Attrition, Web, Account takeover, Inadequate encryption, Browser-based attack, Application compromise, Open port, Vulnerability exploit, Ransomware, Malware, Man in The Middle(MiTM), Session hijacking, Brute-force attack, Distributed Denial of Service(DDoS), Watering-hole, Compromised and weak credentials, SIM Swap, Security misconfigurations and vulnerabilities, Web forms, IP address and IP blocks, Domains and subdomains, Botnet, Credential compromise, Telephony Denial of Service(TDoS), Replay Attack, Cryptanalysis Attacks, Side Channel Attacks, Hardware Trojans, Covert Attacks, Sleep Deprivation Attack, Clock Skewing, Attacks Targeting System Reputation, Data and Command Integrity Attack, Eavesdropping, Command and Control Attacks, Phishing, Impersonations/Spoofing, Improper usage, Dumpster diving, Advanced Persistent Threat(APT), Baiting, Shoulder surfing, Reverse social engineering, Business Email Compromise(BEC), Advanced Fee, Extortion
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing via Compromised Email Account</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2024-36971 (Suggested)</kev>
+            <capec>163</capec>
+            <description>The ShadowRay attackers send targeted spear phishing emails to healthcare professionals with malicious links or attachments, aiming to trick them into revealing sensitive information or installing malware.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2023-4762 (Suggested)</kev>
+            <capec>535</capec>
+            <description>The attackers compromise websites visited by healthcare staff, executing malicious code and gaining unauthorized access to the system.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2016-4657 (Suggested)</kev>
+            <capec>121</capec>
+            <description>The attackers exploit a vulnerability in the public-facing application to gain access to the Ray AI framework.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task/Job</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>654</capec>
+            <description>The attackers create scheduled tasks to maintain persistent access to the system.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Abuse of Elevated Privilege</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>233</capec>
+            <description>The attackers obtain elevated privileges through exploitation of vulnerabilities.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Code Obfuscation</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>167</capec>
+            <description>The attackers use obfuscated malware to evade detection.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>System Network Configuration Discovery</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>309</capec>
+            <description>The attackers discover network configurations to identify potential evasion techniques.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Exfiltration</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>24</capec>
+            <description>The attackers exfiltrate sensitive data from the healthcare organization.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        ShadowRay attackers employ sophisticated tactics to breach healthcare organizations, starting with targeted spear phishing and drive-by compromises, followed by exploitation of public-facing applications, persistence through scheduled tasks, privilege escalation, defense evasion, and finally, data exfiltration.
+    </summary>
+</Scenario>

@@ -1,0 +1,76 @@
+<Scenario>
+    <metadata>
+        <title>Operation Sharpshooter Attack Scenario</title>
+        <date>2023-07-26</date>
+        <author>Cybersecurity Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        <brief_summary>A targeted spearphishing campaign against transportation system employees leads to initial access, followed by execution of malicious code injection and defacement, ultimately resulting in automated exfiltration of sensitive data.</brief_summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Sharpshooter</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        <AVAILABLE_SURFACES>
+            <surface>Internet-facing assets</surface>
+            <surface>Internal Network</surface>
+            <surface>OS Process</surface>
+            <surface>File</surface>
+            <surface>Command</surface>
+        </AVAILABLE_SURFACES>
+    </attack_surface>
+    <attack_vector>
+        <AVAILABLE_VECTORS>
+            <vector>General Access Method</vector>
+            <vector>Code Injection</vector>
+            <vector>File Creation (Mechanism)</vector>
+            <vector>Command Execution (Mechanism)</vector>
+        </AVAILABLE_VECTORS>
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attacker sends a targeted phishing email to transportation system employees, tricking them into visiting a malicious link or downloading malware.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>A compromised website is visited by a transportation system employee on their company device, leading to drive-by download of malware.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Code Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is injected into transportation system software, allowing the attacker to execute arbitrary commands.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attacker uses automated tools to exfiltrate sensitive data from the transportation system database.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Sharpshooter is a targeted spearphishing campaign aimed at gaining initial access to transportation system employees, followed by execution of malicious code injection and defacement, ultimately resulting in automated exfiltration of sensitive data.
+    </summary>
+</Scenario>

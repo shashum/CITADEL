@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Operation Spalax: Targeting Communications Infrastructure</title>
+    <overview>
+        <Target>Communications Industry</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated multi-stage attack targeting communications infrastructure, leveraging spearphishing, zero-day exploits, and network manipulation to compromise critical systems and disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Spalax</campaign_or_group>
+        <motivation>Espionage and Sabotage</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Logon Session, Script, Application Log, Windows Registry, OS Process, Cloud Instance, Network Traffic, Credential Store, File, Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Logon Session Creation, Script Execution, Application Log Content, Windows Registry Key Creation, Process Injection, Process Creation, Network Traffic Flow, Pass the Hash, File Modification, IDE Tunneling, Network Traffic Content
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>Email Collection</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-134: Email Injection</capec>
+            <description>The attacker manipulates email headers to gather information on the target's communication infrastructure, leveraging OSINT and network mapping techniques to identify vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Automated Collection</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>Specialized scripts are developed to intercept and manipulate communication protocols, enabling covert data extraction from networked systems.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2016-1010 (Integer overflow vulnerability in Adobe Flash Player)</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>A spearphishing campaign targets communications personnel with tailored emails containing malicious attachments, exploiting known vulnerabilities in communication software to gain initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content</vector>
+            <kev>CVE-2023-23752 (Improper access control in Joomla!)</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker exploits a zero-day vulnerability in VoIP/UC systems, leveraging malformed log entries to execute arbitrary code and establish a foothold in the network.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>A hidden maintenance script is scheduled via registry modifications to ensure persistent access to communication servers, evading standard monitoring mechanisms.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploitation for Privilege Escalation</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attacker leverages misconfigured permissions in application logs to escalate privileges, gaining administrative control over critical communication networks.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is injected into legitimate communication processes to mask adversarial activity, avoiding detection by security tools.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Software Deployment Tools</technique_name>
+            <surface>Cloud Instance</surface>
+            <vector>Process Creation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>Stolen credentials are extracted from cloud-based communication devices using compromised deployment tools, enabling further infiltration.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>Network Service Discovery</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>Network traffic analysis is conducted to map internal communication infrastructure, identifying pathways for lateral movement and data exfiltration.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Pass the Hash</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery</capec>
+            <description>Stolen credentials are used to pivot across communication nodes, granting access to additional systems and expanding the attack surface.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Unencrypted communication metadata and content are captured by modifying files on compromised devices, ensuring sensitive data remains accessible post-compromise.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <description>Intercepted data is exfiltrated via stealthy process creation, masking network traffic patterns to avoid detection by traditional monitoring systems.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>Malformed network packets are sent to disrupt critical communication hardware, causing operational paralysis and denying services to affected organizations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Spalax executed a complex, multi-phase attack on communications infrastructure, combining social engineering, zero-day exploitation, and network manipulation to achieve persistent access, data exfiltration, and denial-of-service effects. The campaign highlights advanced tactics targeting both technical and human factors within the sector.
+    </summary>
+</Scenario>

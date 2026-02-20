@@ -1,0 +1,60 @@
+<Scenario>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        The threat actors exploited common vulnerabilities to gain initial access, execute their payload, and exfiltrate sensitive data.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0011</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Web server services such as emails and databases, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Phishing, Web, Vulnerability exploit
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spear-Phishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2018-11138 [CWE-22]: Microsoft Office Memory Corruption Vulnerability</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>The attackers crafted a spear-phishing email targeting healthcare employees, exploiting a vulnerability in Microsoft Office to deliver a malicious attachment.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Remote File Copy</technique_name>
+            <surface>Web server services such as emails and databases</surface>
+            <vector>Web</vector>
+            <kev>CVE-2021-31201 [CWE-94]: Improper Neutralization of Input During Web Page Generation ('Cross-Site Scripting')</kev>
+            <capec>CAPEC-253: Remote Code Inclusion</capec>
+            <description>Upon successful execution of the phishing email, the attackers exploited a Cross-Site Scripting (XSS) vulnerability to upload and execute a malicious file on the target web server.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Command and Scripting Interpreter</technique_name>
+            <surface>Authentication issues</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2019-1130 [CWE-78]: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')</kev>
+            <capec>CAPEC-160: Exploit Script-Based APIs</capec>
+            <description>The attackers then exploited an OS command injection vulnerability to execute commands on the compromised system, allowing them to escalate privileges and move laterally within the network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Exfiltration via Removable Media</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>External/Removable media</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Finally, the attackers exfiltrated sensitive data using removable media, taking advantage of poor physical security controls within the healthcare facility.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This simple attack scenario demonstrates how basic threat actors can exploit common vulnerabilities to gain unauthorized access to healthcare systems and exfiltrate sensitive patient data.
+    </summary>
+</Scenario>

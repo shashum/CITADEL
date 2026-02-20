@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Operation MidnightEclipse</campaign>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        [The attackers initiate their operation against transportation systems by exploiting a known vulnerability in internet-facing applications. They execute malicious scripts to disrupt services, culminating in data destruction impacting critical operations.]
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation MidnightEclipse</campaign_or_group>
+        <motivation>Disruption</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Malicious Payload
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Command and Scripting Interpreter, File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 121; Name: Exploit Non-Production Interfaces</capec>
+            <description>The attackers exploit a known vulnerability (CVE-2024-3400) in public-facing transportation systems to gain initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1623: Command and Scripting Interpreter</technique_name>
+            <surface>Malicious Payload</surface>
+            <vector>Command and Scripting Interpreter</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 160; Name: Exploit Script-Based APIs</capec>
+            <description>Post-exploitation, the attackers execute malicious scripts using command-line interfaces or scripting environments to run unauthorized commands.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 675; Name: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attackers proceed to impact the system by destructively modifying files, causing operational disruptions within the transportation network.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation MidnightEclipse involves a basic skill-level attacker exploiting a known vulnerability in transportation systems to achieve initial access, executing malicious payloads to disrupt operations, and ultimately causing data destruction.
+    </summary>
+</Scenario>

@@ -1,0 +1,50 @@
+<Scenario>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        <ThreatActorProfile>
+            <CampaignOrGroup>name=C0032</CampaignOrGroup>
+            <Motivation>Financial gain</Motivation>
+            <SkillLevel>Skilled</SkillLevel>
+        </ThreatActorProfile>
+        <Summary>The threat actor C0032 targets transportation systems using a simple attack chain involving spear-phishing, PowerShell, and disabling security software.</Summary>
+    </overview>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Web server services such as emails and databases, Shadow IT, Poor implementation of access controls, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Web, Phishing, Vulnerability exploit, Malware, Account takeover, Brute-force attack, Distributed Denial of Service(DDoS)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spear-Phishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2017-12231 [CWE-22]: Microsoft Office memory corruption vulnerability</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>The threat actor sends a phishing email with a malicious attachment exploiting a vulnerability in Microsoft Office to gain initial access to the target's network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>PowerShell</technique_name>
+            <surface>Web server services such as emails and databases</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2023-6549 [CWE-476]: Windows PowerShell remoting service remote code execution vulnerability</kev>
+            <capec>CAPEC-579: Replace Winlogon Helper DLL</capec>
+            <description>The threat actor exploits a vulnerability in PowerShell to execute arbitrary commands on the compromised system, enabling further lateral movement within the network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disabling Security Software</technique_name>
+            <surface>Shadow IT</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-581: Security Software Footprinting</capec>
+            <description>The threat actor disables security software to avoid detection while moving laterally and exfiltrating sensitive data.</description>
+        </stage>
+    </attack_flow>
+    <summary>The threat actor successfully gains initial access, executes malicious payloads, and disables security software to evade detection and move laterally within the transportation systems' network.</summary>
+</Scenario>

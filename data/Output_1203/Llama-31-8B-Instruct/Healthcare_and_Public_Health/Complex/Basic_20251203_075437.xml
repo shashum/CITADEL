@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Operation Sharpshooter Healthcare and Public Health Cyber Attack Scenario</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        Operation Sharpshooter is a sophisticated cyber attack targeting healthcare and public health organizations. The attackers employ various tactics to gain initial access, execute malware, maintain persistence, escalate privileges, evade defense mechanisms, access credentials, discover sensitive information, move laterally, collect data, exfiltrate data, and disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Sharpshooter</campaign_or_group>
+        <motivation>Gather information about healthcare and public health organizations</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Device theft, Weak passwords, Improper configuration, Vulnerability, Internet-facing assets, Shared DB or directory, Obsolete products, Injection flaws, Custom APIs, Autonomous system numbers(ASNs), SSL Certificates and Attribution, WHOIS records, contacts and history, TCP/IP ports, Public and private cloud, Web server services such as emails and databases, Shadow IT, Poor implementation of access controls, Malicious insiders, Social engineering, Insufficient physical security controls, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: External/Removable media, Loss or Theft of equipment, Attrition, Web, Account takeover, Inadequate encryption, Browser-based attack, Application compromise, Open port, Vulnerability exploit, Ransomware, Malware, Man in The Middle(MiTM), Session hijacking, Brute-force attack, Distributed Denial of Service(DDoS), Watering-hole, Compromised and weak credentials, SIM Swap, Security misconfigurations and vulnerabilities, Web forms, IP address and IP blocks, Domains and subdomains, Botnet, Credential compromise, Telephony Denial of Service(TDoS), Replay Attack, Cryptanalysis Attacks, Side Channel Attacks, Hardware Trojans, Covert Attacks, Sleep Deprivation Attack, Clock Skewing, Attacks Targeting System Reputation, Data and Command Integrity Attack, Eavesdropping, Command and Control Attacks, Phishing, Impersonations/Spoofing, Improper usage, Dumpster diving, Advanced Persistent Threat(APT), Baiting, Shoulder surfing, Reverse social engineering, Business Email Compromise(BEC), Advanced Fee, Extortion
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing via Compromised Email Account</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2020-15415 (Suggested)</kev>
+            <capec>163</capec>
+            <description>The attackers use spear phishing via a compromised email account to trick employees of healthcare and public health organizations into revealing sensitive information.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2023-23376 (Suggested)</kev>
+            <capec>535</capec>
+            <description>The attackers compromise employee devices by having them visit malicious websites.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>PowerShell</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2021-25370 (Suggested)</kev>
+            <capec>579</capec>
+            <description>The attackers use PowerShell to execute malware on compromised devices.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Scheduled Task/Job</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2024-9379 (Suggested)</kev>
+            <capec>654</capec>
+            <description>The attackers schedule tasks to run at specific times to maintain persistence.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Windows Management Instrumentation (WMI)</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>579</capec>
+            <description>The attackers use WMI to maintain persistence on Windows systems.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>121</capec>
+            <description>The attackers exploit vulnerabilities in public-facing applications to gain elevated privileges.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Anti-Virus Tampering</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>448</capec>
+            <description>The attackers disable anti-virus software to evade detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Brute Force</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>49</capec>
+            <description>The attackers use brute force attacks to obtain login credentials.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>Network Scanning</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>309</capec>
+            <description>The attackers scan networks for open ports and services.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>324</capec>
+            <description>The attackers use remote services to move laterally within the network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data from Local System</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>328</capec>
+            <description>The attackers collect sensitive data from local systems.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>590</capec>
+            <description>The attackers exfiltrate data over alternative protocols to avoid detection.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service (DoS)</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>469</capec>
+            <description>The attackers cause a Denial of Service to disrupt operations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Sharpshooter is a complex cyber attack targeting healthcare and public health organizations. The attackers use spear phishing, drive-by compromise, PowerShell, scheduled tasks, WMI, exploiting public-facing applications, anti-virus tampering, brute force attacks, network scanning, remote services, collecting data from local systems, exfiltrating data over alternative protocols, and causing a Denial of Service to achieve their objectives.
+    </summary>
+</Scenario>

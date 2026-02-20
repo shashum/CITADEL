@@ -1,0 +1,106 @@
+[  {
+    "CATEGORY": "Physical",
+    "NAME": "Device theft",
+    "DESCRIPTION": "Theft of a computer or physical information system device located in a public area."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Weak passwords",
+    "DESCRIPTION": "Passwords that can be easily guessed or inferred by attackers."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Improper configuration",
+    "DESCRIPTION": "Incorrectly configured network ports, firewall rules, and other settings."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Vulnerability",
+    "DESCRIPTION": "Security weaknesses that exist in software, operating systems, or firmware."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Internet-facing assets",
+    "DESCRIPTION": "Assets such as web servers that are connected to the public Internet."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Shared DB or directory",
+    "DESCRIPTION": "Databases or directories accessible and used by multiple members of an organization."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Obsolete products",
+    "DESCRIPTION": "Devices, databases, or applications no longer supported by the vendor or manufacturer."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Injection flaws",
+    "DESCRIPTION": "Security vulnerabilities where unvalidated input allows malicious commands to alter system behavior or steal data."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Custom APIs",
+    "DESCRIPTION": "User-defined APIs developed to interact with specific applications or services."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Autonomous system numbers(ASNs)",
+    "DESCRIPTION": "Unique identifiers for network groups on the Internet, which attackers can use to discover an organization's IP range and conduct scans or intrusion attempts."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "SSL Certificates and Attribution",
+    "DESCRIPTION": "Digital certificates used to encrypt communications between a web server and a client."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "WHOIS records, contacts and history",
+    "DESCRIPTION": "Domain registration information and contacts that can be leveraged for social engineering or attack planning by analyzing network structure."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "TCP/IP ports",
+    "DESCRIPTION": "Specific endpoints through which data is sent and received on a network."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Public and private cloud",
+    "DESCRIPTION": "Misconfigurations in cloud infrastructure that expose sensitive services or data to the public Internet."
+  },
+  {
+    "CATEGORY": "Technical",
+    "NAME": "Web server services such as emails and databases",
+    "DESCRIPTION": "Services such as email or databases provided by a web server."
+  },
+  {
+    "CATEGORY": "Administrative",
+    "NAME": "Shadow IT",
+    "DESCRIPTION": "Unauthorized use of software or other IT resources without organizational approval."
+  },
+  {
+    "CATEGORY": "Administrative",
+    "NAME": "Poor implementation of access controls",
+    "DESCRIPTION": "Inadequate implementation of access control policies or procedures, leading to increased security risks."
+  },
+  {
+    "CATEGORY": "Administrative",
+    "NAME": "Malicious insiders",
+    "DESCRIPTION": "Insiders with hostile intent who leak or destroy information to harm the organization or for personal gain."
+  },
+  {
+    "CATEGORY": "Administrative",
+    "NAME": "Social engineering",
+    "DESCRIPTION": "Techniques that exploit human trust or relationships to obtain sensitive information."
+  },
+  {
+    "CATEGORY": "Administrative",
+    "NAME": "Insufficient physical security controls",
+    "DESCRIPTION": "Weak physical access controls that allow unauthorized individuals to enter buildings or restricted areas."
+  },
+  {
+    "CATEGORY": "Administrative",
+    "NAME": "Authentication issues",
+    "DESCRIPTION": "Problems arising from policies or procedures used to verify user identities in systems or applications."
+  }
+]

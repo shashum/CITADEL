@@ -1,0 +1,133 @@
+<Scenario>
+    <title>SolarWinds-Like Supply Chain Attack on Transportation Systems</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        This scenario depicts a multi-stage attack targeting a Transportation Systems organization, potentially including aspects of Supervisory Control and Data Acquisition (SCADA) or Industrial Control Systems (ICS), leveraging the expertise seen in campaigns like SolarWinds Compromise. The attack begins with reconnaissance and culminates in significant impact through manipulated operational data.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=SolarWinds Compromise Group</campaign_or_group>
+        <motivation>Gaining persistent access to critical infrastructure components within the transportation sector.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Open Source Intelligence (OSINT)</initial_attack_surface>
+        <initial_attack_vector>Artificial Intelligence</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Open Source Intelligence (OSINT), Public Media, Internet-facing assets, Command, Malware Artifact, OS Process, Target System Artifact, Active Directory, Domain Name Registrar, Logon Session
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Image File Execution Options Injection, Delivery Method, Command Execution (Mechanism), Device Administrator Permissions, Process Hollowing, Pass-the-Hash Attacks Using Memory Dumps, Network Connection Enumeration, Pass the Ticket, Logon Session Creation, Custom Command and Control Protocol, Runtime Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 184 Name: Software Integrity Attack Description: An attacker initiates a series of events designed to cause a user, program, server, or device to perform actions which undermine the integrity of software code, device data structures, or device firmware, achieving the modification of the ta</capec>
+            <description>An expert threat group utilizes artificial intelligence algorithms to analyze publicly available data sources related to the transportation vendor ecosystem. By processing large volumes of OSINT data, they identify patterns, potential vulnerabilities in software repositories, and gather detailed information on vendor practices and software architectures to plan a targeted supply chain compromise.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1183: Image File Execution Options Injection</technique_name>
+            <surface>Public Media</surface>
+            <vector>Image File Execution Options Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 44 Name: Overflow Binary Resource File Description: An attack of this type exploits a buffer overflow vulnerability in the handling of binary resources. Binary resources may include music files like MP3, image files like JPEG files, and any other binary file. These attacks may pass unnotic</capec>
+            <description>The attackers develop a custom payload designed to appear as a legitimate software component, specifically tailored for inclusion in routine software updates distributed by trusted third-party vendors serving the transportation sector. This development leverages code signing forgery techniques to disguise the malicious nature of the update.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1219.002: Remote Desktop Software</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 555 Name: Remote Services with Stolen Credentials Description: This pattern of attack involves an adversary that uses stolen credentials to leverage remote services such as RDP, telnet, SSH, and VNC to log into a system. Once access is gained, any number of malicious activities could be pe</capec>
+            <description>The compromised software update, delivered through standard channels to vulnerable endpoint systems within the transportation network, contains a backdoor enabling remote access. This allows the attackers to establish persistence and conduct further operations once the update is installed.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 663 Name: Exploitation of Transient Instruction Execution\nDescription: An adversary exploits a hardware design flaw in a CPU implementation of transient instruction execution to expose sensitive data and bypass/subvert access control over restricted resources. Typically, the adversary cond</capec>
+            <description>Upon installation of the compromised update, the malware executes under conditions mimicking legitimate administrative tasks. It then triggers its own malicious code through user interaction or automated processes, exploiting a flaw in the system's command handling to run unauthorized routines.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1647: Plist File Modification</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 556 Name: Replace File Extension Handlers\nDescription: When a file is opened, its file handler is checked to determine which program opens the file. File handlers are configuration properties of many operating systems. Applications can modify the file handler for a given file extension to </capec>
+            <description>To ensure long-term access, the attackers modify plist files associated with key system processes, likely within macOS-based systems common in modern control rooms or network devices. This alteration ensures that the malicious payload loads automatically at system startup, persisting through reboots and regular maintenance cycles.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1401: Device Administrator Permissions</technique_name>
+            <surface>Malware Artifact</surface>
+            <vector>Device Administrator Permissions</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 122 Name: Privilege Abuse\nDescription: An adversary is able to exploit features of the target that should be reserved for privileged users or administrators but are exposed to use by lower or non-privileged accounts. Access to sensitive information and functionality must be controlled to e</capec>
+            <description>The malware seeks to elevate its privileges by abusing weak authentication points inherent in network devices or exploiting unpatched vulnerabilities in the operating system kernel. This elevation grants it higher-level permissions, essential for accessing protected areas of the transportation system's infrastructure.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1093: Process Hollowing</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Hollowing</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 671 Name: Requirements for ASIC Functionality Maliciously Altered\nDescription: An adversary with access to functional requirements for an application specific integrated circuit (ASIC), a chip designed/customized for a singular particular use, maliciously alters requirements derived from o</capec>
+            <description>In order to evade detection by security monitoring tools, particularly those focused on sandbox analysis or behavioral patterns in industrial environments, the attackers employ process hollowing techniques. This involves creating copies of legitimate processes and injecting malicious code into them, masking the true intent and origin of the attack activity.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Pass-the-Hash Attacks Using Memory Dumps</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Pass-the-Hash Attacks Using Memory Dumps</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>During the initial compromise and subsequent lateral movements, the attackers extract hashed credentials from memory dumps taken from infected systems. These hashes are then used to impersonate authorized users and gain deeper access into the network without needing to crack passwords.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0840: Network Connection Enumeration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 327 Name: TCP Options Probe\nDescription: This OS fingerprinting probe analyzes the type and order of any TCP header options present within a response segment. Most operating systems use unique ordering and different option sets when options are present. RFC 793 does not specify a required </capec>
+            <description>With elevated privileges obtained earlier, the attackers scan the internal network to enumerate active connections and identify critical systems. This includes mapping out control system gateways, database servers holding route information, and other infrastructure elements vital to transportation operations.</description>
+        </_stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1097: Pass the Ticket</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Pass the Ticket</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 645 Name: Use of Captured Tickets (Pass The Ticket)\nDescription: An adversary uses stolen Kerberos tickets to access systems/resources that leverage the Kerberos authentication protocol. The Kerberos authentication protocol centers around a ticketing system which is used to request/grant a</capec>
+            <description>Using stolen Kerberos tickets obtained via credential access or direct theft, the attackers move laterally across the network. They exploit SMB (Server Message Block) protocols and manipulate ticket-granting tickets to seamlessly access various nodes within the transportation system's segmented network architecture.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0811: Data from Information Repositories</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 277 Name: Data Interchange Protocol Manipulation\nDescription: Data Interchange Protocols are used to transmit structured data between entities. These protocols are often specific to a particular domain (B2B: purchase orders, invoices, transport logistics and waybills, medical records). The</capec>
+            <description>Once positioned throughout the network, the attackers collect sensitive operational data. This includes gathering information on traffic signal timings, vehicle routing logs, maintenance schedules stored in databases accessed during logged sessions, and other proprietary data crucial for disrupting or controlling transportation flows.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1094: Custom Command and Control Protocol</technique_name>
+            <surface>Active Directory</surface>
+            <vector>Custom Command and Control Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 248 Name: Command Injection\nDescription: An adversary looking to execute a command of their choosing, injects new items into an existing command thus modifying interpretation away from what was intended. Commands in this context are often standalone strings that are interpreted by a downst</capec>
+            <description>The collected sensitive data is exfiltrated using a custom C2 protocol disguised within seemingly normal network traffic. To avoid detection by standard monitoring tools, encryption and obfuscation techniques are employed, blending the exfiltration activity with legitimate AD communications or other routine transfers.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1494: Runtime Data Manipulation</technique_name>
+            <surface>OS Process</surface>
+            <vector>Runtime Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 230 Name: Serialized Data with Nested Payloads\nDescription: Applications often need to transform data in and out of a data format (e.g., XML and YAML) by using a parser. It may be possible for an adversary to inject data that may have an adverse effect on the parser when it is being proces</capec>
+            <description>The ultimate goal is achieved by manipulating runtime data within key OS processes managing transportation systems. This could involve altering real-time operational parameters, such as changing GPS coordinates for tracking vehicles, triggering unexpected responses in control systems that manage traffic lights or train schedules, leading to disruptions like service interruptions or safety hazards.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This complex attack scenario demonstrates how an expert threat group targets the software supply chain in the transportation industry, leveraging AI for reconnaissance, compromised updates for initial access, and advanced evasion and credential techniques to ultimately disrupt operations through subtle parameter manipulations.
+    </summary>
+</Scenario>

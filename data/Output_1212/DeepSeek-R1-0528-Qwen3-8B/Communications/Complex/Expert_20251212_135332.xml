@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Leviathan Communications Attack Scenario</title>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Complex</Complexity>
+        An expert threat group targeted communication infrastructure through a multi-stage intrusion involving reconnaissance, resource development, and exploitation of various vulnerabilities to establish persistence, escalate privileges, and exfiltrate sensitive data while evading detection.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Leviathan Australian Intrusions</campaign_or_group>
+        <motivation>Gather intelligence and disrupt communications.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>DNS Calculation</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Logon Session, Script, Internet-facing assets, Command Prompt, Network Traffic, Application Log, OS Process, User Account, Credential Store, File, Target Artifact (Algorithm), Windows Service
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Logon Session Creation (Mechanism), Script Execution (Mechanism), Delivery Method, Command Execution (Mechanism), Application Log Content (Mechanism), Process Injection, User Account Authentication (Mechanism), Reg.exe Utility, Pass the Hash, File Modification (Mechanism), Encrypted Channel, Service Execution
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1213.002: Sharepoint</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>An adversary initiated reconnaissance by creating or manipulating logon sessions to gather OSINT on the target's communication infrastructure, specifically focusing on SharePoint-based systems to collect publicly accessible data like emails or documents.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T0802: Automated Collection</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>The attacker developed automated collection scripts to harvest data from communication protocols, tailoring them to blend with normal traffic and avoid suspicion during the setup phase.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0866: Exploitation of Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>DNS Calculation</vector>
+            <kev>CVE-2022-22674: macOS Monterey Out-of-Bounds Read Vulnerability</kev>
+            <capec>CAPEC-603: Blockage</capec>
+            <description>Exploiting remote services on internet-facing assets, the adversary leveraged a suggested CVE-2022-22674 to compromise systems via blocked or manipulated access points, gaining entry through methods like phishing or credential stuffing targeting communication software.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1202: Indirect Command Execution</technique_name>
+            <surface>Command Prompt</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>CVE-2019-16920: D-Link Router Command Injection Vulnerability</kev>
+            <capec>CAPEC-9: Buffer Overflow in Local Command-Line Utilities</capec>
+            <description>Upon gaining initial access, the attacker executed indirect commands through vulnerable mechanisms, such as command injection in D-Link routers (CVE-2019-16920), to run malicious payloads that intercept and alter communication data flows.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1568.003: DNS Calculation</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-142: DNS Cache Poisoning</capec>
+            <description>To maintain long-term access, the adversary established persistence by poisoning DNS caches (CAPEC-142), ensuring ongoing manipulation of communication routes and allowing re-entry after disruptions.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0890: Exploitation for Privilege Escalation</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>Elevating privileges, the attacker exploited weaknesses in application logs to gain administrative control, enabling deeper modifications to communication systems for enhanced espionage capabilities.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Faking legitimate activities, the adversary injected malicious processes into OS-level communications to evade detection, blending with normal operations like fake antivirus scans.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110.001: Password Guessing</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-50: Password Recovery Exploitation</capec>
+            <description>Strengthening access, the attacker stole credentials through password guessing or recovery exploits, compromising user accounts on communication platforms to monitor and escalate further unauthorized activities.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>Scanning for active communication endpoints, the adversary used network sniffing techniques to discover internal services and vulnerabilities, particularly focusing on credential stores accessed via reg.exe utilities.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>Moving across the network, the attacker propagated access using pass-the-hash methods on compromised credentials, expanding control over multiple communication devices undetected.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Harvesting sensitive data, the adversary collected communication artifacts like emails and chat logs by modifying files or exploiting data interchange protocols for destruction or retrieval purposes.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1521: Encrypted Channel</technique_name>
+            <surface>Target Artifact (Algorithm)</surface>
+            <vector>Encrypted Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-216: Communication Channel Manipulation</capec>
+            <description>Transferring data covertly, the attacker exfiltrated collected information through encrypted channels like HTTPS or DNS tunneling to obscure the activity from monitoring systems.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1035: Service Execution</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Service Execution</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-550: Install New Service</capec>
+            <description>Inflating damage, the adversary caused significant impacts by executing services to launch DoS attacks, destroy critical files, or send fraudulent messages overwhelming communication systems.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Leviathan Australian Intrusions campaign demonstrated expert-level sophistication by targeting communication infrastructure with a complex attack flow, resulting in extensive espionage, disruption, and data theft.
+    </summary>
+</Scenario>

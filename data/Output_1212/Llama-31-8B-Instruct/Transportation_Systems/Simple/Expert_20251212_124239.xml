@@ -1,0 +1,83 @@
+<Scenario>
+    <metadata>
+        <title>Transportation System Compromise</title>
+        <date>2023-07-26</date>
+        <author>Cybersecurity Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        The attackers exploited employee trust to gain initial access to the transportation systems network, then moved laterally to reach critical systems, injected malicious code, and finally modified setpoints for chemicals in the water treatment process.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Oldsmar Treatment Plant Intrusion</campaign_or_group>
+        <motivation>Economic Sabotage</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            System Image
+            Network Traffic
+            Target Artifact (Application)
+            Pod
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Delivery Method
+            File Creation (Mechanism)
+            Network Traffic Flow (Mechanism)
+            Code Injection
+            Pod Enumeration (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2012-4969 (Suggested): Microsoft Internet Explorer contains a use-after-free vulnerability that allows remote attackers to execute code via a crafted web site.</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attackers sent spear phishing emails to employees, exploiting their trust to gain access to the transportation systems network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1491.001: Internal Defacement</technique_name>
+            <surface>System Image</surface>
+            <vector>File Creation (Mechanism)</vector>
+            <kev>CVE-2023-35674 (Suggested): Android Framework contains an unspecified vulnerability that allows for privilege escalation.</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attackers moved through the network to reach critical systems using internal defacement techniques.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>CVE-2022-27925 (Suggested): Synacor Zimbra Collaboration Suite (ZCS) contains flaw in the mboximport functionality, allowing an authenticated attacker to upload arbitrary files to perform remote code execution. This vulnerability was chained with CVE-2022-37042 which allows for unauthenticated remote code execution.</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers used remote services like RDP or SSH to execute malicious code.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Code Injection</vector>
+            <kev>CVE-2019-9874 (Suggested): Sitecore CMS and Experience Platform (XP) contain a deserialization vulnerability in the Sitecore.Security.AntiCSRF module that allows an unauthenticated attacker to execute arbitrary code by sending a serialized.NET object in the HTTP POST parameter __CSRFTOKEN.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attackers injected malicious code into transportation systems software.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1613: Container and Resource Discovery</technique_name>
+            <surface>Pod</surface>
+            <vector>Pod Enumeration (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-131: Resource Leak Exposure</capec>
+            <description>The attackers modified setpoints for chemicals in the water treatment process.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The attackers compromised the transportation systems network by exploiting employee trust, moving laterally to critical systems, injecting malicious code, and modifying setpoints for chemicals in the water treatment process.
+    </summary>
+</Scenario>

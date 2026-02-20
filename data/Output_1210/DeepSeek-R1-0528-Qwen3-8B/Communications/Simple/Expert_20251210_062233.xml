@@ -1,0 +1,69 @@
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>C0018</campaign>
+    </metadata>
+    
+    <title>Ransomware Attack Scenario in Communications Sector</title>
+    
+    <overview>
+        <Target>Telecommunications companies or service providers.</Target>
+        <Complexity>Simple</Complexity>
+        [A targeted ransomware campaign leveraging simple attack phases to compromise systems and extort victims through encrypted file demands.]
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=C0018</campaign_or_group>
+        <motivation>Financial gain through ransom payments and potential espionage motives targeting sensitive communication infrastructure.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, File
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method, Attack PC via USB Connection, File Creation (Mechanism)
+    </attack_vector>
+    
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0866: Exploitation of Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-603: Blockage</capec>
+            <description>An adversary gains unauthorized access to vulnerable remote services hosted on external systems, potentially exploiting weaknesses such as default credentials or unpatched software to disrupt operations and establish a foothold within the network.</description>
+        </stage>
+        
+        <stage name="Execution">
+            <technique_name>T1427: Attack PC via USB Connection</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Attack PC via USB Connection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-457: USB Memory Attacks</capec>
+            <description>After compromising the initial entry point, the attacker deploys a malicious payload by inserting a compromised USB drive into endpoint devices, allowing automated execution of ransomware scripts that propagate malware across the affected workstations.</description>
+        </stage>
+        
+        <stage name="Impact">
+            <technique_name>T1027.013: Encrypted/Encoded File</technique_name>
+            <surface>File</surface>
+            <vector>File Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-636: Hiding Malicious Data or Code within Files</capec>
+            <description>The adversary encrypts user-accessible files using the AvosLocker algorithm, rendering data inaccessible and demanding payment for decryption keys, thereby causing significant operational disruption and extortion attempts within the communications sector.</description>
+        </stage>
+    </attack_flow>
+    
+    <summary>
+        [This simple ransomware attack targets communications firms by initially breaching internet-facing systems, then spreading via USB devices to encrypt critical files, leading to high-profile disruptions and financial losses due to lack of advanced defenses.]
+    </summary>
+</Scenario>

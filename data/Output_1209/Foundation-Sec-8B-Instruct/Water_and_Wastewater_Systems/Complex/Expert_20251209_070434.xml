@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Water and Wastewater Systems</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Pikabot Distribution February 2024</campaign>
+    </metadata>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated cyber attack orchestrated by the expert attackers behind the Pikabot Distribution February 2024 campaign aims to infiltrate and disrupt critical water and wastewater systems. Utilizing a multi-stage approach, they leverage advanced techniques to gain unauthorized access, maintain persistence, escalate privileges, evade defenses, and ultimately impact the operational integrity of the targeted infrastructure.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Pikabot Distribution February 2024</campaign_or_group>
+        <motivation>Disruption and Data Theft</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, File, Application Log, Network Traffic, Target System Artifact, Module
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Network Traffic Flow (Mechanism), Command Execution (Mechanism), File Modification (Mechanism), Application Log Content (Mechanism), Network Traffic Flow (Mechanism), Exfiltration Over C2 Channel, Module Load (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309 Name: Network Topology Mapping</capec>
+            <description>The attackers engage in active scanning activities to map out the network topology of the water and wastewater systems, identifying potential entry points and vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522 Name: Malicious Hardware Component Replacement</capec>
+            <description>The attackers establish servers for command and control (C2) and data exfiltration, setting up the necessary infrastructure for their operation.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 164 Name: Mobile Phishing</capec>
+            <description>Using the Pikabot distribution method from February 2024, attackers send phishing emails to trick employees into opening malicious attachments, leading to Initial Access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 663 Name: Exploitation of Transient Instruction Execution</capec>
+            <description>Once the malicious attachment is opened, it triggers the execution of Pikabot malware.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1601: Modify System Image</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 532 Name: Altered Installed BIOS</capec>
+            <description>To maintain persistent access, attackers modify system images to install Pikabot or similar backdoors.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 121 Name: Exploit Non-Production Interfaces</capec>
+            <description>Attackers exploit public-facing applications to escalate privileges within the compromised system.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1406: Obfuscated Files or Information</technique_name>
+            <surface>Malicious Payload</surface>
+            <vector>Obfuscated Files or Information</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 636 Name: Hiding Malicious Data or Code within Files</capec>
+            <description>Attackers obfuscate files and information to avoid detection by security tools.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 226 Name: Session Credential Falsification through Manipulation</capec>
+            <description>By utilizing tools like Mimikatz, attackers steal credentials to move laterally without detection.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1422: System Network Configuration Discovery</technique_name>
+            <surface>File System</surface>
+            <vector>System Network Configuration Discovery</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309 Name: Network Topology Mapping</capec>
+            <description>Understanding the network layout, attackers plan lateral movements to reach critical assets.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 324 Name: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>Utilizing remote services like RDP or SSH, attackers move throughout the network to extend their control.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 328 Name: TCP 'RST' Flag Checksum Probe</capec>
+            <description>Attackers collect sensitive operational data from local systems to further their objectives.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 24 Name: Filter Failure through Buffer Overflow</capec>
+            <description>Collected data is transferred to attacker-controlled servers via established C2 channels.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1559: Inter-Process Communication</technique_name>
+            <surface>Module</surface>
+            <vector>Module Load (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 276 Name: Inter-component Protocol Manipulation</capec>
+            <description>Finally, attackers disrupt operations by manipulating inter-process communication, potentially causing physical damage or data loss.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Pikabot Distribution February 2024 campaign represents a highly sophisticated and multi-faceted cyber threat targeting water and wastewater systems. With a focus on stealth and persistence, the attackers employ a wide range of techniques to achieve their goals, from initial infiltration to the ultimate impact on system operations. Organizations in the water sector must remain vigilant and implement robust security measures to mitigate such threats.
+    </summary>
+</Scenario>

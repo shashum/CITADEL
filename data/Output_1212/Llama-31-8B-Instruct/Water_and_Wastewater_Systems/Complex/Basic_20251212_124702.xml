@@ -1,0 +1,165 @@
+<Scenario>
+    <metadata>
+        <title>Operation Ghost Water and Wastewater Systems Attack Scenario</title>
+        <date>2023-07-26</date>
+        <author>Cybersecurity Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        <brief_summary>This attack scenario outlines the steps taken by the Operation Ghost group to compromise a water and wastewater system.</brief_summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Ghost</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Credential Store
+            Windows Service
+            User Account
+            File System
+            Target Artifact (Tasks)
+            Target Artifact (Application)
+            Target Artifact (Alternate)
+            Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Email
+            Reg.exe Utility
+            Response Metadata (Mechanism)
+            Delivery Method
+            Process Injection
+            User Account Authentication (Mechanism)
+            Code Injection
+            SIP and Trust Provider Hijacking
+            File Access (Mechanism)
+            Exfiltration Over Alternative Protocol
+            Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attackers gather information about the water and wastewater systems using artificial intelligence techniques.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attackers identify open ports and services on the system by monitoring network traffic.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attackers set up a command and control server by acquiring infrastructure over the internet.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2025-57819: Sangoma FreePBX contains an authentication bypass vulnerability due to insufficiently sanitized user-supplied data allows unauthenticated access to FreePBX Administrator leading to arbitrary database manipulation and remote code execution.</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attackers trick employees into installing malware through fake emails.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>CVE-2018-5430: TIBCO JasperReports Server contain a vulnerability which may allow any authenticated user read-only access to the contents of the web application, including key configuration files.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attackers execute malicious code within legitimate processes.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1031: Modify Existing Service</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-551: Modify Existing Service</capec>
+            <description>The attackers change settings to allow remote access.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attackers escalate privileges using known vulnerabilities.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1198: SIP and Trust Provider Hijacking</technique_name>
+            <surface>DLL</surface>
+            <vector>SIP and Trust Provider Hijacking</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-614: Rooting SIM Cards</capec>
+            <description>The attackers disable antivirus software.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attackers guess weak passwords.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Code Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attackers discover operating system and installed software.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attackers use valid accounts to move laterally.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attackers collect sensitive data.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1639: Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Target Artifact (Alternate)</surface>
+            <vector>Exfiltration Over Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>The attackers transfer stolen data out of the network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attackers cause disruption to the water supply.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Operation Ghost group compromises a water and wastewater system by gathering information, setting up a command and control server, tricking employees into installing malware, executing malicious code, changing settings, escalating privileges, disabling antivirus software, guessing weak passwords, discovering operating system and installed software, moving laterally, collecting sensitive data, transferring stolen data, and disrupting the water supply.
+    </summary>
+</Scenario>

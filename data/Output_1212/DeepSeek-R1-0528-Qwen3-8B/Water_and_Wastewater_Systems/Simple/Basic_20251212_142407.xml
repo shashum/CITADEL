@@ -1,0 +1,53 @@
+<Scenario>
+    <title>ArcaneDoor Attack Scenario</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a targeted attack campaign called ArcaneDoor exploiting known vulnerabilities in water sector infrastructure through basic spearphishing and endpoint manipulation.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=ArcaneDoor</campaign_or_group>
+        <motivation>Disrupt water treatment processes or steal sensitive operational data.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Endpoint devices, Operational technology systems
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Social engineering (Phishing), Web-based attacks, Remote access protocols, Local file system access
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2017-0022 (Microsoft XML Core Services Improper Memory Handling): Allows attackers to craft websites that bypass security restrictions via improper object handling during web sessions.</kev>
+            <capec>CAPEC-467: Cross Site Identification - Harvests identifying information via active sessions with compromised web interfaces.</capec>
+            <description>An attacker sends a spearphishing email targeting employees within the water utility organization, impersonating a legitimate source. The email contains a malicious hyperlink designed to redirect the recipient to a compromised website hosted on internet-facing assets. This website leverages CVE-2017-0022 vulnerability in MSXML components to potentially bypass standard security measures, enabling credential theft or establishing persistence through social engineering tactics described in CAPEC-467.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1576: Uninstall Malicious Application</technique_name>
+            <surface>Endpoint devices</surface>
+            <vector>Malware Installation</vector>
+            <kev>CVE-2024-43461 (Windows MSHTML UI Spoof Vulnerability): Used alongside another vulnerability to manipulate user trust regarding web content.</kev>
+            <capec>CAPEC-698: Install Malicious Extension - Directly installs or tricks users into installing malicious extensions onto trusted software endpoints.</capec>
+            <description>Upon successful compromise via the spearphishing link, the attacker executes a script or payload on the endpoint device. This execution often involves the installation or modification of software, specifically leveraging methods like those implied by CAPEC-698 (e.g., manipulating UI representations). Following installation, the malicious application may employ techniques associated with T1576, such as attempting to uninstall competing security tools or legitimate monitoring applications to reduce detection chances, utilizing CVE-2024-43461 to enhance deception capabilities before proceeding with its intended functions.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1499.004: Application or System Exploitation</technique_name>
+            <surface>Operational technology systems</surface>
+            <vector>System Configuration Alteration</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-574: Services Footprinting - Collects information about running services to understand the target environment.</capec>
+            <description>The ultimate objective achieved through this simple campaign is disruption or alteration of normal operations. Using compromised endpoint privileges gained previously, the attacker modifies configuration parameters within the OT systems, particularly focusing on control mechanisms like pump speed regulators or monitoring alerts. These changes result in subtle yet significant impacts, such as reduced efficiency, unexpected shutdowns, or tampered readings, thereby interfering with the safe and reliable delivery of water services without needing complex exploits, relying instead on basic understanding of system controls.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        ArcaneDoor represents a low-skill threat actor targeting water utilities with a simple attack chain involving spearphishing for initial access, followed by endpoint execution and finally limited operational impact through system configuration changes.
+    </summary>
+</Scenario>

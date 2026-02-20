@@ -1,0 +1,53 @@
+<Scenario>
+    <title>Energetic Disruption: Water Curupira Pikabot Attack on Energy Sector</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        <description>The Water Curupira Pikabot campaign targets the energy sector through a multi-stage cyber attack, leveraging phishing, backdoor installation, and SCADA system manipulation to disrupt critical infrastructure operations.</description>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Water Curupira Pikabot Distribution</campaign_or_group>
+        <motivation>Disruption of energy grid operations and potential sabotage of critical infrastructure.</motivation>
+        <skill_level>Medium</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Employee Email</initial_attack_surface>
+        <initial_attack_vector>Social Engineering</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Employee Email", "Internet-Facing Assets", "Custom APIs"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Social Engineering", "Malware", "Vulnerability Exploit"]
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Attachment</technique_name>
+            <surface>Employee Email</surface>
+            <vector>Social Engineering</vector>
+            <kev>CVE-2022-27926</kev>
+            <capec>CAPEC-511: Identify Software/Services Used by Target</capec>
+            <description>Attackers send phishing emails to energy company employees, attaching malicious documents designed to mimic legitimate operational reports. These attachments exploit CVE-2022-27926, enabling remote code execution upon opening.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Backdoor Installation</technique_name>
+            <surface>Internet-Facing Assets</surface>
+            <vector>Malware</vector>
+            <kev>CVE-2021-21017</kev>
+            <capec>CAPEC-552: Install Rootkit</capec>
+            <description>Once initial access is achieved, attackers deploy malware on compromised servers. This backdoor leverages CVE-2021-21017 to gain persistence and escalate privileges, targeting misconfigured cloud storage services like exposed AWS S3 buckets.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>SCADA System Manipulation</technique_name>
+            <surface>Custom APIs</surface>
+            <vector>Vulnerability Exploit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>Attackers exploit insecure APIs within the energy grid's SCADA systems. This allows them to manipulate data or issue unauthorized commands, potentially leading to power outages or physical damage to equipment.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Water Curupira Pikabot campaign orchestrates a sophisticated attack against the energy sector, starting with phishing emails to gain initial access, followed by backdoor installation to establish persistence, and culminating in SCADA system manipulation to achieve maximum impact. This attack demonstrates the growing threat of cyber-physical attacks targeting critical infrastructure.
+    </summary>
+</Scenario>

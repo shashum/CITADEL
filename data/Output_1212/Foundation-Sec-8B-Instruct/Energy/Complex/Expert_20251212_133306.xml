@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Energy</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Night Dragon</campaign>
+    </metadata>
+    <overview>
+        <Target>Energy Sector</Target>
+        <Complexity>Complex</Complexity>
+        The Night Dragon campaign, an expert-level threat group, targets the energy sector with a multi-stage complex cyber attack. Their objective is to gain unauthorized access, maintain persistence, and exfiltrate sensitive data while evading detection and inhibiting recovery efforts.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Night Dragon</campaign_or_group>
+        <motivation>Economic Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, File System, Windows Registry, Credential Store, Target Artifact (Mobile device), Application Log
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, File Access (Mechanism), Disabling Security Tools, Application Log Content (Mechanism), Network Service Scanning, Process Creation (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1564.009: Resource Forking</technique_name>
+            <surface>File</surface>
+            <vector>File Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 131; Name: Resource Leak Exposure</capec>
+            <description>The attackers gather information about the target's infrastructure by exploiting resource forking to expose sensitive file metadata, enabling them to understand the environment before launching the main assault.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1584: Compromise Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 609; Name: Cellular Traffic Intercept</capec>
+            <description>The attackers establish command and control servers by compromising internet infrastructure, allowing them to communicate covertly with compromised systems within the target network.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-1389 (Suggested): TP-Link Archer AX-21 contains a command injection vulnerability that allows for remote code execution.</kev>
+            <capec>CAPEC ID: 467; Name: Cross Site Identification</capec>
+            <description>Specific employees receive targeted spearphishing emails containing malicious links, leading to the exploitation of vulnerabilities like CVE-2023-1389, granting initial access to the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1204.002: Malicious File</technique_name>
+            <surface>File System</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>CVE-2022-0847 (Suggested): Linux kernel contains an improper initialization vulnerability where an unprivileged local user could escalate their privileges on the system.</kev>
+            <capec>CAPEC ID: 635; Name: Alternative Execution Due to Deceptive Filenames</capec>
+            <description>Malware delivered through spear-phishing emails executes upon opening, utilizing reg.exe utility to potentially exploit vulnerabilities like CVE-2022-0847 for privilege escalation.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Script File</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 650; Name: Upload a Web Shell to a Web Server</capec>
+            <description>To maintain access, attackers upload a web shell onto the server, allowing them to execute commands and retain control over the compromised system.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 121; Name: Exploit Non-Production Interfaces</capec>
+            <description>By exploiting public-facing applications, attackers elevate their privileges to gain higher-level access on the compromised system.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1089: Disabling Security Tools</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Disabling Security Tools</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 578; Name: Disable Security Software</capec>
+            <description>Attackers disable security tools by modifying the Windows registry, ensuring their malicious activities remain undetected.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1555: Credentials from Password Stores</technique_name>
+            <surface>Credential Store</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 645; Name: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>Stolen credentials are used to access further systems, facilitating lateral movement throughout the network.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Target Artifact (Mobile device)</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309; Name: Network Topology Mapping</capec>
+            <description>Attackers scan the network to identify additional hosts and services, mapping out the internal structure for future movements.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1550: Use Alternate Authentication Material</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 151; Name: Identity Spoofing</capec>
+            <description>Using stolen credentials, attackers move laterally across the network, maintaining stealth and avoiding detection.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 328; Name: TCP 'RST' Flag Checksum Probe</capec>
+            <description>Attackers extract sensitive data from compromised systems, focusing on valuable information stored locally.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target Artifact (Channel)</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 24; Name: Filter Failure through Buffer Overflow</capec>
+            <description>Data is transferred to attacker-controlled servers using established command and control channels, ensuring secure and covert extraction.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1490: Inhibit System Recovery</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 607; Name: Obstruction</capec>
+            <description>Finally, attackers destroy backups and inhibit recovery efforts, maximizing the impact of their actions on the target organization.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Night Dragon campaign employs a sophisticated approach targeting the energy sector, employing techniques ranging from reconnaissance to impact, demonstrating advanced persistent threat behaviors. They utilize a variety of vectors and surfaces to infiltrate, persist, and exfiltrate data, all while evading detection and hindering recovery efforts.
+    </summary>
+</Scenario>

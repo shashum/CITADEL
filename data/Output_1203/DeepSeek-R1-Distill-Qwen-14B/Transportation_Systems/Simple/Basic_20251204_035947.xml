@@ -1,0 +1,45 @@
+<Scenario>
+    <title>ShadowRay Campaign Targets Transportation Systems</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        <description>The ShadowRay campaign exploits vulnerabilities in transportation systems to disrupt operations, leveraging basic-level attacks to achieve their goals.</description>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=ShadowRay</campaign_or_group>
+        <motivation>Disruption of critical infrastructure and potential financial gain.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Vulnerability exploit</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Vulnerability Exploitation</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2024-40711 (Suggested)</kev>
+            <capec>CAPEC ID: 180 Name: Exploiting Incorrectly Configured Access Control Security Levels</capec>
+            <description>The attackers exploit a known vulnerability in the transportation system's software to gain initial access. This involves targeting improperly configured access controls, allowing unauthorized entry into the system.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Command Injection</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2022-22960 (Suggested)</kev>
+            <capec>CAPEC ID: 88 Name: OS Command Injection</capec>
+            <description>Once initial access is achieved, the attackers inject malicious commands into the system to execute arbitrary code. This technique allows them to gain control over critical system functions, enabling further actions.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disruption of Operations</technique_name>
+            <surface>Operational Technology (OT) networks</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 440 Name: Hardware Integrity Attack</capec>
+            <description>The attackers deploy disruptive commands or malware to interfere with the normal operation of transportation systems. This results in operational disruptions, potentially leading to safety risks and financial losses.</description>
+        </stage>
+    </attack_flow>
+    <summary>The ShadowRay campaign successfully compromises transportation systems through a series of basic yet effective attacks. By exploiting vulnerabilities, executing malicious commands, and disrupting operations, the attackers achieve their objective of causing chaos and potential financial gain.</summary>
+</Scenario>

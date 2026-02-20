@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Unitronics Defacement Campaign Targeting Water/Wastewater Infrastructure</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated multi-stage attack leveraging AI-driven reconnaissance, wireless exploitation, and credential theft to disrupt critical infrastructure operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Unitronics Defacement Campaign</campaign_or_group>
+        <motivation>Disruption of Critical Infrastructure Operations</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Open Source Intelligence (OSINT)</initial_attack_surface>
+        <initial_attack_vector>Artificial Intelligence</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Open Source Intelligence (OSINT), Web Browser, Internet-facing assets, Command, Windows Registry, OS Process, User Account, Process, Domain Name Registrar, File, Windows Service
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Exploit via Radio Interfaces, General Access Method, Command Execution (Mechanism), Windows Registry Key Creation (Mechanism), Exploits, Process Injection, User Account Authentication (Mechanism), Reg.exe Utility, Pass the Hash, File Modification (Mechanism), Process Creation (Mechanism), Systemd Service
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attackers deploy AI algorithms to scrape public records, social media, and technical documentation to map the water/wastewater system's infrastructure, identifying vulnerable IoT devices and personnel associated with maintenance protocols.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1477: Exploit via Radio Interfaces</technique_name>
+            <surface>Web Browser</surface>
+            <vector>Exploit via Radio Interfaces</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-615: Evil Twin Wi-Fi Attack</capec>
+            <description>The threat actors develop custom exploit kits targeting radio-frequency vulnerabilities in industrial control systems (ICS), creating rogue Wi-Fi access points to intercept unencrypted communications between operators and SCADA systems.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1193: Spearphishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>A spear-phishing campaign delivers malicious PDF attachments to engineers, exploiting outdated Adobe Reader vulnerabilities to execute arbitrary code and establish a foothold in the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1202: Indirect Command Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-9: Buffer Overflow in Local Command-Line Utilities</capec>
+            <description>The attackers chain buffer overflow exploits in command-line utilities to run payloads that disable firewall rules and enable lateral movement across segmented networks.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>A scheduled task is created in the Windows Registry to maintain persistent access, automatically re-establishing compromised sessions after system reboots.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1588.005: Exploits</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Exploits</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>Using OSINT-derived credentials, the attackers exploit hardcoded admin passwords in legacy ICS software to elevate privileges and access restricted subsystems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is injected into legitimate system processes to evade detection by security software while maintaining persistence.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110.003: Password Spraying</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-565: Password Spraying</capec>
+            <description>The attackers automate password spraying attacks against domain controllers, leveraging weak administrative passwords to harvest valid credentials.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>Network sniffing tools like Reg.exe are used to monitor internal traffic, mapping out active systems, open ports, and potential targets for further exploitation.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>Stolen credentials are used with pass-the-hash techniques to move laterally across the network, accessing additional systems and databases.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Critical operational data is exfiltrated and destroyed by corrupting configuration files and database entries, disrupting water treatment processes.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1219.001: IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <description>Data is exfiltrated through covert tunnels created by manipulating process creation mechanisms, masking traffic patterns to avoid detection.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1501: Systemd Service</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Systemd Service</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-550: Install New Service</capec>
+            <description>A malicious systemd service is installed to alter pump controls and valve settings, causing physical damage to infrastructure and environmental hazards.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Unitronics defacement campaign systematically compromises water/wastewater systems through AI-powered reconnaissance, wireless exploitation, and credential theft, culminating in operational disruption and physical damage via manipulated industrial controls.
+    </summary>
+</Scenario>

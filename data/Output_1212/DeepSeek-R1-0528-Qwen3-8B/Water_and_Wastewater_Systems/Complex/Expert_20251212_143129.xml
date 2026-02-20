@@ -1,0 +1,138 @@
+<Scenario>
+    <title>Versa Director Zero-Day Attack Scenario</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        <BriefSummary>An expert-level campaign targets water and wastewater infrastructure using a zero-day vulnerability in networking equipment to establish initial access, escalate privileges, and disrupt operations.</BriefSummary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Versa Director Zero Day Exploitation</campaign_or_group>
+        <motivation>Disrupt critical infrastructure operations, likely state-sponsored espionage or sabotage.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Exploit chain beginning with reconnaissance leading to zero-day vulnerability exploitation</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, User Accounts, Windows Services, Target Artifact (Application), Network Traffic, Target System Artifact, Credential Store, Process, Application Log
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Mechanism, Command Execution, File Modification, Network Traffic Content, Process Creation, Malware Metadata, Execution via Script-Based, Location Tracking, User Account Authentication
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker performs passive and active network sniffing using specialized tools, possibly leveraging Reg.exe utility for command-line interaction, to intercept and analyze network packets between different components of the water/wastewater system. This helps in identifying session tokens, unencrypted credentials, or patterns indicative of weak encryption, providing insights into the network topology and communication protocols.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1588.001: Malware</technique_name>
+            <surface>MALWARE REPOSITORY</surface>
+            <vector>Custom development of malware modules tailored to exploit identified vulnerabilities or capabilities in the system.</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-542: Targeted Malware</capec>
+            <description>The threat group designs and constructs bespoke malware, incorporating mechanisms to exploit specific flaws discovered during reconnaissance phase. This could involve creating variants optimized for stealth, longevity, or particular functionalities needed to compromise SCADA systems within water treatment facilities.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>One-Way Communication</technique_name>
+            <surface>INTERNET-FACING ASSETS</surface>
+            <vector>Zero-day vulnerability in software similar to Versa Director</vector>
+            <kev>CVE-2025-2775 (Improper restriction of XML external entity references)</kev>
+            <capec>CAPEC-220: Client-Server Protocol Manipulation</capec>
+            <description>Leveraging a previously unknown vulnerability in internet-facing management consoles or gateways associated with water/wastewater control systems, the attackers establish unauthorized access. Specifically, exploiting CVE-2025-2775-like issues in XML parsing functions allows for reading configuration files or injecting malicious payloads without triggering standard authentication checks.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Injecting malicious code into legitimate processes running on the control system hardware</vector>
+            <kev>CVE-2025-31201 (Arbitrary read/write bypassing pointer auth)</kev>
+            <!-- Note: While the KEV ID points to an Apple product vulnerability, it's adapted here to imply capability for low-level code manipulation relevant to embedded systems -->
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Once initial access is gained, typically through a compromised service or administrative interface, the attackers inject their own code or execute arbitrary commands within the application space. This enables direct modification of system parameters, such as SCADA configurations or sensor readings, facilitating further compromise steps.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Script-Based Backdoor</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Using scheduled tasks or startup scripts to maintain continuous access to the compromised system</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>To ensure long-term presence, the attackers deploy a script-based backdoor. This could involve placing malicious scripts in directories that auto-load upon system boot or configuring cron jobs/scheduled tasks under privileged accounts to periodically download and execute additional payload components.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1430: Location Tracking</technique_name>
+            <!-- Note: Technique name appears generic, but context implies misuse for positional data -->
+            <surface>Target Artifact (Location)</surface>
+            <vector>Exploiting geographical positioning data inaccuracies to assume higher authority roles within the control hierarchy</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-628: Carry-Off GPS Attack</capec>
+            <!-- Note: CAPEC-628 relates to GPS spoofing, loosely tied here to manipulating location-based controls -->
+            <description>By tampering with or spoofing location data fed into the control system, the attackers can elevate their perceived position or status, thereby gaining unauthorized administrative privileges. This might allow them to override safety protocols or alter operational sequences undetected.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1001: Data Obfuscation</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Hiding injected code or manipulated data within encrypted or obfuscated network communications</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-636: Hiding Malicious Data or Code within Files</capec>
+            <description>Attackers employ methods to conceal their malicious activities from monitoring systems. This includes obfuscating network traffic to appear benign, modifying log formats or contents to mask command executions, and potentially embedding malicious code within seemingly harmless files transferred across the network.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Password Spraying</technique_name>
+            <surface>User Account</surface>
+            <vector>Systematic guessing of common passwords combined with standard credentials across many user accounts</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-565: Password Spraying</capec>
+            <description>After establishing basic footholds, the attackers attempt to harvest more credentials by conducting password spraying attacks. They test a limited set of frequently used passwords against numerous accounts within the system, aiming to find any valid combinations that would grant broader access or escalate privileges further.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0881: Service Stop</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Stopping legitimate services to enumerate connected devices and assess the operational landscape</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-551: Modify Existing Service</capec>
+            <description>Upon gaining access, the attackers stop key services monitored by the SCADA system. By halting these services, they can observe changes in system responses or scan the network for other active devices, helping them map the entire control ecosystem and identify critical targets for future actions.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1656: Impersonation</technique_name>
+            <surface>Application Log</surface>
+            <vector>Forging authentication tickets or mimicking legitimate user sessions to move across the network</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-415: Pretexting via Phone</capec>
+            <!-- Note: CAPEC-415 is about social engineering via calls, but vector here is adapted to impersonation -->
+            <description>Utilizing compromised credentials or forged authentication tokens, the attackers impersonate authorized users or administrators to traverse the corporate and control networks. This involves moving from one infected node to another, spreading the malware payload to reach other control system components.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1132: Data Encoding</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Encoding stolen data using UTF-8 or other formats to evade signature-based detection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-80: Using UTF-8 Encoding to Bypass Validation Logic</capec>
+            <description>With access established throughout the network, the attackers collect sensitive operational data. This includes process control values, system configurations, and potentially proprietary formulas stored in databases or memory structures. To avoid detection during transmission, they encode this data using non-standard or obfuscated methods like UTF-8.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1219.001: IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Creating hidden processes that disguise data transfers as routine DNS queries</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <!-- Note: CAPEC-317 is about OS fingerprinting, but vector here is adapted to tunneling -->
+            <description>Data collection is followed by exfiltration. Attackers utilize outbound connections, possibly disguised through Domain Name System (DNS) queries—a technique sometimes referred to as "IDE tunneling"—to siphon large amounts of sensitive information out of the isolated water/wastewater control environments, blending malicious traffic with normal network activity.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1098: Account Manipulation</technique_name>
+            <surface>User Account</surface>
+            <vector>Executing commands designed to alter system states or disable critical functions remotely</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-161: Infrastructure Manipulation</capec>
+            <description>The ultimate objective is achieved by manipulating user accounts or associated permissions to trigger disruptive actions. This could involve changing settings on programmable logic controllers (PLCs) or supervisory control and data acquisition (SCADA) servers to cause incorrect valve openings, pump failures, or altered chemical dosing levels, simulating real-world sabotage scenarios aimed at compromising public health or causing physical damage.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This multi-stage attack demonstrates an expert threat actor exploiting vulnerabilities in water and wastewater systems to achieve significant operational disruption through precise control system manipulations.
+    </summary>
+</Scenario>

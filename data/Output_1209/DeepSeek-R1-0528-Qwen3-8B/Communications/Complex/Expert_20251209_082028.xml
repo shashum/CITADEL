@@ -1,0 +1,113 @@
+```xml
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>FrostyGoop Incident</campaign>
+    </metadata>
+    <title>FrostyGoop Multi-stage Attack on Communication Systems</title>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Complex</Complexity>
+        This attack scenario outlines a sophisticated campaign by FrostyGoop, involving expert-level techniques to infiltrate, move laterally within, and disrupt communication infrastructures through multiple phases.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=FrostyGoop Incident</campaign_or_group>
+        <motivation>To achieve strategic goals such as disrupting services, stealing sensitive data, or gaining persistent control over communication networks.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Open Source Intelligence (OSINT), Script, Internet-facing assets, Command, Windows Registry, Process, Target System Artifact, User Account, Domain Name Registrar, Social Media Platform, Malware Artifact, Windows Service
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Script Execution (Mechanism), Delivery Method, Command Execution (Mechanism), Abuse Elevation Control Mechanism, Pass the Hash, Bidirectional Communication, Encrypted Channel
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker leverages artificial intelligence tools to automate the gathering of open-source intelligence, scanning public databases, social media, and online forums for information on the target communication infrastructure, including network layouts, employee details, and potential vulnerabilities, thereby reducing manual effort and increasing accuracy in mapping the environment.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T0802: Automated Collection</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>In this phase, the threat actor develops specialized scripts, likely written in languages like Python or PowerShell, to facilitate automated data harvesting tailored for communication systems. By executing these scripts, they aim to collect and organize information gathered during reconnaissance, preparing resources for exploitation and customization to fit the specific communication network architecture.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0866: Exploitation of Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-603: Blockage</capec>
+            <description>The attacker gains initial entry by exploiting vulnerabilities in internet-facing communication services, such as web portals or APIs, using a crafted payload delivered via phishing, malware distribution, or unpatched software flaws. This allows them to compromise endpoints remotely, establishing a foothold in the network before proceeding to deeper stages.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1202: Indirect Command Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-9: Buffer Overflow in Local Command-Line Utilities</capec>
+            <description>Upon compromising a system, the attacker executes indirect commands through manipulated script execution mechanisms, running malicious code on communication devices to take control and begin intercepting or manipulating traffic. This could involve injecting commands into existing processes or using buffer overflow exploits to trigger unintended actions, automating key functions for ongoing reconnaissance.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>To maintain long-term access, the attacker establishes persistence by creating or hijacking scheduled tasks in the Windows registry, ensuring that malicious routines run automatically at system startup or periodic intervals. This mirrors expert tactics to survive reboots and updates, allowing continuous operation within the communication network.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1546.004: Unix Shell Configuration Modification</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-75: Manipulating Writeable Configuration Files</capec>
+            <description>The attacker elevates privileges by modifying configuration files or settings in Unix-based shell environments, such as router or PBX systems, to gain higher access levels. Through process creation mechanisms, they exploit weak permissions or defaults to alter system behaviors, accessing administrative controls and escalating their position within the communication infrastructure.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>During defense evasion, the attacker bypasses monitoring and detection systems by abusing elevation control mechanisms, employing advanced obfuscation or process injection techniques to hide malicious activities. This ensures stealthiness while maintaining elevated privileges, adapting to countermeasures typical in expert cyber operations focused on communication domains.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110.003: Password Spraying</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-565: Password Spraying</capec>
+            <description>With elevated access, the attacker attempts to harvest additional credentials by performing password spraying across user accounts in the communication system, testing common passwords against a wide range of usernames. This builds a larger pool of valid login details, enhancing the attacker's ability to move undetected and control more aspects of the infrastructure.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0840: Network Connection Enumeration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-327: TCP Options Probe</capec>
+            <description>The attacker discovers the full scope of the communication network by enumerating active connections and services using command execution probes, analyzing IP addresses, ports, and protocols to identify critical nodes like DNS servers or SIP gateways. This helps refine attack paths and locate high-value targets for exploitation.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>After gaining credentials, the attacker moves laterally across the network by passing hashed credentials to compromise adjacent communication devices, such as switches or VOIP endpoints, effectively expanding their controlled footprint without triggering alerts. This exploits trust relationships within the infrastructure.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1481.002: Bid

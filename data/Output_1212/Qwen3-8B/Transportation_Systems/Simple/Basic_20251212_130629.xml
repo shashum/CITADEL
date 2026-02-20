@@ -1,0 +1,51 @@
+<Scenario>
+    <title>J-Magic Campaign: Targeting Transportation Systems</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        A basic-level threat group leverages phishing and public-facing application exploitation to disrupt critical infrastructure, culminating in denial-of-service attacks against traffic control systems.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=J-magic Campaign</campaign_or_group>
+        <motivation>Disruption of critical infrastructure operations</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Application Log, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Application Log Content, Network Traffic Content
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2021-20035 (Suggested): SonicWall SMA100 appliances contain an OS command injection vulnerability in the management interface that allows a remote authenticated attacker to inject arbitrary commands as a 'nobody' user, which could potentially lead to code execution.</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The attacker deploys phishing emails containing malicious links to compromise employee credentials, gaining initial access to internet-facing systems. This aligns with CAPEC-164, leveraging human error to bypass authentication mechanisms.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content</vector>
+            <kev>CVE-2020-35730 (Suggested): Roundcube Webmail contains a cross-site scripting (XSS) vulnerability that allows an attacker to send a plain text e-mail message with Javascript in a link reference element that is mishandled by linkref_addinindex in rcube_string_replacer.php.</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>Using the compromised credentials, the attacker exploits an unpatched Roundcube Webmail instance to inject malicious scripts into application logs. This enables execution of arbitrary code, establishing persistence on the targeted infrastructure.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker floods network traffic with malformed packets, overwhelming infrastructure and causing disruptions to traffic signal controls. This aligns with CAPEC-583, targeting physical network components to disable critical operational functions.</description>
+        </stage>
+    </attack_flow>
+    <summary>A basic threat group exploits unpatched systems and human error to execute a multi-stage attack, ultimately disrupting transportation infrastructure through denial-of-service techniques.</summary>
+</Scenario>

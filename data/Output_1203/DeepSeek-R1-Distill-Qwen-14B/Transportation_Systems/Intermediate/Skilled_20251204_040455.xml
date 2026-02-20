@@ -1,0 +1,70 @@
+<Scenario>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Intermediate</Complexity>
+        A sophisticated cyber attack targeting a transportation system's infrastructure, compromising critical operations through a multi-stage attack involving exploitation of vulnerabilities, deployment of malicious payloads, and persistence mechanisms leading to operational disruption.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0018</campaign_or_group>
+        <motivation>Disruption of critical infrastructure operations</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Exposed server with weak credentials</initial_attack_surface>
+        <initial_attack_vector>Vulnerability exploit</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Exploitation of Exposed Server</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2020-0938 (Suggested): Microsoft Windows SMBv2 vulnerability allowing remote code execution.</kev>
+            <capec>CAPEC ID: 384 - Application API Message Manipulation via Man-in-the-Middle</capec>
+            <description>The attackers exploited a known vulnerability in an exposed FTP server with weak credentials, gaining unauthorized access to the transportation system's network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Malicious Payload Deployment</technique_name>
+            <surface>Network resources</surface>
+            <vector>Malicious software update</vector>
+            <kev>CVE-2023-36563 (Suggested): Vulnerability in system updates allowing arbitrary code execution.</kev>
+            <capec>CAPEC ID: 186 - Malicious Software Update</capec>
+            <description>A custom payload was deployed to disrupt traffic control operations, targeting critical system components for immediate impact.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task Creation</technique_name>
+            <surface>System tasks and processes</surface>
+            <vector>Task impersonation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 504 - Task Impersonation</capec>
+            <description>A new scheduled task was created to maintain persistent access across system reboots, ensuring continuous presence within the network.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Service Configuration Modification</technique_name>
+            <surface>Operating system services</surface>
+            <vector>Modification of existing service configurations</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 551 - Modify Existing Service</capec>
+            <description>An existing service was modified to run with elevated privileges, enabling further unauthorized actions within the system.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Rootkit Installation</technique_name>
+            <surface>System files and processes</surface>
+            <vector>Installation of hidden malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 552 - Install Rootkit</capec>
+            <description>A rootkit was installed to hide malicious activities, evading detection by antivirus and endpoint protection solutions.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Traffic Light System Shutdown</technique_name>
+            <surface>Network communication and control systems</surface>
+            <vector>TCP flood attack</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 482 - TCP Flood</capec>
+            <description>The attack disrupted traffic light operations, causing gridlock and potential safety hazards in urban transportation networks.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This scenario outlines a multi-stage cyber attack against a transportation system, leveraging vulnerabilities and persistence mechanisms to achieve long-term access and significant operational disruption. The attack highlights the importance of securing internet-facing assets and implementing robust defense mechanisms to mitigate such threats.
+    </summary>
+</Scenario>

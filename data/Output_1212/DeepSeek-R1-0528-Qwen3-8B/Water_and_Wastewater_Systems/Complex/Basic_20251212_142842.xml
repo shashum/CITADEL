@@ -1,0 +1,211 @@
+<Scenario>
+    <metadata>
+        <target_industry>Water and Wastewater Systems</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>SPACEHOP Activity</campaign>
+    </metadata>
+    <title>SPACEHOP Cyber Intrusion Scenario for Water/Wastewater Infrastructure</title>
+    <overview>
+        <Target>A simulated cyber attack targeting a mid-sized water treatment facility.</Target>
+        <Complexity>Complex</Complexity>
+        This scenario depicts a coordinated multi-stage attack leveraging reconnaissance, resource development, and various TTPs to compromise operational technology (OT) systems, focusing on disrupting critical water management processes.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=SPACEHOP Group</campaign_or_group>
+        <motivation>Economic espionage and disruption for demonstration purposes.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Target Artifact (Tasks), Credential Store, User Account, Windows Registry, File, OS Process, Network Traffic, Windows Service, Target Artifact (Rdp), Application Log, Algorithm, File System, Logon Session, Virtualization, Virtualization Endpoint
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Web, Phishing, Mechanism, Anonymizing Networks, TCP Header Options, Memory Corruption, Path Traversal, Cron Job, Encryption, Alternate Encoding, HTTP Request Tampering, SSH Tunnel, HTTPS, DNS Tunnel, FTP Upload
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 184, Name: Software Integrity Attack</capec>
+            <description>The SPACEHOP group utilizes AI-driven tools to analyze publicly accessible information from sources like Shodan and Google Dorks, identifying key OT systems and personnel details associated with the water treatment facility.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 158, Name: Sniffing Network Traffic</capec>
+            <description>By deploying Reg.exe-based utilities, attackers intercept network packets to harvest credentials transmitted over unsecured channels, gaining insights into internal authentication mechanisms.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1171: LLMNR/NBT-NS Poisoning and Relay</technique_name>
+            <surface>Target Artifact (Local)</surface>
+            <vector>LLMNR/NBT-NS Poisoning and Relay</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 559, Name: Orbital Jamming</capec>
+            <description>Compromised VPS instances or proxy services act as Operational Relay Boxes (ORBs), facilitating man-in-the-middle attacks and anonymizing control session establishment for subsequent operations.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1592.004: Client Configurations</technique_name>
+            <surface>Response Content (Mechanism)</surface>
+            <vector>Client Configurations</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 220, Name: Client-Server Protocol Manipulation</capec>
+            <description>Malicious actors configure client-side environments using TOR or similar networks to mask their digital footprints, simplifying remote access setup and evasion efforts.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1437: Application Layer Protocol</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-20439: Static credential vulnerability in Cisco Smart Licensing Utility allowing unauthenticated remote access.</kev>
+            <capec>CAPEC ID: 327, Name: TCP Options Probe</capec>
+            <description>An unauthenticated remote attacker exploits a static credential vulnerability discovered during reconnaissance, specifically targeting the Cisco Smart Licensing Utility exposed on internet-facing assets to gain immediate administrative access.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2012-1889: Memory corruption vulnerability in Microsoft XML Core Services enabling remote code execution.</kev>
+            <capec>CAPEC ID: 164, Name: Mobile Phishing</capec>
+            <description>Simultaneously, the group employs basic spear-phishing emails directed at facility staff, aiming to deceive recipients into divulging credentials or clicking malicious links, thereby securing additional entry points.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654, Name: Credential Prompt Impersonation</capec>
+            <description>Upon establishing initial access, attackers create persistent scheduled tasks within the Windows Registry to maintain command-and-control capabilities despite system reboots or user logouts.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1036.010: Masquerade Account Name</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Creation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 226, Name: Session Credential Falsification through Manipulation</capec>
+            <description>Exploiting default username/password reuse common in smaller organizations, attackers create masqueraded user accounts to facilitate ongoing access and mimic legitimate operations seamlessly.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Code Injection</vector>
+            <kev>CVE-2019-10068: Failure to validate security headers in Kentico leading to unauthenticated remote code execution.</kev>
+            <capec>CAPEC ID: 242, Name: Code Injection</capec>
+            <description>Using code injection techniques against vulnerable applications, likely involving manipulated Kentico web platforms, attackers escalate privileges to obtain higher-level system controls beyond their initial foothold.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1093: Process Hollowing</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Hollowing</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 671, Name: Requirements for ASIC Functionality Maliciously Altered</capec>
+            <description>To evade monitoring tools, attackers employ process hollowing, replacing standard executable images with malicious payloads, thus obscuring their tracks and blending in with normal system activity.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110.003: Password Spraying</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 565, Name: Password Spraying</capec>
+            <description>With elevated privileges, attackers conduct password spraying across numerous user accounts, attempting common password combinations to systematically extract valid credentials for lateral movement.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 49, Name: Password Brute Forcing</capec>
+            <description>Automated brute-force attacks are launched against suspected login endpoints, particularly those protected by simplistic or outdated security measures, to uncover additional user credentials efficiently.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1534: Internal Spearphishing</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 413, Name: Pretexting via Tech Support</capec>
+            <description>Scanning network traffic patterns, attackers identify opportunities for internal spearphishing, crafting deceptive messages embedded in network flows to trick employees into revealing more sensitive information or initiating connections.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1035: Service Execution</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Service Execution</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 550, Name: Install New Service</capec>
+            <description>Executing queries on running services, especially those with known vulnerabilities, attackers map out the facility's OT landscape, noting service versions and configurations to guide deeper exploitation phases.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1076: Remote Desktop Protocol</technique_name>
+            <surface>Rdp</surface>
+            <vector>Remote Desktop Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 220, Name: Client-Server Protocol Manipulation</capec>
+            <description>Leveraging stolen credentials via RDP, attackers move laterally across the network, compromising additional workstations or servers within the water treatment plant's infrastructure.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1213.005: Messaging Applications</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 202, Name: Create Malicious Client</capec>
+            <description>Establishing SSH tunnels pivoted from compromised systems, attackers navigate the network covertly, masking their movements through messaging apps and altering logs to appear as routine operations.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1132: Data Encoding</technique_name>
+            <surface>Algorithm</surface>
+            <vector>Alternate Encoding</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 80, Name: Using UTF-8 Encoding to Bypass Validation Logic</capec>
+            <description>Scraping web interfaces or accessing shared directories, attackers collect sensitive data such as SCADA configuration details or operational logs, encoding the extracted information to circumvent detection filters.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1157: Dylib Hijacking</technique_name>
+            <surface>Privilege</surface>
+            <vector>Dylib Hijacking</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 441, Name: Malicious Logic Insertion</capec>
+            <description>Hijacking dynamic libraries during system loads, attackers intercept and copy clipboard contents containing valuable data entered manually in control room interfaces, embedding this theft within legitimate privilege escalation paths.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1521: Encrypted Channel</technique_name>
+            <surface>Algorithm</surface>
+            <vector>Encrypted Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 216, Name: Communication Channel Manipulation</capec>
+            <description>Utilizing encrypted channels like HTTPS or implementing DNS tunneling, attackers stealthily exfiltrate large volumes of sensitive data collected throughout the campaign, disguising outbound traffic to evade network monitoring.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1144: Gatekeeper Bypass</technique_name>
+            <surface>File System</surface>
+            <vector>Gatekeeper Bypass</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 552, Name: Install Rootkit</capec>
+            <description>Bypassing gatekeeper defenses, possibly through simple FTP uploads if allowed, attackers exfiltrate data by leveraging compromised relays or direct file transfers, minimizing encryption overhead for basic concealment.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1556.001: Domain Controller Authentication</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 645, Name: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>Exploiting domain controller authentication mechanisms, attackers manipulate or capture Kerberos tickets to trigger unauthorized access, potentially leading to cascading failures or denial-of-service conditions within the IT and OT domains.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1670: Virtualization Solution</technique_name>
+            <surface>Virtualization</surface>
+            <vector>Virtualization Solution</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 480, Name: Escaping Virtualization</capec>
+            <description>Gaining control over hypervisor-level access or manipulating virtual machine configurations, attackers induce scenarios that could lead to physical safety incidents by altering real-time water treatment parameters through virtualization exploits.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This complex attack scenario demonstrates how SPACEHOP leverages a combination of reconnaissance, resource manipulation, and basic TTPs to infiltrate and disrupt water and wastewater systems, highlighting vulnerabilities in both IT and OT environments.
+    </summary>
+</Scenario>

@@ -1,0 +1,133 @@
+<Scenario>
+    <title>2015 Ukraine Electric Power Grid Cyberattack</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated multi-stage attack targeting Ukraine's electric power grid involved reconnaissance, persistent access, and direct sabotage of industrial control systems, resulting in widespread blackouts.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=2015 Ukraine Electric Power Attack</campaign_or_group>
+        <motivation>Disrupt critical infrastructure operations</motivation>
+        <skill_level>High</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Unknown</initial_attack_surface>
+        <initial_attack_vector>Unknown</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Shared DB or directory", "Improper configuration", "Industrial control systems", "Custom APIs", "Obsolete products", "Device theft", "Inadequate encryption", "Autonomous system numbers(ASNs)", "Weak passwords", "Internet-facing assets", "SCADA system databases"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Network scanning", "Network sniffing", "Business Email Compromise(BEC)", "Vulnerability exploit", "Memory dumping", "Account takeover", "Malicious firmware update", "RDP exploitation", "Credential harvesting tool", "Encrypted DNS channel", "Malicious attachment", "Scheduled task creation", "Data manipulation"]
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>Network Scanning</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Network scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>The attacker performed network scanning to map internet-facing assets, identifying vulnerable SCADA systems and open ports that could serve as entry points into the energy grid infrastructure.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Compromised Server Hosting</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Account takeover</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-169: Footprinting</capec>
+            <description>The threat actor compromised third-party servers or directories to establish command-and-control (C2) infrastructure, enabling covert communication with infected systems within the energy sector.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Weak passwords</surface>
+            <vector>Business Email Compromise(BEC)</vector>
+            <kev>CVE-2021-21985 (Suggested)</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>A spear-phishing campaign targeting engineers with access to industrial networks was executed, leveraging weak password practices and BEC techniques to compromise internal accounts.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Malware Deployment</technique_name>
+            <surface>Custom APIs</surface>
+            <vector>Malicious attachment</vector>
+            <kev>CVE-2023-33009 (Suggested)</kev>
+            <capec>CAPEC-445: Malicious Logic Insertion into Product Software via Configuration Management Manipulation</capec>
+            <description>Malware was deployed through malicious attachments exploiting unpatched custom API endpoints in energy management systems, embedding backdoors into operational technology environments.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Backdoor Installation</technique_name>
+            <surface>Improper configuration</surface>
+            <vector>Scheduled task creation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-552: Install Rootkit</capec>
+            <description>A backdoor was installed on misconfigured programmable logic controller (PLC) systems using scheduled tasks, ensuring long-term access to critical infrastructure components.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploit Vulnerability</technique_name>
+            <surface>Obsolete products</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>A zero-day vulnerability was exploited in legacy remote terminal unit (RTU) devices to escalate privileges and gain unauthorized administrative access to industrial control systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Log Tampering</technique_name>
+            <surface>Inadequate encryption</surface>
+            <vector>Data manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-93: Log Injection-Tampering-Forging</capec>
+            <description>Attackers manipulated logs in unencrypted traffic channels to obfuscate their activities, making detection of anomalous behavior more difficult within the energy grid's monitoring systems.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Password Dumping</technique_name>
+            <surface>Device theft</surface>
+            <vector>Credential harvesting tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-600: Credential Stuffing</capec>
+            <description>Credentials were extracted from stolen engineering laptops using credential harvesting tools, enabling lateral movement across the network and access to restricted systems.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>Network Mapping</technique_name>
+            <surface>Autonomous system numbers(ASNs)</surface>
+            <vector>Network sniffing</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>Using network sniffing techniques, attackers mapped critical substation communication paths by analyzing autonomous system numbers (ASNs), identifying key nodes for further exploitation.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Remote Desktop Protocol (RDP) Brute Force</technique_name>
+            <surface>Weak passwords</surface>
+            <vector>RDP exploitation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-555: Remote Services with Stolen Credentials</capec>
+            <description>Stolen credentials were used to conduct RDP brute-force attacks, allowing the attacker to move laterally between supervisory control and data acquisition (SCADA) systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data Harvesting</technique_name>
+            <surface>SCADA system databases</surface>
+            <vector>Memory dumping</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Operational data, including grid topology and parameters, was harvested from SCADA system databases through memory-dumping techniques, providing insights for targeted disruptions.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>DNS Tunneling</technique_name>
+            <surface>Inadequate encryption</surface>
+            <vector>Encrypted DNS channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-589: DNS Blocking</capec>
+            <description>Stolen data was exfiltrated using DNS tunneling over encrypted channels, masking the transfer of sensitive information related to power grid operations.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Grid Disruption</technique_name>
+            <surface>Industrial control systems</surface>
+            <vector>Malicious firmware update</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-607: Obstruction</capec>
+            <description>A malicious firmware update was deployed to industrial control systems, causing cascading failures in power distribution and triggering widespread outages across the Ukrainian energy grid.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The 2015 Ukraine cyberattack leveraged a combination of phishing, malware deployment, and direct sabotage of industrial control systems to disrupt the national power grid, demonstrating advanced persistence and operational sophistication.
+    </summary>
+</Scenario>

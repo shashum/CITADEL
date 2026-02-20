@@ -1,0 +1,82 @@
+<Scenario>
+    <metadata>
+        <target_industry>Energy</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Operation Sharpshooter</campaign>
+    </metadata>
+    <overview>
+        <Target>Energy Industry</Target>
+        <Complexity>Simple</Complexity>
+        Operation Sharpshooter targets the Energy industry using expert-level skills to gain initial access, execute malicious code, and disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Sharpshooter</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Target Artifact (Application), OS Process, Command, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Code Injection, Process Injection, Command Execution (Mechanism), Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2019-7286 (Suggested): Apple iOS, macOS, watchOS, and tvOS contain a memory corruption vulnerability that could allow for privilege escalation.</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attacker sends targeted emails to energy company employees with credentials, exploiting a memory corruption vulnerability in Apple devices to gain initial access.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2018-0167 (Suggested): There is a buffer overflow vulnerability in the Link Layer Discovery Protocol (LLDP) subsystem of Cisco IOS Software, Cisco IOS XE Software, and Cisco IOS XR Software which could allow an unauthenticated, adjacent attacker to cause a denial of service (DoS) condition or execute arbitrary code.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker embeds malicious code in the compromised energy company website, allowing for drive-by downloads and initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Code Injection</vector>
+            <kev>CVE-2012-0391 (Suggested): The ExceptionDelegator component in Apache Struts 2 before 2.2.3.1 contains an improper input validation vulnerability that allows for remote code execution.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attacker exploits vulnerabilities in SCADA systems to inject malicious code and execute it remotely.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>CVE-2010-0840 (Suggested): Unspecified vulnerability in the Java Runtime Environment (JRE) in Java SE component allows remote attackers to affect confidentiality, integrity, and availability via Unknown vectors.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attacker injects malware into energy management system processes to maintain persistence and escalate privileges.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attacker uses automated tools to exfiltrate sensitive data related to energy production and distribution.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker disrupts energy grid operations by disabling network traffic, causing a denial-of-service condition.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Sharpshooter is a sophisticated attack campaign targeting the Energy industry, utilizing expert-level skills to gain initial access, execute malicious code, and disrupt operations.
+    </summary>
+</Scenario>

@@ -1,0 +1,109 @@
+```xml
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>J-magic Campaign</campaign>
+    </metadata>
+    <overview>
+        <Target>Communications sector organizations</Target>
+        <Complexity>Complex</Complexity>
+        <brief_summary>This sophisticated cyber attack campaign leverages advanced techniques to compromise Juniper routers in communication networks, enabling persistent access, privilege escalation, and denial-of-service capabilities.</brief_summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=J-magic Campaign</campaign_or_group>
+        <motivation>Not specified in dossier</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Process, Script, Internet-facing assets, Command, File, Malware Artifact, Public Facing Application, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Reg.exe Utility, Script Execution (Mechanism), General Access Method, Command Execution (Mechanism), Network Traffic Content (Mechanism), Module Load (Mechanism), File Access (Mechanism), Mimikatz Tool, SSH Hijacking, Network Connection Creation (Mechanism), Encrypted Channel
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 158 Name: Sniffing Network Traffic Description: Monitoring network traffic to capture sensitive information at the protocol level.</capec>
+            <description>The attacker employs network sniffing tools via the Reg.exe utility to intercept and analyze network packets, gathering detailed insights into the target organization's communication infrastructure, particularly focusing on Juniper routers and their configurations to identify exploitable vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T0802: Automated Collection</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 277 Name: Data Interchange Protocol Manipulation Description: Manipulating protocols to collect data.</capec>
+            <description>The threat actor develops custom scripts to automate the collection of reconnaissance data, tailoring the J-magic backdoor to evade standard detection methods by integrating with common communication protocols observed during the initial scanning phase.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1405: Exploit TEE Vulnerability</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 67 Name: String Format Overflow in syslog() Description: Exploiting insecure syslog calls to gain access.</capec>
+            <description>Gaining unauthorized entry to internet-facing Juniper routers by exploiting a zero-day vulnerability in their TrueEdge Engine (TEE) or combining it with targeted phishing to obtain administrative credentials, allowing the deployment of the J-magic backdoor payload.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1202: Indirect Command Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 9 Name: Buffer Overflow in Local Command-Line Utilities Description: Using buffer overflow to execute commands.</capec>
+            <description>Executing the J-magic backdoor payload indirectly through command-line utilities on the compromised router establishes an initial foothold, manipulating system commands to alter communication flows and begin exfiltrating data without triggering immediate alerts.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1568.003: DNS Calculation</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 142 Name: DNS Cache Poisoning Description: Poisoning DNS caches to redirect traffic.</capec>
+            <description>Installing the J-magic backdoor persistently by modifying the router's DNS settings or configuration files ensures continuous operation even after reboots or routine maintenance, leveraging DNS manipulation to reroute network requests towards malicious endpoints controlled by the attackers.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1505.005: Terminal Services DLL</technique_name>
+            <surface>Module</surface>
+            <vector>Module Load (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 558 Name: Replace Trusted Executable Description: Replacing executables to escalate privileges.</capec>
+            <description>Elevating privileges on the router to root level by replacing a legitimate terminal services module with a malicious DLL allows unfettered access to sensitive communication management interfaces, hiding the intrusion from detection systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1654: Log Enumeration</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 93 Name: Log Injection-Tampering-Forging Description: Tampering with log files to obscure activities.</capec>
+            <description>Evading detection by enumerating and tampering with router log files using script-based methods, injecting false entries to mask malicious activities and prevent security audits from identifying the ongoing surveillance or unauthorized changes.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 226 Name: Session Credential Falsification through Manipulation Description: Manipulating credentials to gain access.</capec>
+            <description>Dumping credentials from the Juniper router's ScreenOS operating system using the Mimikatz tool extracts usernames, passwords, and hashes, facilitating lateral movement across the network by compromising additional user accounts on connected communication devices.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 158 Name: Sniffing Network Traffic Description: Capturing network traffic to discover internal resources.</capec>
+            <description>Scanning internal network segments by continuing network sniffing operations enabled through the Reg.exe utility identifies other vulnerable communication assets, mapping out the network architecture to determine the extent of compromise and locate potential targets for expansion.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1184: SSH Hijacking</technique_name>
+            <surface>Public Facing Application</surface>
+            <vector>SSH Hijacking</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 595 Name: Connection Reset Description: Resetting connections to move laterally.</capec>
+            <description>Hijacking SSH sessions on public-facing communication applications, such as routers or

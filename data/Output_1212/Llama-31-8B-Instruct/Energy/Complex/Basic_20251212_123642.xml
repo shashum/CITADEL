@@ -1,0 +1,189 @@
+<Scenario>
+    <metadata>
+        <title>Operation Dust Storm Energy Sector Cyber Attack Scenario</title>
+        <target_industry>Energy</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Operation Dust Storm</campaign>
+    </metadata>
+    <overview>
+        <Target>Energy Sector</Target>
+        <Complexity>Complex</Complexity>
+        Operation Dust Storm targets the energy sector with a sophisticated cyber attack plan involving multiple stages and techniques.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Dust Storm</campaign_or_group>
+        <motivation>Economic Espionage</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Cloud Instance
+            OS Process
+            Windows Registry
+            File System
+            Network Traffic
+            Logon Session
+            System Image
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Delivery Method
+            Process Creation (Mechanism)
+            Command Execution (Mechanism)
+            Windows Registry Key Creation (Mechanism)
+            OS API Execution (Mechanism)
+            Network Traffic Flow (Mechanism)
+            Logon Session Creation (Mechanism)
+            File Deletion
+            Steganography
+            Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker uses artificial intelligence to gather information about the target artifact.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker uses Reg.exe utility to sniff network traffic related to credential stores.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Cloud Instance</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>The attacker creates a cloud instance using compromised software deployment tools.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2025-24985 (Suggested): Microsoft Windows Fast FAT File System Driver contains an integer overflow or wraparound vulnerability that allows an unauthorized attacker to execute code locally.</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker sends a spear phishing link to the target via internet-facing assets.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1608.004: Drive-by Target</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2021-41357 (Suggested): Microsoft Win32k contains an unspecified vulnerability that allows for privilege escalation.</kev>
+            <capec>CAPEC-638: Altered Component Firmware</capec>
+            <description>The attacker uses drive-by download to compromise the target via internet-facing assets.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>CVE-2023-6448 (Suggested): Unitronics Vision Series PLCs and HMIs ship with an insecure default password, which if left unchanged, can allow attackers to execute remote commands.</kev>
+            <capec>CAPEC-663: Exploitation of Transient Instruction Execution</capec>
+            <description>The attacker executes malicious code on the target command line.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>CVE-2016-10174 (Suggested): The NETGEAR WNR2000v5 router contains a buffer overflow which can be exploited to achieve remote code execution.</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker schedules a task in the Windows registry.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker maintains persistence by scheduling tasks in the Windows registry.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker escalates privileges by exploiting a public-facing application.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1622: Debugger Evasion</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-702: Exploiting Incorrect Chaining or Granularity of Hardware Debug Components</capec>
+            <description>The attacker evades detection by creating processes.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1417.001: Keylogging</technique_name>
+            <surface>Target Artifact (Accessibility)</surface>
+            <vector>Keylogging</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-568: Capture Credentials via Keylogger</capec>
+            <description>The attacker captures credentials via keylogging.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1135: Network Share Discovery</technique_name>
+            <surface>File System</surface>
+            <vector>OS API Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-643: Identify Shared Files/Directories on System</capec>
+            <description>The attacker discovers network shares via the file system.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attacker moves laterally via network traffic.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1114: Email Collection</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-134: Email Injection</capec>
+            <description>The attacker collects emails via logon sessions.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1107: File Deletion</technique_name>
+            <surface>File System</surface>
+            <vector>File Deletion</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-149: Explore for Predictable Temporary File Names</capec>
+            <description>The attacker deletes files via the file system.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1406.001: Steganography</technique_name>
+            <surface>System Image</surface>
+            <vector>Steganography</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-636: Hiding Malicious Data or Code within Files</capec>
+            <description>The attacker exfiltrates data via steganography.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker causes denial-of-service via network traffic.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Dust Storm is a complex cyber attack targeting the energy sector with multiple stages and techniques.
+    </summary>
+</Scenario>

@@ -1,0 +1,77 @@
+<Scenario>
+    <title>FunnyDream Campaign Targets Water Treatment Facilities via Spearphishing</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Intermediate</Complexity>
+        A sophisticated attack chain targeting critical infrastructure involves spearphishing, credential exploitation, and SCADA manipulation to disrupt water treatment operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=FunnyDream</campaign_or_group>
+        <motivation>Infrastructure Disruption</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Social engineering</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Social engineering"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Phishing"]
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Attachment</technique_name>
+            <surface>Social engineering</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2016-9079 (Suggested)</kev>
+            <capec>CAPEC ID: 511: Infiltration of Software Development Environment</capec>
+            <description>Attackers sent targeted emails containing malicious documents to employees, exploiting human trust to install malware and steal credentials.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>PowerShell Command-Line Interface</technique_name>
+            <surface>Weak passwords</surface>
+            <vector>Application compromise</vector>
+            <kev>CVE-2019-1315 (Suggested)</kev>
+            <capec>CAPEC ID: 108: Command Line Execution through SQL Injection</capec>
+            <description>Weaponized PowerShell scripts were executed remotely using stolen credentials to deploy payloads and establish control.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task</technique_name>
+            <surface>Improper configuration</surface>
+            <vector>Compromised and weak credentials</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654: Credential Prompt Impersonation</capec>
+            <description>Hidden scheduled tasks were created to maintain access across system reboots using compromised account privileges.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploit Valid Accounts</technique_name>
+            <surface>Vulnerability</surface>
+            <vector>Account takeover</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 575: Account Footprinting</capec>
+            <description>Stolen credentials were leveraged to escalate privileges and gain administrative access to SCADA systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Obfuscated Files or Information</technique_name>
+            <surface>Obsolete products</surface>
+            <vector>Inadequate encryption</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 636: Hiding Malicious Data or Code within Files</capec>
+            <description>Payloads and communications were encrypted and obfuscated to evade detection by legacy security tools.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>SCADA System Manipulation</technique_name>
+            <surface>Custom APIs</surface>
+            <vector>Application compromise</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522: Malicious Hardware Component Replacement</capec>
+            <description>Attackers altered SCADA system parameters to disrupt water treatment processes, risking public health and operational integrity.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The FunnyDream campaign exploited human and technical vulnerabilities in water treatment facilities through spearphishing, privilege escalation, and SCADA manipulation to cause critical infrastructure disruptions.
+    </summary>
+</Scenario>

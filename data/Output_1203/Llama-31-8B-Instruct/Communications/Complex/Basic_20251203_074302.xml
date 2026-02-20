@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Leviathan Australian Intrusions Scenario</title>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Complex</Complexity>
+        Leviathan Australian Intrusions is a sophisticated threat actor group targeting Communications organizations with complex attacks.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Leviathan Australian Intrusions</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>High</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Device theft, Weak passwords, Improper configuration, Vulnerability, Internet-facing assets, Shared DB or directory, Obsolete products, Injection flaws, Custom APIs, Autonomous system numbers(ASNs), SSL Certificates and Attribution, WHOIS records, contacts and history, TCP/IP ports, Public and private cloud, Web server services such as emails and databases, Shadow IT, Poor implementation of access controls, Malicious insiders, Social engineering, Insufficient physical security controls, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: External/Removable media, Loss or Theft of equipment, Attrition, Web, Account takeover, Inadequate encryption, Browser-based attack, Application compromise, Open port, Vulnerability exploit, Ransomware, Malware, Man in The Middle(MiTM), Session hijacking, Brute-force attack, Distributed Denial of Service(DDoS), Watering-hole, Compromised and weak credentials, SIM Swap, Security misconfigurations and vulnerabilities, Web forms, IP address and IP blocks, Domains and subdomains, Botnet, Credential compromise, Telephony Denial of Service(TDoS), Replay Attack, Cryptanalysis Attacks, Side Channel Attacks, Hardware Trojans, Covert Attacks, Sleep Deprivation Attack, Clock Skewing, Attacks Targeting System Reputation, Data and Command Integrity Attack, Eavesdropping, Command and Control Attacks, Phishing, Impersonations/Spoofing, Improper usage, Dumpster diving, Advanced Persistent Threat(APT), Baiting, Shoulder surfing, Reverse social engineering, Business Email Compromise(BEC), Advanced Fee, Extortion
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing via Compromise of Employee Credentials</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2020-1054 (Suggested)</kev>
+            <capec>163</capec>
+            <description>The attackers send spear-phishing emails to trick employees into revealing their login credentials.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2007-0671 (Suggested)</kev>
+            <capec>121</capec>
+            <description>The attackers identify vulnerabilities in public-facing applications and exploit them to gain access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Command and Control (C2)</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2021-34473 (Suggested)</kev>
+            <capec>191</capec>
+            <description>The attackers establish a C2 channel to communicate with the compromised system.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>PowerShell</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2017-0022 (Suggested)</kev>
+            <capec>579</capec>
+            <description>The attackers use PowerShell to execute malicious commands on the compromised system.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task/Job</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>654</capec>
+            <description>The attackers schedule tasks to maintain persistence on the compromised system.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Abuse Elevation Control-Access</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>233</capec>
+            <description>The attackers elevate privileges to gain higher-level access.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Fileless Malware</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>44</capec>
+            <description>The attackers avoid detection by using fileless malware.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Brute Force</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>49</capec>
+            <description>The attackers attempt to guess passwords using brute force attacks.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>Network Scanning</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>309</capec>
+            <description>The attackers scan the network to identify potential targets.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Valid Accounts</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>645</capec>
+            <description>The attackers use valid accounts to move laterally within the network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data from Local System</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>328</capec>
+            <description>The attackers collect data from the compromised system.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>590</capec>
+            <description>The attackers exfiltrate data over alternative protocols.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service (DoS)</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>469</capec>
+            <description>The attackers disrupt the target organization's operations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Leviathan Australian Intrusions is a highly skilled threat actor group that targets Communications organizations with complex attacks. They use various techniques such as spear phishing, exploiting public-facing applications, establishing C2 channels, and elevating privileges to achieve their goals.
+    </summary>
+</Scenario>

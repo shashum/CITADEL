@@ -1,0 +1,96 @@
+<Scenario> XML based on the dossier. [SELECTION RULE] The <reference_lists> contains ALL possible options. You must SELECT ONLY the items relevant to the 'Initial Access' technique in this scenario. Do NOT output the full list."
+
+So for the attack_surface and attack_vector elements, instead of listing all available surfaces and vectors, we need to pick only those that are relevant to the Initial Access technique. In the Initial Access stage, the surface is Social Engineering (from the surfaces list) and the vector is Phishing (from vectors). Therefore, the attack_surface element should list ["Social engineering"], and attack_vector should list ["Phishing"]. But the example in the problem shows that attack_surface and attack_vector have all available options. This seems contradictory. However, the user explicitly states to select only those relevant to Initial Access. Therefore, I need to adjust accordingly.
+
+But wait, looking at the example output structure provided by the user, they included all available surfaces and vectors in the attack_surface and attack_vector elements. However, the current instruction says to select only those relevant to Initial Access. There's a conflict here. To resolve this, perhaps the user intended that for the attack_surface and attack_vector elements, only the ones used in the scenario should be listed, not the full list. But the example shows the full list. However, the user's instruction now says to select only those relevant to Initial Access. Therefore, I need to comply with the latest instruction.
+
+Therefore, in the attack_surface element, I should list only "Social engineering" and in attack_vector, only "Phishing". However, the example might have been incorrect. Given the user's explicit instruction, I will proceed with selecting only the relevant entries.
+
+Next, constructing the attack_flow. Since the complexity is Intermediate, the stages are Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Impact. Each stage needs to have the appropriate technique names, surfaces, vectors, kev, capec, and descriptions. For Initial Access, we already have the details. For Execution, the technique is Exploit Vulnerability in Software, with CVE-2023-21839 and CAPEC 184. The surface here would be "Vulnerability" and vector "Vulnerability exploit".
+
+Persistence uses Scheduled Task, with CAPEC 654. The surface could be "Improper configuration" (as scheduled tasks might be configured improperly), vector "Scheduled Task" isn't in the vectors list, so maybe "Application compromise" or another relevant one. Wait, the vectors list includes "Scheduled Task"? No, looking at the vectors list provided: ["External/Removable media", ... "Scheduled Task" isn't listed. The closest might be "Application compromise" or "Open port". But the technique is Scheduled Task, which is a method of persistence. The vector here might be "Scheduled Task" but it's not in the vectors list. Hmm, this is tricky. The user said to use the available vectors. Since "Scheduled Task" isn't in the vectors list, perhaps the vector is "Application compromise" or "Open port". Alternatively, maybe "Compromised and weak credentials" if it's related to accessing the system. But the technique is creating a scheduled task, which is more about system configuration. Maybe "Improper configuration" as the surface and "Application compromise" as the vector? Not sure. Need to make a best guess here.
+
+Similarly, for Privilege Escalation, the technique is Exploit Public-Facing Application, with CAPEC 121. The surface might be "Internet-facing assets" and vector "Web" or "RDP". The rationale mentions RDP, so vector could be "Remote Desktop Protocol (RDP)" but that's not in the vectors list. The closest is "Web" or "Application compromise". Again, need to pick from the available vectors.
+
+This requires careful matching between the technique and the available surfaces and vectors. It's important to adhere strictly to the provided lists. For example, if the technique involves exploiting a vulnerability, then the surface is "Vulnerability" and vector is "Vulnerability exploit". For scheduled tasks, maybe the surface is "Improper configuration" and vector is "Application compromise".
+
+Once all stages are mapped, the summary ties everything together, mentioning the campaign, the steps taken, and the impact on the energy sector.
+</think>
+
+```xml
+<Scenario>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Intermediate</Complexity>
+        A sophisticated cyber attack targeting the energy sector using the Water Curupira Pikabot Distribution campaign. The attack begins with spear-phishing to gain initial access, escalates privileges to access critical infrastructure, and culminates in ransomware deployment to disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Water Curupira Pikabot Distribution</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Social engineering</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Social engineering"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Phishing"]
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Social engineering</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2025-21334 (Suggested)</kev>
+            <capec>CAPEC ID: 164</capec>
+            <description>Attackers deploy spear-phishing emails containing malicious .docm attachments with embedded macros to bypass basic email filters. These macros execute payloads that establish initial foothold on victim systems.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Vulnerability in Software</technique_name>
+            <surface>Vulnerability</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2023-21839 (Suggested)</kev>
+            <capec>CAPEC ID: 184</capec>
+            <description>Macro execution triggers exploitation of unpatched MS Office vulnerabilities (e.g., CVE-2023-XXXX) to download and run Pikabot malware from a compromised command-and-control (C2) server.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task</technique_name>
+            <surface>Improper configuration</surface>
+            <vector>Application compromise</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654</capec>
+            <description>A hidden scheduled task is created to re-execute the malware upon system reboot, ensuring persistence despite temporary mitigation measures like process termination.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>RDP</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 121</capec>
+            <description>Stolen credentials from initial phishing are used to log into remote desktop sessions, escalating privileges to access industrial control systems (ICS) with elevated permissions.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Obfuscated Files or Information</technique_name>
+            <surface>Improper configuration</surface>
+            <vector>HTTPS traffic</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 636</capec>
+            <description>Pikabot communications are encrypted and masked as legitimate HTTPS traffic using domain fronting techniques to evade detection by basic intrusion prevention systems (IPS).</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Encryption for Impact</technique_name>
+            <surface>Custom APIs</surface>
+            <vector>Ransomware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 620</capec>
+            <description>BlackBasta ransomware encrypts critical energy grid configuration files, disrupting operations and demanding ransom payments for decryption keys.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Water Curupira Pikabot Distribution campaign exploited human error via phishing to infiltrate energy sector networks, escalated privileges to access critical infrastructure, and deployed ransomware to extort victims. The attack leveraged both software vulnerabilities and social engineering to achieve operational disruption.
+    </summary>
+</Scenario>

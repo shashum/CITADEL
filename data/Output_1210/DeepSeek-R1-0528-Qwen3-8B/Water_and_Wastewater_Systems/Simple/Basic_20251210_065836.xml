@@ -1,0 +1,69 @@
+<Scenario>
+    <metadata>
+        <target_industry>Water and Wastewater Systems</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Night Dragon</campaign>
+    </metadata>
+    
+    <title>Night Dragon Attack Scenario on Water Utilities</title>
+    
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a straightforward cyber attack targeting water utility control systems, characteristic of the Night Dragon campaign. Using basic phishing techniques against employee accounts, attackers gain initial access before exploiting vulnerable processes to disrupt operations through direct command execution.
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=Night Dragon</campaign_or_group>
+        <motivation>Disruption and potentially espionage, typical motivations observed in Night Dragon campaigns.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, OS Process, File
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: Web, Phishing, General Access Method, Code Injection, File Creation (Mechanism)
+    </attack_vector>
+    
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An adversary initiates contact with targeted personnel via email, creating deceptive messages designed to trick recipients into divulging login credentials or clicking malicious links related to legitimate business communications. This approach leverages human interaction rather than automated exploitation, making it suitable for novice attackers seeking easy entry points.</description>
+        </stage>
+        
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Code Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Upon obtaining valid authentication credentials through phishing, the attacker executes injected code within operating system processes connected to the networked control systems. This allows for immediate manipulation of system functions once access is established, bypassing traditional security measures due to the simplicity of the injection method employed.</description>
+        </stage>
+        
+        <stage name="Impact">
+            <technique_name>T1074.002: Remote Data Staging</technique_name>
+            <surface>File</surface>
+            <vector>File Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-253: Remote Code Inclusion</capec>
+            <description>The compromised system is used to directly modify configuration files or other system components stored locally or remotely. Through simple alterations to parameters controlling equipment operation, such as pump speeds or chemical dosing levels, the attacker causes service interruptions or subtle malfunctions, achieving their objective with minimal sophistication beyond credential theft and basic command execution.</description>
+        </stage>
+    </attack_flow>
+    
+    <summary>
+        This simple attack demonstrates how basic phishing coupled with standard code injection techniques can lead to significant operational impacts in water and wastewater facilities, highlighting the vulnerability of less protected control system environments to organized campaigns like Night Dragon.
+    </summary>
+</Scenario>

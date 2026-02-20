@@ -1,0 +1,191 @@
+<Scenario>
+    <metadata>
+        <title>Operation Spalax Water and Wastewater System Attack Scenario</title>
+        <date>2023-07-26</date>
+        <author>Cybersecurity Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        Operation Spalax targets water and wastewater systems, employing a multi-stage attack plan involving reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Spalax</campaign_or_group>
+        <motivation>Economic</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Open Source Intelligence (OSINT)
+            Process
+            Malware Repository
+            Scheduled Task
+            User Account
+            File
+            DNS Record
+            Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            General Access Method
+            Artificial Intelligence
+            Reg.exe Utility
+            Malware Metadata (Mechanism)
+            Application Log Content (Mechanism)
+            Scheduled Task/Job
+            Abuse Elevation Control Mechanism
+            File Metadata (Mechanism)
+            User Account Authentication (Mechanism)
+            System Information Discovery
+            Exfiltration Over Alternative Protocol
+            Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <!-- Reconnaissance -->
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attackers gather information about water and wastewater systems, including infrastructure, personnel, and potential vulnerabilities, using artificial intelligence.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attackers identify open ports and services on water and wastewater system networks by monitoring network traffic using reg.exe utility.</description>
+        </stage>
+        
+        <!-- Resource Development -->
+        <stage name="Resource Development">
+            <technique_name>T1588.001: Malware</technique_name>
+            <surface>Malware Repository</surface>
+            <vector>Malware Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-542: Targeted Malware</capec>
+            <description>The attackers develop custom malware to exploit identified vulnerabilities in the water and wastewater system.</description>
+        </stage>
+        
+        <!-- Initial Access -->
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attackers target specific employees with tailored phishing emails to gain access to the network.</description>
+        </stage>
+        
+        <!-- Execution -->
+        <stage name="Execution">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attackers use identified vulnerabilities to execute malware on compromised systems.</description>
+        </stage>
+        
+        <!-- Persistence -->
+        <stage name="Persistence">
+            <technique_name>T1603: Scheduled Task/Job</technique_name>
+            <surface>Scheduled Task</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attackers schedule tasks to maintain persistent access to the system.</description>
+        </stage>
+        
+        <!-- Privilege Escalation -->
+        <stage name="Privilege Escalation">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attackers elevate privileges to gain control over critical systems.</description>
+        </stage>
+        
+        <!-- Defense Evasion -->
+        <stage name="Defense Evasion">
+            <technique_name>T1027.010: Command Obfuscation</technique_name>
+            <surface>File</surface>
+            <vector>File Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-191: Read Sensitive Constants Within an Executable</capec>
+            <description>The attackers hide malicious code from detection by obfuscating it.</description>
+        </stage>
+        
+        <!-- Credential Access -->
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attackers attempt to guess or crack passwords to gain access to sensitive areas.</description>
+        </stage>
+        
+        <!-- Discovery -->
+        <stage name="Discovery">
+            <technique_name>T1426: System Information Discovery</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>System Information Discovery</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attackers map out the water and wastewater system's network topology.</description>
+        </stage>
+        
+        <!-- Lateral Movement -->
+        <stage name="Lateral Movement">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attackers move laterally within the network using valid accounts.</description>
+        </stage>
+        
+        <!-- Collection -->
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attackers collect sensitive data from compromised systems.</description>
+        </stage>
+        
+        <!-- Exfiltration -->
+        <stage name="Exfiltration">
+            <technique_name>T1639: Exfiltration Over Alternative Protocol</technique_name>
+            <surface>DNS Record</surface>
+            <vector>Exfiltration Over Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>The attackers exfiltrate collected data via alternative protocols to avoid detection.</description>
+        </stage>
+        
+        <!-- Impact -->
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attackers disrupt water and wastewater services to cause maximum impact.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Spalax is a complex attack scenario targeting water and wastewater systems, involving multiple stages of reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </summary>
+</Scenario>

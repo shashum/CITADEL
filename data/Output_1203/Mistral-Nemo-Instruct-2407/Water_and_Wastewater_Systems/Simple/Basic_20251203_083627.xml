@@ -1,0 +1,50 @@
+<Scenario>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        The Versa Director Zero Day Exploitation campaign targets water and wastewater systems using simple yet effective techniques.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Versa Director Zero Day Exploitation</campaign_or_group>
+        <motivation>Financial gain through disruption of operations</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Employees</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Employees, Internet-facing assets, Web server services such as emails and databases
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Phishing, Web
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spear-Phishing Attachment</technique_name>
+            <surface>Employees</surface>
+            <vector>Email</vector>
+            <kev>CVE-2020-1054 [CWE-79]: Microsoft Exchange Server Remote Code Execution Vulnerability</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>The attackers crafted a spear-phishing email targeting employees of water and wastewater systems. The email contained a malicious attachment exploiting CVE-2020-1054, allowing the attackers to execute arbitrary code on the target's machine.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Remote File Copy</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2024-28995 [CWE-918]: Unrestricted Upload of File with Dangerous Type</kev>
+            <capec>CAPEC-253: Remote Code Inclusion</capec>
+            <description>After gaining initial access, the attackers exploited CVE-2024-28995 to upload a malicious file onto the target's web server, enabling them to remotely execute arbitrary code.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disruption of Operations</technique_name>
+            <surface>Web server services such as emails and databases</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-440: Hardware Integrity Attack</capec>
+            <description>With remote code execution capabilities, the attackers caused disruptions by manipulating hardware integrity, leading to operational disruptions within the water and wastewater systems.</description>
+        </stage>
+    </attack_flow>
+    <summary>The Versa Director Zero Day Exploitation campaign successfully compromised water and wastewater systems by leveraging spear-phishing and remote code execution techniques, ultimately causing operational disruptions.</summary>
+</Scenario>

@@ -1,0 +1,39 @@
+<Scenario>` XML for the initial access stage of the Versa Director Zero Day Exploitation campaign targeting the Energy industry:
+
+```xml
+<Scenario>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Intermediate</Complexity>
+        The Versa Director Zero Day Exploitation campaign aims to gain unauthorized access to energy infrastructure through exploiting vulnerabilities in internet-facing applications.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Versa Director Zero Day Exploitation</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Device theft", "Weak passwords", "Improper configuration", "Vulnerability", "Internet-facing assets", ...]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["External/Removable media", "Loss or Theft of equipment", "Attrition", "Web", ...]
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2020-10189 [CWE-200]: Apache Struts2 Remote Code Execution Vulnerability</kev>
+            <capec>CAPEC ID: 121 - Exploit Non-Production Interfaces</capec>
+            <description>The threat actors exploited a remote code execution vulnerability (CVE-2020-10189) in an internet-facing Apache Struts2 application within the energy organization's perimeter. They leveraged this vulnerability to execute arbitrary code on the targeted system, gaining initial access to the network.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Versa Director Zero Day Exploitation campaign began by exploiting a known vulnerability in an internet-facing Apache Struts2 application, allowing threat actors to gain initial access to the energy organization's network.
+    </summary>
+</Scenario>

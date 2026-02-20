@@ -1,0 +1,54 @@
+```xml
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Maroochy Water Breach</campaign>
+    </metadata>
+    
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        This attack scenario depicts a multi-stage intrusion targeting vulnerable systems in the healthcare sector, inspired by the Maroochy Water Breach campaign. It begins with open-source reconnaissance to identify targets, escalates through basic phishing and malware exploitation, and culminates in credential harvesting, data exfiltration, and service disruption.
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=Maroochy Water Breach Group</campaign_or_group>
+        <motivation>Financial gain through data theft or operational espionage, seeking to exploit sensitive patient information and disrupt critical services.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Open Source Intelligence (OSINT)</initial_attack_surface>
+        <initial_attack_vector>Search Engines</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: Open Source Intelligence (OSINT), Internet Scan, Internet-facing assets, Malicious Payload, Compromised Account, Malware Artifact, File System, Public IP/Network Block, Domain Name Registrar, Command
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: Search Engines, Response Content (Mechanism), Delivery Method, Command and Scripting Interpreter, Registry Run Keys / Startup Folder, Device Administrator Permissions, Process Injection, User Account Authentication (Mechanism), Network Service Scanning, Pass the Hash, Data Encrypted, Encrypted Channel, Command Execution (Mechanism)
+    </attack_vector>
+    
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1593.002: Search Engines</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Search Engines</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-543: Counterfeit Websites</capec>
+            <description>The attacker leverages search engines to gather publicly available information about the healthcare organization, such as employee details, system configurations, and potential vulnerabilities, enabling informed planning for subsequent stages.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1608.001: Upload Malware</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-542: Targeted Malware</capec>
+            <description>The attacker acquires and deploys basic malware scripts or trojans obtained from online repositories, exploiting common weaknesses in the organization's IT environment to prepare for infiltration.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link

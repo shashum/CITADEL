@@ -1,0 +1,53 @@
+<Scenario>
+    <title>Pikabot Attack Scenario in Energy Sector</title>
+    <overview>
+        <Target>Energy Sector Organizations</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a straightforward cyber attack chain targeting entities within the Energy industry, leveraging expert-level techniques including phishing, user execution, and disruption via compromised software deployment tools.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Pikabot Campaign</campaign_or_group>
+        <motivation>Disruption and extortion through data compromise.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Email System</initial_attack_surface>
+        <initial_attack_vector>Malicious Email Delivery</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: End-user Devices, Internet-facing Assets, Network Infrastructure, Web Applications
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Social Engineering, Spear Phishing, Watering Hole, Drive-by Download, Command Injection, Path Traversal, Code Execution
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Distribution</vector>
+            <kev>CVE-2020-5410 (Suggested): Spring, by VMware Tanzu, Cloud Config contains a path traversal vulnerability allowing arbitrary file access.</kev>
+            <capec>CAPEC-164: Mobile Phishing – Adversary uses SMS or voice calls alongside emails for broader reach.</capec>
+            <description>An expert threat actor initiates contact via targeted malicious emails designed to appear legitimate within the Energy sector context. These emails contain embedded links directing recipients to download ZIP archives exploiting potential vulnerabilities in widely-used frameworks like Spring, thereby establishing an initial foothold in corporate networks.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>End-user Device</surface>
+            <vector>Archive Extraction</vector>
+            <kev>CVE-2022-30525 (Suggested): Command injection vulnerability in Zyxel firewall CGIs enabling remote code execution.</kev>
+            <capec>CAPEC-663: Exploitation of Transient Instruction Execution – Not directly applicable, focus shifts to standard execution via user action.</capec>
+            <description>Upon receiving the malicious email, an unsuspecting employee interacts with the embedded link, downloading a ZIP archive containing the malware payload. When the archive is extracted and the executable component is opened or run, it executes the malicious code directly on the victim's system, bypassing standard security measures through direct user initiation.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Network Systems</surface>
+            <vector>Process Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered – Relevance unclear, likely focused on altering operational tools post-execution.</capec>
+            <description>The executed malware gains control over software deployment mechanisms commonly found in IT environments supporting energy operations. It leverages capabilities like process creation to spread and manipulate configurations, ultimately aiming to encrypt sensitive data stored across cloud instances or local servers integral to the energy sector's functioning, causing operational disruption and potentially financial harm.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This simple attack scenario demonstrates how phishing serves as the entry point for a targeted campaign against Energy companies, culminating in expert-driven exploitation and significant disruption through compromised software deployment tools.
+    </summary>
+</Scenario>

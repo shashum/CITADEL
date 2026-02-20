@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Operation Spalax: Multi-Stage Cyber Attack on Transportation Systems</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated multi-stage attack targeting transportation infrastructure leverages AI-driven reconnaissance, zero-day exploitation, and hardware-based persistence to achieve prolonged access and operational disruption.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Spalax</campaign_or_group>
+        <motivation>Sabotage of Critical Infrastructure</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Target Artifact (Tasks), Script, Internet-facing assets, User Account, OS Process, Cloud Instance, Network Traffic, File System, Process, Credential Store
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Script Execution, Delivery Method, User Account Authentication, Process Injection, Process Creation, Network Traffic Content, Response Metadata, IP ID Sequencing, TCP ECN
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The threat actor employs AI algorithms to analyze publicly accessible task artifacts and network architecture blueprints, identifying vulnerabilities in transportation vendor systems and mapping potential attack paths.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T0802: Automated Collection</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>Automated scripts are crafted to exploit domain-specific data interchange protocols (e.g., logistics waybills) to gather stealthy payloads tailored for ICS/SCADA environments.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1193: Spearphishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2017-0146 (Suggested): SMBv1 Remote Code Execution</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>A spear-phishing campaign delivers malicious attachments exploiting unpatched SMBv1 services on internet-facing assets to compromise privileged personnel.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1212: Exploitation for Credential Access</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>CVE-2015-5123 (Suggested): AS3 Use-after-Free Vulnerability</kev>
+            <capec>CAPEC-226: Session Credential Falsification</capec>
+            <description>Zero-day exploits in legacy systems are leveraged to intercept user account credentials during authentication, enabling unauthorized session hijacking.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>Compromised routers/sensors are repurposed to establish persistent access via manipulated response metadata, creating a foothold in the network perimeter.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>Malicious traffic floods critical network nodes, triggering hardware shutdowns to elevate privileges and bypass security controls.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is injected into legitimate OS processes to mask command-and-control activities and evade signature-based detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Cloud Instance</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>Altered deployment tools exfiltrate credentials stored in cloud instances, facilitating lateral movement across distributed systems.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1095: Non-Application Layer Protocol</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-220: Client-Server Protocol Manipulation</capec>
+            <description>Non-application layer protocols are exploited to map internal network topology and identify vulnerable subsystems.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery</capec>
+            <description>Hashes of stolen credentials are used to authenticate to other systems, enabling unrestricted traversal of the transportation network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>Operational metrics are harvested from local file systems to prepare for subsequent disruption phases.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1219.001: IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <description>Stolen data is exfiltrated via process creation mechanisms disguised as legitimate IDE tunnels to avoid network monitoring.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1205: Traffic Signaling</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-325: TCP Congestion Control Flag (ECN) Probe</capec>
+            <description>Malformed traffic signals are injected to trigger physical denial-of-service conditions in critical infrastructure components.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Spalax executes a complex, multi-phase attack on transportation systems, combining AI reconnaissance, zero-day exploits, and hardware manipulation to achieve sustained access and operational disruption. The campaign highlights the convergence of advanced persistent threats with physical infrastructure vulnerabilities.
+    </summary>
+</Scenario>

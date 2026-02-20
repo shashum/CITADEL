@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Water Curupira Pikabot Distribution Attack on Energy Sector Infrastructure</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated multi-stage attack targeting energy sector organizations with exposed SCADA systems, leveraging firmware corruption, spearphishing, and zero-day exploits to achieve persistent, privilege-escalated access and disrupt critical infrastructure operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Water Curupira Pikabot Distribution</campaign_or_group>
+        <motivation>Disrupt energy grid operations and destabilize critical infrastructure</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Target System Artifact, Firmware, Internet-facing assets, Target Artifact (Application), OS Access Token, Credential Store, OS Process, System Firmware, Network Traffic, Target Artifact (Channel), Process, File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Open-Source Intelligence (OSINT) Gathering, Firmware Modification (Mechanism), Delivery Method, Code Injection, OS API Execution (Mechanism), Pass the Hash, Process Hollowing, Process Access (Mechanism), Command Execution (Mechanism), Network Traffic Flow (Mechanism), Exfiltration Over C2 Channel, Process Creation (Mechanism), File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>Open-Source Intelligence (OSINT) Gathering</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Open-Source Intelligence (OSINT) Gathering</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>The attackers gather intelligence on energy sector companies with exposed SCADA systems and employee details by scouring dark web forums and public records, identifying potential targets for exploitation.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Firmware Corruption</technique_name>
+            <surface>Firmware</surface>
+            <vector>Firmware Modification (Mechanism)</vector>
+            <kev>CVE-2025-2775 (Suggested): SysAid On-Prem contains an improper restriction of XML external entity reference vulnerability in the Checkin processing functionality, allowing for administrator account takeover and file read primitives.</kev>
+            <capec>CAPEC-682: Exploitation of Firmware or ROM Code with Unpatchable Vulnerabilities</capec>
+            <description>The attackers modify Pikabot malware to include stealthy command-and-control (C2) communication capabilities and zero-day exploits for industrial protocols, enabling covert persistence and control over targeted systems.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2025-2775 (Suggested): SysAid On-Prem contains an improper restriction of XML external entity reference vulnerability in the Checkin processing functionality, allowing for administrator account takeover and file read primitives.</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>The attackers deploy spear-phished documents containing Pikabot macros to engineering staff, tricking them into enabling macro execution, which establishes an initial foothold in the target network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Code Injection</vector>
+            <kev>CVE-2021-30762 (Suggested): Apple iOS WebKit contains a use-after-free vulnerability that leads to code execution when processing maliciously crafted web content.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attackers execute obfuscated PowerShell scripts to bypass endpoint detection mechanisms, leveraging the compromised environment to establish a foothold and deploy further payloads.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Access Token Manipulation</technique_name>
+            <surface>OS Access Token</surface>
+            <vector>OS API Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-593: Session Hijacking</capec>
+            <description>The attackers create modified registry entries to ensure persistence, allowing the malware to reinitialize after system reboots and maintain continuous access to the network.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Pass the Hash</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>The attackers exploit weak password policies to extract credentials from memory using tools like Mimikatz, escalating privileges to administrative levels across network devices.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Process Hollowing</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Hollowing</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-671: Requirements for ASIC Functionality Maliciously Altered</capec>
+            <description>The attackers inject malicious code into legitimate processes to evade sandbox detection and maintain stealth during lateral movements and data exfiltration.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>LSASS Memory</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Process Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-679: Exploitation of Improperly Configured or Implemented Memory Protections</capec>
+            <description>The attackers extract credentials from memory using tools like Mimikatz, facilitating lateral movement across the network and expanding their control over the infrastructure.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>Network Connection Enumeration</technique_name>
+            <surface>System Firmware</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-327: TCP Options Probe</capec>
+            <description>The attackers map the ICS/SCADA network topology using SNMP queries and port scanning to identify critical systems and pathways for further exploitation.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers move laterally using RDP and SMB relays to access isolated control systems, expanding their reach within the network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Exfiltration Over C2 Channel</technique_name>
+            <surface>Target Artifact (Channel)</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attackers steal operational data from ICS databases using TLS-encrypted tunnels, transmitting sensitive information back to their command-and-control infrastructure.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <description>The attackers redirect exfiltrated data through compromised DNS servers to evade traditional firewall inspections and maintain covert data transfer channels.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attackers trigger false alarms and manipulate grid controls to induce physical infrastructure instability, disrupting energy distribution and creating cascading failures.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Water Curupira Pikabot Distribution campaign demonstrates a highly coordinated, multi-stage attack on energy sector infrastructure, combining advanced reconnaissance, firmware-based exploitation, and zero-day utilization to achieve persistent, high-privilege access and cause physical disruption to critical systems.
+    </summary>
+</Scenario>

@@ -1,0 +1,76 @@
+<Scenario>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Intermediate</Complexity>
+        A targeted ransomware attack on a healthcare organization begins with spear-phishing to gain initial access, escalates privileges via exposed medical devices, and encrypts critical patient data for financial extortion.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0027</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Social engineering</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Social engineering", "Vulnerability", "Internet-facing assets", "Shared DB or directory", "Obsolete products"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Phishing", "Vulnerability exploit", "Open port", "Ransomware", "Inadequate encryption"]
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Social engineering</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2020-1380 [CWE-250]: Improper Restriction of Reauthentication After Initial Authentication</kev>
+            <capec>CAPEC ID: 164: Mobile Phishing</capec>
+            <description>Attackers sent spoofed emails impersonating health authorities containing malicious Excel attachments with embedded macros. Recipients opening these files triggered macro execution, establishing initial foothold via CVE-2020-1380.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Vulnerable Software</technique_name>
+            <surface>Vulnerability</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2018-4344 [CWE-250]: Improper Restriction of Reauthentication After Initial Authentication</kev>
+            <capec>CAPEC ID: 184: Software Integrity Attack</capec>
+            <description>Macro payloads exploited unpatched Microsoft Office instances to deploy Cobalt Strike beacons, leveraging known vulnerabilities in legacy healthcare applications to execute arbitrary code.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Inadequate encryption</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654: Credential Prompt Impersonation</capec>
+            <description>A hidden scheduled task was created in the Windows Task Scheduler to automatically restart the beacon payload after system reboots, maintaining persistent access to the network.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploitation of Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Open port</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 603: Blockage</capec>
+            <description>Default credentials were used to access exposed RDP ports on medical imaging devices (PACS systems), allowing privilege escalation to administrative accounts.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Obfuscated Files or Information</technique_name>
+            <surface>Obsolete products</surface>
+            <vector>Ransomware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 636: Hiding Malicious Data or Code within Files</capec>
+            <description>C2 traffic was encrypted with AES-128 and disguised as legitimate telehealth traffic to evade detection by network monitoring tools.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Encryption for Impact</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Ransomware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 620: Drop Encryption Level</capec>
+            <description>Ransomware encrypted patient records and billing databases, appending .locked extensions to files and displaying a ransom note demanding Bitcoin payments for decryption keys.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Campaign C0027 exploited human and technical vulnerabilities in a healthcare provider's environment through phishing, lateral movement, and ransomware deployment, resulting in operational disruption and financial extortion demands.
+    </summary>
+</Scenario>

@@ -1,0 +1,243 @@
+[
+    {
+      "CATEGORY": "Physical",
+      "NAME": "External/Removable media",
+      "DESCRIPTION": "Attack using removable media or peripheral devices."
+    },
+    {
+      "CATEGORY": "Physical",
+      "NAME": "Loss or Theft of equipment",
+      "DESCRIPTION": "Loss or theft of computer devices or media equipment."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Attrition",
+      "DESCRIPTION": "Gradually depleting the resources of a target system or network through persistent, repeated cyberattacks, causing service degradation or destruction."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Web",
+      "DESCRIPTION": "Attacks targeting websites or web applications."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Account takeover",
+      "DESCRIPTION": "Gaining control of a target account to carry out an attack under legitimate credentials."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Inadequate encryption",
+      "DESCRIPTION": "Exploiting unencrypted or weakly encrypted data to carry out an attack."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Browser-based attack",
+      "DESCRIPTION": "Distributing malicious software through compromised websites."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Application compromise",
+      "DESCRIPTION": "Infecting trusted third-party applications with malware to attack users."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Open port",
+      "DESCRIPTION": "Leaving a network port accessible and potentially exploitable."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Vulnerability exploit",
+      "DESCRIPTION": "Successfully using a vulnerability to gain unauthorized access or control."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Ransomware",
+      "DESCRIPTION": "Malicious software that encrypts or locks systems and demands payment for restoration."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Malware",
+      "DESCRIPTION": "Software or code designed to damage, disrupt, or gain unauthorized access to a computer system."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Man in The Middle(MiTM)",
+      "DESCRIPTION": "Intercepting and manipulating communications between two parties without their knowledge."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Session hijacking",
+      "DESCRIPTION": "Taking over an active session, often by stealing session tokens or cookies, to gain unauthorized access."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Brute-force attack",
+      "DESCRIPTION": "Attempting all possible password combinations to gain unauthorized access."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Distributed Denial of Service(DDoS)",
+      "DESCRIPTION": "Overwhelming a target system or network with massive traffic from multiple compromised systems to disrupt services."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Watering-hole",
+      "DESCRIPTION": "Compromising a website frequently visited by a specific group to infect targets with malware."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Compromised and weak credentials",
+      "DESCRIPTION": "Using exposed credentials from data breaches or easily guessable passwords to gain access."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "SIM Swap",
+      "DESCRIPTION": "Transferring a victim’s phone number to a SIM card controlled by an attacker to access accounts and personal data."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Security misconfigurations and vulnerabilities",
+      "DESCRIPTION": "Exploiting improper configurations or known security flaws in systems and applications."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Web forms",
+      "DESCRIPTION": "Abusing user-input fields on web pages for malicious purposes."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "IP address and IP blocks",
+      "DESCRIPTION": "Unique addresses assigned to devices (IP addresses) and sets of contiguous addresses (IP blocks). Attackers can scan for open ports or services to exploit."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Domains and subdomains",
+      "DESCRIPTION": "Primary domain names and any subordinate domains used by websites."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Botnet",
+      "DESCRIPTION": "Two or more compromised computers remotely controlled for malicious activities such as DDoS or TDoS attacks."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Credential compromise",
+      "DESCRIPTION": "Stealing authentication credentials (e.g., via phishing or malware) to access systems illegally."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Telephony Denial of Service(TDoS)",
+      "DESCRIPTION": "Flooding a telephony network with high call volumes to overwhelm the system and block legitimate calls."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Replay Attack",
+      "DESCRIPTION": "Intercepting valid data transmissions and re-sending them to trick a system into granting unauthorized access."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Cryptanalysis Attacks",
+      "DESCRIPTION": "Using mathematical techniques to break encryption, exploit weaknesses, or defeat cryptographic security."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Side Channel Attacks",
+      "DESCRIPTION": "Extracting sensitive information (e.g., encryption keys) by analyzing physical emissions such as power usage or electromagnetic signals."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Hardware Trojans",
+      "DESCRIPTION": "Malicious modifications to hardware or integrated circuits that introduce unintended functionality or vulnerabilities."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Covert Attacks",
+      "DESCRIPTION": "Attacks hidden by manipulating normal input/output, evading security detection mechanisms."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Sleep Deprivation Attack",
+      "DESCRIPTION": "Repeatedly causing a device to stay active, preventing power-saving modes and potentially leading to system failure."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Clock Skewing",
+      "DESCRIPTION": "Altering a system’s timestamps to disrupt time-based validations or synchronize errors for malicious purposes."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Attacks Targeting System Reputation",
+      "DESCRIPTION": "Physically tampering with nodes or inserting malware to degrade system reliability and trust."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Data and Command Integrity Attack",
+      "DESCRIPTION": "Altering, forging, or deleting system data or commands, undermining data integrity and reliability."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Eavesdropping",
+      "DESCRIPTION": "Intercepting and listening to transmitted data or communications without authorization, compromising confidentiality."
+    },
+    {
+      "CATEGORY": "Technical",
+      "NAME": "Command and Control Attacks",
+      "DESCRIPTION": "Remotely sending malicious commands to compromised systems or devices to perform harmful actions."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Phishing",
+      "DESCRIPTION": "Attacks carried out via malicious links or attachments leading to fraudulent websites."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Impersonations/Spoofing",
+      "DESCRIPTION": "Maliciously masquerading as legitimate content or services."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Improper usage",
+      "DESCRIPTION": "Security incidents arising from authorized users violating organizational policies."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Dumpster diving",
+      "DESCRIPTION": "Searching discarded materials (trash) for information that can be used to compromise security."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Advanced Persistent Threat(APT)",
+      "DESCRIPTION": "Long-term, continuous cyberattacks targeting a specific entity."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Baiting",
+      "DESCRIPTION": "Placing an enticing storage device to lure someone into connecting it, thereby infecting their system."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Shoulder surfing",
+      "DESCRIPTION": "Secretly observing someone’s credentials or personal data as they are entered."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Reverse social engineering",
+      "DESCRIPTION": "After causing a contrived problem, attackers pose as helpers and request sensitive information from the victim."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Business Email Compromise(BEC)",
+      "DESCRIPTION": "Attacking corporate email accounts by impersonating executives or business partners."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Advanced Fee",
+      "DESCRIPTION": "A scam where a victim pays money upfront expecting something of greater value but receives far less or nothing."
+    },
+    {
+      "CATEGORY": "Administrative",
+      "NAME": "Extortion",
+      "DESCRIPTION": "Illegally obtaining money or assets through threats of harm, legal action, or exposing sensitive information."
+    }
+  ]
+  

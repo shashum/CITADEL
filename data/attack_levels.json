@@ -1,0 +1,29 @@
+{
+    "Expert": {
+        "description": "This is the level of attack by highly skilled hackers or hacker groups. They target all individuals or organizations, including those with high security levels such as national infrastructure, finance, energy, and security specialist companies.",
+        "examples": "For example, attackers can create and use malware directly. They can access and use information that non-experts in the target field would not know.",
+        "attack_methods": [
+            "Creating custom malware",
+            "Researching 0-day vulnerabilities",
+            "Software Supply Chain Attack",
+            "Analyzing internal network protocols of target companies/organizations and customized attacks"
+        ]
+    },
+    "Skilled": {
+        "description": "The attacker's knowledge and technical depth are at an intermediate level. They mainly target organizations that are interested in security and have basic equipment such as firewalls and IPS, such as local administrative agencies and general companies.",
+        "examples": "For example, attackers can modify or transform open source for attacks, but not at the level of direct creation. They cannot access limited information about the target field.",
+        "attack_methods": [
+            "Combining or modifying known vulnerabilities (1-day, N-day)",
+            "Customizing scripts of general hacking frameworks (Metasploit, Cobalt Strike, Empire, etc.)"
+        ]
+    },
+    "Basic": {
+        "description": "This is the level that novice hackers who have just encountered hacking or are not skilled can attack. They mainly target organizations that are vulnerable to security, such as small businesses, that are not interested in security and do not have basic equipment for security.",
+        "examples": "For example, attackers are script kiddies, or can use open source but cannot modify or transform it. They can only perform well-known attacks through search.",
+        "attack_methods": [
+            "Using widely known vulnerabilities as they are",
+            "Using GUI-based hacking tools or scripts as they are",
+            "Basic phishing and spam attacks"
+        ]
+    }
+}

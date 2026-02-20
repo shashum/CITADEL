@@ -1,0 +1,52 @@
+<Scenario>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        A sophisticated threat actor group, FrostyGoop Incident, targets transportation systems with expert-level skills, exploiting vulnerabilities in their websites or APIs to gain initial access.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>FrostyGoop Incident</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Device theft", "Weak passwords", "Improper configuration", "Vulnerability", "Internet-facing assets", "Shared DB or directory", "Obsolete products", "Injection flaws", "Custom APIs", "Autonomous system numbers(ASNs)", "SSL Certificates and Attribution", "WHOIS records, contacts and history", "TCP/IP ports", "Public and private cloud", "Web server services such as emails and databases", "Shadow IT", "Poor implementation of access controls", "Malicious insiders", "Social engineering", "Insufficient physical security controls", "Authentication issues"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["External/Removable media", "Loss or Theft of equipment", "Attrition", "Web", "Account takeover", "Inadequate encryption", "Browser-based attack", "Application compromise", "Open port", "Vulnerability exploit", "Ransomware", "Malware", "Man in The Middle(MiTM)", "Session hijacking", "Brute-force attack", "Distributed Denial of Service(DDoS)", "Watering-hole", "Compromised and weak credentials", "SIM Swap", "Security misconfigurations and vulnerabilities", "Web forms", "IP address and IP blocks", "Domains and subdomains", "Botnet", "Credential compromise", "Telephony Denial of Service(TDoS)", "Replay Attack", "Cryptanalysis Attacks", "Side Channel Attacks", "Hardware Trojans", "Covert Attacks", "Sleep Deprivation Attack", "Clock Skewing", "Attacks Targeting System Reputation", "Data and Command Integrity Attack", "Eavesdropping", "Command and Control Attacks", "Phishing", "Impersonations/Spoofing", "Improper usage", "Dumpster diving", "Advanced Persistent Threat(APT)", "Baiting", "Shoulder surfing", "Reverse social engineering", "Business Email Compromise(BEC)", "Advanced Fee", "Extortion"]
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Exploitation of External Facing Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2021-30661 (Suggested)</kev>
+            <capec>CAPEC ID: 278, Name: Web Services Protocol Manipulation</capec>
+            <description>The FrostyGoop Incident attackers manipulate a vulnerability in the transportation system's website or API to gain unauthorized access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Code Injection</technique_name>
+            <surface>SCADA system</surface>
+            <vector>Malware</vector>
+            <kev>CVE-2024-40711 (Suggested)</kev>
+            <capec>CAPEC ID: 242, Name: Code Injection</capec>
+            <description>The attackers use FrostyGoop malware to inject malicious code into the transportation system's Supervisory Control and Data Acquisition (SCADA) system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Manipulation</technique_name>
+            <surface>Temperature control systems</surface>
+            <vector>Data</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 153, Name: Input Data Manipulation</capec>
+            <description>The attackers manipulate temperature control systems to cause disruptions and potential damage to transportation infrastructure.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The FrostyGoop Incident attackers exploit vulnerabilities in transportation systems' websites or APIs to gain initial access, execute malicious code, and manipulate critical systems to disrupt operations.
+    </summary>
+</Scenario>

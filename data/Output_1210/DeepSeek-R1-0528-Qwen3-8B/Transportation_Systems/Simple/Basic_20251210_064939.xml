@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>C0018</campaign>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        A targeted cyber attack campaign against organizations in the transportation sector, utilizing basic techniques to compromise systems and deliver ransomware for financial extortion.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0018</campaign_or_group>
+        <motivation>To extort victims financially by disrupting operations through ransomware attacks.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Windows Registry, File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method, PowerShell Script, File Creation (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0820: Exploitation for Evasion</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>An attacker gains unauthorized entry by exploiting unintended features or services on publicly accessible systems, such as open network interfaces or misconfigured endpoints commonly found in transportation infrastructure. Using basic skills, they probe for vulnerabilities like unused protocols or default settings, allowing easy penetration without sophisticated tools.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1028: Windows Remote Management</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>PowerShell Script</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-555: Remote Services with Stolen Credentials</capec>
+            <description>Upon establishing initial access, the attacker leverages PowerShell scripting to automate command execution via Windows Remote Management (WinRM) capabilities stored in registry configurations. This enables direct interaction with remote systems, bypassing standard security measures due to the simplicity of the approach, often involving hardcoded or easily guessed credentials obtained during reconnaissance.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1027.013: Encrypted/Encoded File</technique_name>
+            <surface>File</surface>
+            <vector>File Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-636: Hiding Malicious Data or Code within Files</capec>
+            <description>The final stage involves creating and distributing encrypted files to render critical data inaccessible, thereby disrupting transportation operations and extorting payment for decryption. By encoding malicious payloads within legitimate file structures, the attacker ensures persistence and hides evidence, leading to operational chaos and potential safety risks in affected systems.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This simple attack scenario demonstrates how basic threat actors exploit common vulnerabilities in transportation systems' internet-facing assets and internal components to deploy ransomware, causing significant disruption and financial loss.
+    </summary>
+</Scenario>

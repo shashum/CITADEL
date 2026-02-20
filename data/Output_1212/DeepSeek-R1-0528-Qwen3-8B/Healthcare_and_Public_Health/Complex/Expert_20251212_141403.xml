@@ -1,0 +1,75 @@
+```xml
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>2015 Ukraine Electric Power Attack</campaign>
+    </metadata>
+    
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        This scenario outlines a multi-stage cyber attack inspired by the 2015 Ukraine Electric Power Attack, adapted for healthcare systems to achieve reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact phases.
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=2015 Ukraine Electric Power Attack</campaign_or_group>
+        <motivation>Espionage and potential sabotage to disrupt critical healthcare services, stealing sensitive patient data or ransomware-style extortion, drawing from the historical intent behind similar attacks.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Demand Method</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, OS Process, User Account, System Firmware, Target Artifact (Api), Target Artifact (Tickets), Target Artifact (Privileges), Target Artifact (Tasks), Firmware, Windows Registry, Credential Store
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Firmware Modification (Mechanism), Delivery Method, Elevated Execution with Prompt, Windows Registry Key Creation (Mechanism), Exploit TEE Vulnerability, Process Injection, User Account Authentication (Mechanism), Command Execution (Mechanism), Pass the Ticket, Custom Command and Control Protocol, Application Deployment Software
+    </attack_vector>
+    
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 184\nName: Software Integrity Attack\nDescription: An attacker initiates a series of events designed to cause a user, program, server, or device to perform actions which undermine the integrity of software code, device data structures, or device firmware, achieving the modification of the ta</capec>
+            <description>The attacker employs artificial intelligence tools to scan and analyze publicly accessible information about the healthcare provider's employees, network layout, and operational routines, gathering data to refine attack plans, mirroring the extensive reconnaissance conducted prior to the 2015 Ukraine Electric Power Attack.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1495: Firmware Corruption</technique_name>
+            <surface>Firmware</surface>
+            <vector>Firmware Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 682\nName: Exploitation of Firmware or ROM Code with Unpatchable Vulnerabilities\nDescription: An adversary may exploit vulnerable code (i.e., firmware or ROM) that is unpatchable. Unpatchable devices exist due to manufacturers intentionally or inadvertently designing devices incapable of up</capec>
+            <description>The threat actor modifies the BlackEnergy3 toolkit to exploit firmware vulnerabilities in healthcare devices, creating custom malware variants that can persist undetected and adapt functionalities for targeted attacks, similar to how unpatchable firmware was leveraged in the 2015 campaign.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Demand Method</vector>
+            <kev>CVE-2021-36380 (Suggested): Sunhillo SureLine contains an OS command injection vulnerability that allows an attacker to cause a denial-of-service or utilize the device for persistence on the network via shell metacharacters in ipAddr or dnsAddr in /cgi/networkDiag.cgi.</kev>
+            <capec>CAPEC ID: 467\nName: Cross Site Identification\nDescription: An attacker harvests identifying information about a victim via an active session that the victim's browser has with a social networking site. A victim may have the social networking site open in one tab or perhaps is simply using the rememb</capec>
+            <description>The attacker gains initial entry by sending spearphishing links in targeted emails, tricking recipients into clicking malicious URLs or downloading infected attachments that exploit vulnerabilities in internet-facing assets, allowing remote code execution and setup, reminiscent of the phishing-based access in the 2015 Ukraine Electric Power Attack.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1514: Elevated Execution with Prompt</technique_name>
+            <surface>Target Artifact (Api)</surface>
+            <vector>Elevated Execution with Prompt</vector>
+            <kev>CVE-2023-21237 (Suggested): Android Pixel contains a vulnerability in the Framework component, where the UI may be misleading or insufficient, providing a means to hide a foreground service notification. This could enable a local attacker to disclose sensitive information.</kev>
+            <capec>CAPEC ID: 234\nName: Hijacking a privileged process\nDescription: An adversary gains control of a process that is assigned elevated privileges in order to execute arbitrary code with those privileges. Some processes are assigned elevated privileges on an operating system, usually through association w</capec>
+            <description>Upon successful phishinAccess, the malware executes automatically with elevated privileges by hijacking API calls or prompting users for confirmation, running malicious scripts to disable security measures and establish a foothold in the network, building on techniques seen in attacking industrial systems during the 2015 event.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654\nName: Credential Prompt Impersonation\nDescription: An adversary, through a previously installed malicious application, impersonates a credential prompt in an attempt to steal a user's credentials.\nAbstraction: Detailed\nExecution Flow: ::STEP:1:PHASE:Explore:DESCRIPTION:[Determine suita</capec>
+            <description>The attacker ensures long-term access by creating scheduled tasks in the Windows Task Scheduler that run malicious payloads at startup

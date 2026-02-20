@@ -1,0 +1,71 @@
+<Scenario>
+    <title>Unitronics Defacement Campaign: Energy Sector Cyber Attack</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Intermediate</Complexity>
+        The Unitronics Defacement Campaign targeted the energy sector through a multi-stage cyber attack involving phishing, malware deployment, and web page modification to achieve impact. This intermediate-level attack demonstrates sophisticated techniques aimed at disrupting operations and damaging organizational reputation.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Unitronics Defacement Campaign</campaign_or_group>
+        <motivation>Disruption of critical infrastructure and damage to organizational reputation.</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2024-9537 (Suggested)</kev>
+            <capec>CAPEC ID: 164 Name: Mobile Phishing Description: An adversary targets mobile phone users with a phishing attack for the purpose of soliciting account passwords or sensitive information from the user.</capec>
+            <description>The attack begins with a phishing email campaign targeting employees. The phishing emails contain malicious links designed to steal employee credentials, exploiting human error and social engineering techniques.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Malware Deployment</technique_name>
+            <surface>Network infrastructure</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2015-1769 (Suggested)</kev>
+            <capec>CAPEC ID: 445 Name: Malicious Logic Insertion into Product Software via Configuration Management Manipulation Description: An adversary exploits a configuration management system so that malicious logic is inserted into a software product's build, update, or deployment environment.</capec>
+            <description>After gaining initial access, the attackers deploy malware to establish a persistent presence within the network. This malware is designed to escalate privileges and bypass existing security measures.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Account Creation</technique_name>
+            <surface>Active Directory/Identity Management Systems</surface>
+            <vector>Account takeover</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 70 Name: Try Common or Default Usernames and Passwords Description: An adversary may try certain common or default usernames and passwords to gain access into the system and perform unauthorized actions.</capec>
+            <description>The attackers create new accounts with elevated privileges to maintain persistence across system reboots and other disruptions, ensuring continuous access to the network.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploitation of Misconfiguration</technique_name>
+            <surface>System configurations</surface>
+            <vector>Security misconfigurations and vulnerabilities</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 678 Name: System Build Data Maliciously Altered Description: During the system build process, the system is deliberately misconfigured by the alteration of the build data. Access to system configuration data files and build processes is susceptible to deliberate misconfiguration of the system.</capec>
+            <description>By exploiting unpatched vulnerabilities or misconfigured systems, the attackers escalate their privileges to gain administrative control over critical energy sector infrastructure.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Process Termination</technique_name>
+            <surface>Security tools/processes</surface>
+            <vector>Process termination</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 573 Name: Process Footprinting Description: An adversary exploits functionality meant to identify information about the currently running processes on the target system to an authorized user. By knowing what processes are running on the target system, the adversary can learn about the target environment.</capec>
+            <description>Attackers terminate security monitoring processes to prevent detection and allow uninterrupted access to sensitive systems and data.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Web Page Modification</technique_name>
+            <surface>Web servers</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 103 Name: Clickjacking Description: An adversary tricks a victim into unknowingly initiating some action in one system while interacting with the UI from a seemingly completely different, usually an adversary-controlled or intended, system.</capec>
+            <description>Final stage involves defacing web pages to disrupt operations and damage the organization's public image, showcasing the attackers' ability to manipulate critical digital assets.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Unitronics Defacement Campaign successfully infiltrated the energy sector through a series of well-coordinated attacks, starting with phishing to gain initial access, followed by malware deployment for execution, and culminating in web page modifications to achieve maximum impact. This scenario highlights the importance of robust security measures, including regular patching, employee training, and proactive threat detection to mitigate similar threats.
+    </summary>
+</Scenario>

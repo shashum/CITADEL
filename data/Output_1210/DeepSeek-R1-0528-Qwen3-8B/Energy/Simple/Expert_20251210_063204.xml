@@ -1,0 +1,82 @@
+```xml
+<Scenario>
+    <title>Frankenstein Attack in Energy Sector</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts an expert-level cyber attack campaign titled "Frankenstein" targeting the energy industry, leveraging spearphishing links for initial access, followed by execution of malicious scripts and establishment of remote desktop protocol (RDP) access to facilitate credential extraction and ultimately deploy reversible encryption to disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Frankenstein</campaign_or_group>
+        <motivation>Espionage and operational disruption, likely aiming to steal intellectual property or extort demands.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Command, Domain Name Registrar, Active Directory
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method, Command Execution (Mechanism), Remote Desktop Protocol, Active Directory Object Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker utilizes cross-site identification techniques embedded in spearphishing emails to trick employees into clicking malicious links, thereby compromising the organization's internet-facing assets. This method exploits human interaction rather than direct technical vulnerabilities, allowing unauthorized access initiation through deceptive web-based interactions.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1216: System Script Proxy Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-465: Transparent Proxy Abuse</capec>
+            <description>Upon successful spearphishing, the attacker executes a malicious PowerShell script via transparent proxy abuse, enabling remote command interception and automated exploitation. This leverages the command interface to run scripts that extract credentials and prepare for subsequent actions, enhancing efficiency in the energy sector's potentially complex IT environment.</description>
+            <technique_name>T1076: Remote Desktop Protocol</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Remote Desktop Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-220: Client-Server Protocol Manipulation</capec>
+            <description>The attacker manipulates the remote desktop protocol communication to establish unauthorized access, bypassing authentication controls. By abusing the client-server protocol manipulation capabilities, the attacker gains remote execution privileges, facilitating further intrusions and preparations within the energy infrastructure.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>N/A</technique_name>
+            <surface>OS Process</surface>
+            <vector>Scheduled Task Creation</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>Inferred from the attack flow, the skilled adversary ensures long-term access by implementing scheduled task creation within operating systems, allowing the persistence of malicious scripts post-execution. This is deduced based on expert-level tactics commonly seen in sustained campaigns against energy targets, where maintaining footholds is crucial for ongoing reconnaissance or future impacts.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>N/A</technique_name>
+            <surface>User Account Binaries</surface>
+            <vector>Vulnerability Exploitation</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>Inferred due to the expertise involved, the attacker elevates privileges by exploiting binary vulnerabilities or misconfigured user accounts, granting broader system access. This step is essential for overcoming initial restrictions and enabling more invasive actions in the energy sector, aligning with the campaign's goal to maximize impact potential.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>N/A</technique_name>
+            <surface>Network Monitoring Tools</surface>
+            <vector>Process Obfuscation</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>Inferred from the lack of explicit data, defense evasion is employed through process obfuscation techniques to conceal malicious activities from monitoring tools. Given the high skill level, this involves sophisticated methods to avoid detection, particularly relevant in protecting sensitive energy operations from advanced threat actors.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1556.005: Reversible Encryption</techn technique_name>
+            <surface>Active Directory</surface>
+            <vector>Active Directory Object Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-608: Cryptanalysis of Cellular Encryption</capec>
+            <description>The final stage deploys reversible encryption on critical files stored within Active Directory objects, disrupting normal business operations and exfiltrating encrypted data. Although the CAPEC reference pertains to cellular encryption, it is adapted here to emphasize the use of encryption mechanisms for covert impact, fitting the energy industry's reliance on secure data handling.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Frankenstein campaign demonstrates a straightforward yet effective attack path in the energy sector, starting with targeted spearphishing to breach defenses, escalating privileges silently, and culminating in encrypted file sabotage

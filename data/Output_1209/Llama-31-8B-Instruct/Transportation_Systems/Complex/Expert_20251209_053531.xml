@@ -1,0 +1,209 @@
+<Scenario>
+    <metadata>
+        <title>SolarWinds Compromise Scenario</title>
+        <date>2021-12-13</date>
+        <author>Cybersecurity Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        <brief_summary>A sophisticated attack targeting transportation systems, utilizing multiple techniques to gain initial access, maintain persistence, and disrupt operations.</brief_summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>SolarWinds Compromise</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Open Source Intelligence (OSINT)
+            Process
+            Scheduled Task
+            Command & Control Server
+            Application Log
+            Target System Artifact
+            User Account
+            Network Traffic
+            File
+            DNS Record
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Delivery Method
+            Artificial Intelligence
+            Reg.exe Utility
+            Process Creation (Mechanism)
+            Web Shell
+            Application Log Content (Mechanism)
+            User Evasion
+            User Account Authentication (Mechanism)
+            Mimikatz Tool
+            File Access (Mechanism)
+            Exfiltration Over Alternative Protocol
+            Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <!-- Reconnaissance -->
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker gathers information about transportation systems using artificial intelligence to analyze open-source intelligence.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker identifies vulnerabilities in transportation system networks by monitoring process activity using reg.exe utility.</description>
+        </stage>
+        
+        <!-- Resource Development -->
+        <stage name="Resource Development">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>The attacker creates a custom backdoor for initial access by developing malicious software deployment tools.</description>
+        </stage>
+        
+        <!-- Initial Access -->
+        <stage name="Initial Access">
+            <technique_name>T0862: Supply Chain Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-439: Manipulation During Distribution</capec>
+            <description>The attacker infects SolarWinds software updates to gain initial access to transportation system networks.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker uses a compromised website to infect transportation system employees' devices.</description>
+        </stage>
+        
+        <!-- Execution -->
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Code Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attacker injects malware into transportation system's IT environment.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1603: Scheduled Task/Job</technique_name>
+            <surface>Scheduled Task</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker schedules tasks to maintain persistence in the transportation system.</description>
+        </stage>
+        
+        <!-- Persistence -->
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Command & Control Server</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-650: Upload a Web Shell to a Web Server</capec>
+            <description>The attacker establishes a persistent web shell on transportation system servers.</description>
+        </stage>
+        
+        <!-- Privilege Escalation -->
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker gains elevated privileges using public-facing application vulnerabilities.</description>
+        </stage>
+        
+        <!-- Defense Evasion -->
+        <stage name="Defense Evasion">
+            <technique_name>T1618: User Evasion</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>User Evasion</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-212: Functionality Misuse</capec>
+            <description>The attacker avoids detection by anti-virus software.</description>
+        </stage>
+        
+        <!-- Credential Access -->
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attacker guesses credentials of transportation system employees.</description>
+        </stage>
+        
+        <!-- Discovery -->
+        <stage name="Discovery">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-226: Session Credential Falsification through Manipulation</capec>
+            <description>The attacker dumps credentials from the OS.</description>
+        </stage>
+        
+        <!-- Lateral Movement -->
+        <stage name="Lateral Movement">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attacker moves laterally using valid accounts.</description>
+        </stage>
+        
+        <!-- Collection -->
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attacker collects sensitive data from local systems.</description>
+        </stage>
+        
+        <!-- Exfiltration -->
+        <stage name="Exfiltration">
+            <technique_name>T1639: Exfiltration Over Alternative Protocol</technique_name>
+            <surface>DNS Record</surface>
+            <vector>Exfiltration Over Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>The attacker exfiltrates data over alternative protocols.</description>
+        </stage>
+        
+        <!-- Impact -->
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker disrupts transportation system operations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The SolarWinds Compromise scenario involves a complex attack chain targeting transportation systems, utilizing multiple techniques to gain initial access, maintain persistence, and disrupt operations.
+    </summary>
+</Scenario>

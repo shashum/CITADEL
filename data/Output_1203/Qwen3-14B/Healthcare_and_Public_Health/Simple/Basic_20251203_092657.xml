@@ -1,0 +1,53 @@
+<Scenario>
+    <title>APT28 Nearest Neighbor Campaign Targets Healthcare Systems via Spearphishing</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        APT28 leverages spearphishing and ransomware to disrupt healthcare operations, exploiting basic security gaps in medical institutions.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=APT28 Nearest Neighbor Campaign</campaign_or_group>
+        <motivation>Financial gain through ransom demands</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Social engineering</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Social engineering"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Phishing"]
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Attachment</technique_name>
+            <surface>Social engineering</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2023-32049 (Suggested)</kev>
+            <capec>CAPEC ID: 511: Infiltration of Software Development Environment</capec>
+            <description>Attackers send malicious PDF/Word documents伪装成urgent patient data updates via email. Recipients opening the attachment triggers exploitation of CVE-2023-32049, embedding malware in the healthcare organization's network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Malicious Document</technique_name>
+            <surface>Vulnerability</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2018-0167 (Suggested)</kev>
+            <capec>CAPEC ID: 662: Adversary in the Browser (AiTB)</capec>
+            <description>Embedded macros or exploits (e.g., CVE-2018-0167) within the phishing document execute payloads automatically when enabled, bypassing need for further user interaction to establish foothold.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Ransomware Deployment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Ransomware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 442: Infected Software</capec>
+            <description>Ransomware encrypts critical patient records and hospital systems, locking down operations and demanding cryptocurrency payments to restore access.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        APT28 exploited spearphishing and known vulnerabilities to deploy ransomware against healthcare targets, leveraging basic techniques to maximize operational disruption.
+    </summary>
+</Scenario>

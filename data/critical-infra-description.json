@@ -1,0 +1,154 @@
+{
+  "Sectors": [
+    {
+      "Sector": "Communications",
+      "Sector Details": {
+        "Description": "The Communications Sector is an integral component of the U.S. economy, underlying the operations of all businesses, public safety organizations, and government. Presidential Policy Directive 21 identifies the Communications Sector as critical because it provides an “enabling function” across all critical infrastructure sectors. Over the last 25 years, the sector has evolved from predominantly a provider of voice services into a competitive and interconnected industry using terrestrial, satellite, and wireless transmission systems. The transmission of these services has become interconnected; satellite, wireless, and wireline providers depend on each other to carry and terminate their traffic and companies routinely share facilities and technology to ensure interoperability."
+      },
+      "Overview": {
+        "Description": "The private sector, as owners and operators of the majority of communications infrastructure, is the primary entity responsible for protecting sector infrastructure and assets.",
+        "Interdependencies": [
+          "Energy Sector: which provides power to run cellular towers, central offices, and other critical communications facilities and also relies on communications to aid in monitoring and controlling the delivery of electricity.",
+          "Information Technology Sector: which provides critical control systems and services, physical architecture, and Internet infrastructure, and also relies on communications to deliver and distribute applications and services.",
+          "Financial Services Sector: which relies on communications for the transmission of transactions and operations of financial markets.",
+          "Emergency Services Sector: which depends on communications for directing resources, coordinating response, operating public alert and warning systems, and receiving emergency 9-1-1 calls.",
+          "Transportation Systems Sector: which provides the diesel fuel needed to power backup generators and relies on communications to monitor and control the flow of ground, sea, and air traffic."
+        ]
+      },
+      "Entities": [
+        "Internet Exchange Point providers",
+        "DNS service providers (excluding root name server operators)",
+        "TLD name registries",
+        "Cloud computing service providers",
+        "Data centre service providers",
+        "Content delivery network providers",
+        "Trust service providers",
+        "Providers of public electronic communications networks",
+        "Providers of publicly available electronic communications services",
+        "Managed service providers",
+        "Managed security service providers"
+      ]
+    },
+    {
+      "Sector": "Healthcare and Public Health",
+      "Sector Details": {
+        "Description": "The Healthcare and Public Health Sector protects all sectors of the economy from hazards such as terrorism, infectious disease outbreaks, and natural disasters. Because the vast majority of the sector's assets are privately owned and operated, collaboration and information sharing between the public and private sectors is essential to increasing resilience of the nation's Healthcare and Public Health critical infrastructure.",
+        "Dependencies / Interdependencies": [
+          "Communications",
+          "Emergency Services",
+          "Energy",
+          "Food and Agriculture",
+          "Information Technology",
+          "Transportation Systems",
+          "Water and Wastewater Systems"
+        ]
+      },
+      "Overview": {
+        "Role": "The Healthcare and Public Health Sector relies on collaboration to protect all sectors of the economy from hazards such as terrorism, infectious disease outbreaks, and natural disasters.",
+        "Ownership": "Vast majority of sector's assets are privately owned and operated."
+      },
+      "Sector-Specific Plan": {
+        "Definition": "The Healthcare and Public Health Sector-Specific Plan details how the National Infrastructure Protection Plan risk management framework is implemented within the context of the unique characteristics and risk landscape of the sector.",
+        "Sector Risk Management Agency": "Department of Health and Human Services",
+        "Plan Document": "Healthcare and Public Health Sector-Specific Plan - 2015 (PDF, 2.93 MB)"
+      },
+      "Entities": [
+        "Healthcare providers (Directive 2011/24/EU, Article 3(g))",
+        "EU reference laboratories (Regulation (EU) 2022/2371, Article 15)",
+        "Entities carrying out R&D of medicinal products (Directive 2001/83/EC, Article 1(2))",
+        "Entities manufacturing basic pharmaceutical products and preparations (NACE Rev. 2, C division 21)",
+        "Entities manufacturing critical medical devices during a public health emergency (Regulation (EU) 2022/123, Article 22)"
+      ]
+    },
+    {
+      "Sector": "Energy",
+      "Sector Details": {
+        "Description": "The U.S. energy infrastructure fuels the economy of the 21st century. Without a stable energy supply, health and welfare are threatened and the U.S. economy cannot function. Presidential Policy Directive 21 identifies the Energy Sector as uniquely critical because it provides an “enabling function” across all critical infrastructure sectors. More than 80 percent of the country's energy infrastructure is owned by the private sector, supplying fuels to the transportation industry, electricity to households and businesses, and other sources of energy that are integral to growth and production across the nation."
+      },
+      "Overview": {
+        "Description": "The energy infrastructure is divided into three interrelated segments: electricity, oil, and natural gas. The U.S. electricity segment contains more than 6,413 power plants (this includes 3,273 traditional electric utilities and 1,738 nonutility power producers) with approximately 1,075 gigawatts of installed generation. Approximately 48 percent of electricity is produced by combusting coal (primarily transported by rail), 20 percent in nuclear power plants, and 22 percent by combusting natural gas. The remaining generation is provided by hydroelectric plants (6 percent), oil (1 percent), and renewable sources (solar, wind, and geothermal) (3 percent). The heavy reliance on pipelines to distribute products across the nation highlights the interdependencies between the Energy and Transportation Systems Sector. The reliance of virtually all industries on electric power and fuels means that all sectors have some dependence on the Energy Sector. The Energy Sector is well aware of its vulnerabilities and is leading a significant voluntary effort to increase its planning and preparedness. Cooperation through industry groups has resulted in substantial information sharing of best practices across the sector. Many sector owners and operators have extensive experience abroad with infrastructure protection and have more recently focused their attention on cybersecurity."
+      },
+      "Subsectors": {
+        "Electricity": [
+          "Electricity undertakings (Directive (EU) 2019/944, Article 2(57)) carrying out the function of 'supply'",
+          "Distribution system operators (Directive (EU) 2019/944, Article 2(29))",
+          "Transmission system operators (Directive (EU) 2019/944, Article 2(35))",
+          "Producers (Directive (EU) 2019/944, Article 2(38))",
+          "Nominated electricity market operators (Regulation (EU) 2019/943, Article 2(8))",
+          "Market participants (Regulation (EU) 2019/943, Article 2(25)) providing aggregation, demand response or energy storage services (Directive (EU) 2019/944, Article 2(18),(20),(59))",
+          "Operators of a recharging point responsible for management and operation providing recharging service to end users"
+        ],
+        "District heating and cooling": [
+          "Operators of district heating or district cooling (Directive (EU) 2018/2001, Article 2(19))"
+        ],
+        "Oil": [
+          "Operators of oil transmission pipelines",
+          "Operators of oil production, refining and treatment facilities, storage and transmission",
+          "Central stockholding entities (Council Directive 2009/119/EC, Article 2(f))"
+        ],
+        "Gas": [
+          "Supply undertakings (Directive 2009/73/EC, Article 2(8))",
+          "Distribution system operators (Directive 2009/73/EC, Article 2(6))",
+          "Transmission system operators (Directive 2009/73/EC, Article 2(4))",
+          "Storage system operators (Directive 2009/73/EC, Article 2(10))",
+          "LNG system operators (Directive 2009/73/EC, Article 2(12))",
+          "Natural gas undertakings (Directive 2009/73/EC, Article 2(1))",
+          "Operators of natural gas refining and treatment facilities"
+        ],
+        "Hydrogen": [
+          "Operators of hydrogen production, storage and transmission"
+        ]
+      }
+    },
+    {
+      "Sector": "Transportation Systems",
+      "Sector Details": {
+        "Description": "The Department of Homeland Security and the Department of Transportation are designated as the Co-Sector Risk Management Agencies for the Transportation Systems Sector. The nation's transportation system quickly, safely, and securely moves people and goods through the country and overseas."
+      },
+      "Overview": {
+        "Subsectors or Modes": {
+          "Aviation": "Includes aircraft, air traffic control systems, and about 19,700 airports, heliports, and landing strips. Approximately 500 provide commercial aviation services at civil and joint-use military airports, heliports, and sea plane bases. In addition, the aviation mode includes commercial and recreational aircraft (manned and unmanned) and a wide variety of support services, such as aircraft repair stations, fueling facilities, navigation aids, and flight schools.",
+          "Highway and Motor Carrier": "Encompasses more than 4 million miles of roadway, more than 600,000 bridges, and more than 350 tunnels. Vehicles include trucks (including those carrying hazardous materials), other commercial vehicles (such as motorcoaches and school buses), vehicle and driver licensing systems, traffic management systems, and cyber systems used for operational management.",
+          "Maritime Transportation System": "Consists of about 95,000 miles of coastline, 361 ports, more than 25,000 miles of waterways, and intermodal landside connections that allow the various modes of transportation to move people and goods to, from, and on the water.",
+          "Mass Transit and Passenger Rail": "Includes terminals, operational systems, and supporting infrastructure for passenger services by transit buses, trolleybuses, monorail, heavy rail (subways or metros), light rail, passenger rail, and vanpool/rideshare. Public transportation and passenger rail operations provided an estimated 10.8 billion passenger trips in 2014.",
+          "Pipeline Systems": "Consist of more than 2.5 million miles of pipelines spanning the country and carrying nearly all of the nation's natural gas and about 65 percent of hazardous liquids, as well as various chemicals. Above-ground assets, such as compressor stations and pumping stations, are also included.",
+          "Freight Rail": "Consists of seven major carriers, hundreds of smaller railroads, over 138,000 miles of active railroad, over 1.33 million freight cars, and approximately 20,000 locomotives. An estimated 12,000 trains operate daily. The Department of Defense has designated 30,000 miles of track and structure as critical to mobilization and resupply of U.S. forces.",
+          "Postal and Shipping": "Moves about 720 million letters and packages each day and includes large integrated carriers, regional and local courier services, mail services, mail management firms, and chartered and delivery services."
+        }
+      },
+      "Subsectors": {
+        "Air": [
+          "Air carriers (Regulation (EC) No 300/2008, Article 3(4)) used for commercial purposes",
+          "Airport managing bodies (Directive 2009/12/EC, Article 2(2)), airports (Article 2(1)), including core airports listed in Annex II of Regulation (EU) No 1315/2013",
+          "Traffic management control operators providing ATC services (Regulation (EC) No 549/2004, Article 2(1))"
+        ],
+        "Rail": [
+          "Infrastructure managers (Directive 2012/34/EU, Article 3(2))",
+          "Railway undertakings (Directive 2012/34/EU, Article 3(1)), including operators of service facilities (Article 3(12))"
+        ],
+        "Water": [
+          "Passenger and freight water transport companies (Regulation (EC) No 725/2004, Annex I), excluding individual vessels",
+          "Managing bodies of ports (Directive 2005/65/EC, Article 3(1)), including port facilities (Regulation (EC) No 725/2004, Article 2(11)), and entities operating works/equipment within ports",
+          "Operators of vessel traffic services (VTS) (Directive 2002/59/EC, Article 3(o))"
+        ],
+        "Road": [
+          "Road authorities (Commission Delegated Regulation (EU) 2015/962, Article 2(12)) responsible for traffic management control, excluding public entities where this is non-essential",
+          "Operators of Intelligent Transport Systems (Directive 2010/40/EU, Article 4(1))"
+        ]
+      }
+    },
+    {
+      "Sector": "Water and Wastewater Systems",
+      "Sector Details": {
+        "Description": "Protecting the systems that provide water is vitally important to the stability and health of the nation and is the mission of the Water and Wastewater Systems Sector."
+      },
+      "Overview": {
+        "Description": "Safe drinking water is essential for protecting public health and supporting all human activities. Properly treated wastewater is crucial for preventing disease and safeguarding the environment. Ensuring a reliable supply of clean drinking water and effective wastewater treatment is vital to modern life and the nation’s economy. In the United States, there are approximately 152,000 public drinking water systems, including 50,000 community water systems, and more than 16,000 wastewater treatment systems. Over 80 percent of the U.S. population receives their potable water from these drinking water systems, and about 75 percent have their sanitary sewerage treated by these wastewater systems. \nThe Water and Wastewater Systems Sector is vulnerable to various threats, including physical attacks, cyberattacks, and contamination with harmful agents. Such incidents could result in widespread illness, casualties, and service disruptions, significantly impacting public health and economic stability. Additionally, the sector is vulnerable to a wide range of natural disasters. Critical services such as firefighting and healthcare, as well as other dependent and interdependent sectors like Energy, Health Care and Public Health, and Critical Manufacturing, could experience face severe consequences from disruptions in water or wastewater services.Both the ability to supply water and manage wastewater are considered National Critical Functions. These functions are so vital to the U.S. that their disruption, corruption, or dysfunction would have a debilitating effect on national security, economic stability, and public health and safety.",
+        "Vulnerabilities": "Physical attacks, cyberattacks, contamination with harmful agents, natural disasters."
+      },
+      "Entities": [
+        "Undertakings collecting, disposing of or treating urban, domestic, or industrial waste water (Council Directive 91/271/EEC, Article 2(1)-(3)), excluding undertakings where this is non-essential"
+      ]
+    }
+  ]
+}

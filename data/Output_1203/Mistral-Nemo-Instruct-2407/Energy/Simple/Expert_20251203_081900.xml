@@ -1,0 +1,52 @@
+<Scenario>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        The threat actors exploited human curiosity and weak security measures to gain unauthorized access to the energy sector's networks.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Oldsmar Treatment Plant Intrusion</campaign_or_group>
+        <motivation>Sabotage of critical infrastructure</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Human interaction</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Human interaction, Internet-facing assets, Weak passwords
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Email, Vulnerability exploit
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spear-Phishing Attachment</technique_name>
+            <surface>Human interaction</surface>
+            <vector>Email</vector>
+            <kev>CVE-2024-43573 [CWE-22]: Exploitation of a vulnerability in email client software.</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>The attackers sent a targeted email with a malicious attachment to an employee. The attachment exploited a vulnerability in the recipient's email client, granting the attackers initial access to the victim's device.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>PowerShell</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2022-24086 [CWE-94]: Bypassing security restrictions in PowerShell.</kev>
+            <capec>CAPEC-579: Replace Winlogon Helper DLL</capec>
+            <description>Once inside the network, the attackers used PowerShell to execute commands and download additional tools, enabling them to move laterally within the network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Industrial Control System (ICS) Infrastructure Modification</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attackers accessed and modified setpoints for a specific chemical in the water treatment process, causing a potential safety hazard.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Oldsmar Treatment Plant Intrusion campaign demonstrated the threat posed by expert-level attackers targeting critical infrastructure. They successfully exploited human curiosity and weak security measures to gain unauthorized access to the energy sector's networks and cause potential harm.
+    </summary>
+</Scenario>

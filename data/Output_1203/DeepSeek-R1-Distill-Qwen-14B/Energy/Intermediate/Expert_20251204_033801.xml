@@ -1,0 +1,68 @@
+<Scenario>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Intermediate</Complexity>
+        <Summary>The attack begins with a spear phishing campaign targeting energy sector employees. Malicious emails containing attachments exploit known vulnerabilities to gain initial access. Once inside, attackers execute commands using native tools, establish persistence through scheduled tasks, escalate privileges by dumping credentials, avoid detection by deleting logs, and ultimately destroy critical data to disrupt operations.</Summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0017</campaign_or_group>
+        <motivation>Disruption of energy infrastructure</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2017-3066 (Suggested)</kev>
+            <capec>CAPEC ID: 163 Name: Spear Phishing Description: Targets employees with phishing emails containing malicious attachments to gain initial access.</capec>
+            <description>Emails containing malicious attachments exploit vulnerabilities to compromise user machines, establishing a foothold in the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Windows Command Shell</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2021-1782 (Suggested)</kev>
+            <capec>CAPEC ID: 579 Name: Replace Winlogon Helper DLL Description: Exploits vulnerabilities to execute malicious code using native tools.</capec>
+            <description>Adversaries execute commands using native tools like cmd.exe to establish a foothold and execute payloads.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task/Job</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654 Name: Credential Prompt Impersonation Description: Creates scheduled tasks to maintain persistence across reboots.</capec>
+            <description>Malware schedules tasks to persist across system reboots, ensuring continuous access to the network.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>OS Credential Dumping: Windows</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 644 Name: Use of Captured Hashes (Pass The Hash) Description: Dumps credentials from memory to escalate privileges.</capec>
+            <description>Adversaries dump credentials from memory to escalate privileges and gain access to higher-privilege accounts.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>File Deletion</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 149 Name: Explore for Predictable Temporary File Names Description: Deletes logs to cover tracks and evade detection.</capec>
+            <description>Log files and other evidence are deleted to prevent detection and hinder forensic analysis.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Destruction</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 675 Name: Retrieve Data from Decommissioned Devices Description: Destroys critical data or configurations to disrupt operations.</capec>
+            <description>Critical data and configurations are destroyed, leading to operational disruptions in the energy sector.</description>
+        </stage>
+    </attack_flow>
+    <summary>The attack scenario involves a sophisticated cyber campaign targeting the energy sector. Using spear phishing and exploiting known vulnerabilities, adversaries gain initial access, execute malicious payloads, establish persistence, escalate privileges, evade detection, and ultimately destroy critical data to achieve their disruptive objectives.</summary>
+</Scenario>

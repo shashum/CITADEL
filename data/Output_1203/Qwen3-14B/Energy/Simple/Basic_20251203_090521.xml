@@ -1,0 +1,71 @@
+<Scenario> XML based on the dossier. [SELECTION RULE] The <reference_lists> contains ALL possible options. You must SELECT ONLY the items relevant to the 'Initial Access' technique in this scenario. Do NOT output the full list."
+
+But in the output structure example, the attack_surface and attack_vector have the full lists. This seems conflicting. However, the user might have made a mistake here. Since the original instructions state that the attack_surface and attack_vector should list the available lists, but the selection rule says to pick only those relevant to Initial Access. However, the example shows the full lists. To resolve this, perhaps the selection rule applies only to the surface and vector within the stages, not the overall attack_surface and attack_vector sections. Therefore, proceed with including the full lists as per the example, but when selecting the surface and vector for each stage, pick the ones relevant to Initial Access.
+
+So for the attack_surface section, list all the surfaces from the reference_lists. Similarly for attack_vector. Then, in each stage's surface and vector fields, select the appropriate ones based on the technique.
+
+Now, constructing the attack_flow. Since complexity is Simple, the stages are Initial Access, Execution, Impact.
+
+Starting with Initial Access. Technique is Phishing (T1660). The kev_ids include CVE-2015-5119 (Suggested). The capec_data is about Mobile Phishing. The rationale says using spear-phishing emails with malicious attachments. So the surface here would be Social engineering (from the surfaces list), and the vector is Phishing (from vectors). The description should explain how phishing emails with malicious attachments are sent to employees, exploiting human error to install backdoors.
+
+Next, Execution. Technique is Exploit Public-Facing Vulnerability. The kev_ids suggest CVE-2025-32756. The capec_data refers to Exploit Non-Production Interfaces. Rationale mentions using unpatched vulnerabilities like default credentials in SCADA systems. The surface here would be Internet-facing assets (since it's public-facing), and the vector is Vulnerability exploit. The description explains exploiting a vulnerability in SCADA systems to execute code remotely.
+
+Impact stage: Technique is Disrupt Critical Systems. Kevids are none. Capec is Disabling Network Hardware. Rationale involves overloading control systems to cause blackouts. Surface could be Critical infrastructure (but looking at the surfaces list, maybe "Vulnerability" or "Improper configuration"? Or "Custom APIs"? Wait, the surfaces list includes "Vulnerability", "Internet-facing assets", etc. The impact here is physical disabling, so maybe "Physical security controls" or "Critical systems". But the surfaces list doesn't have "Critical systems" directly. Looking at the surfaces list, "Vulnerability" might be applicable here, but the rationale says manipulating grid parameters, which could relate to improper configuration or vulnerability. Alternatively, since the attack is about disrupting systems, maybe "Improper configuration" or "Vulnerability". However, the description should tie into the technique. The capec is Disabling Network Hardware, which is a physical act. The surfaces list includes "Insufficient physical security controls", which might be relevant. But the attack here is through digital means, so maybe "Vulnerability" is better. Alternatively, the execution phase exploited a vulnerability, leading to impact. The surface for impact might be the same as execution, but I need to check the data. The attack_chain_plan for Impact has capec_data about disabling network hardware physically. However, the surfaces list includes "Insufficient physical security controls" and "Social engineering". But the attack here is digital, so maybe "Vulnerability" is still the surface. The vector would be "Malware" or "Exploit", but the kev is not present. The description would explain overloading systems via remote access to cause outages.
+
+Putting it all together, ensuring each stage has the correct surface, vector, kev, capec, and description. Also, making sure the titles and other elements are correctly filled based on the metadata and attack_chain_plan.
+</think>
+
+```xml
+<Scenario>
+    <title>Operation MidnightEclipse: Targeting Energy Sector Infrastructure</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        A basic-level cyberattack campaign named Operation MidnightEclipse targets the energy sector through phishing to disrupt critical systems. The attack leverages spear-phishing emails, exploits unpatched SCADA vulnerabilities, and causes localized grid failures to achieve operational disruption.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation MidnightEclipse</campaign_or_group>
+        <motivation>Operational disruption and potential financial extortion</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Social engineering</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Device theft", "Weak passwords", "Improper configuration", "Vulnerability", "Internet-facing assets", "Shared DB or directory", "Obsolete products", "Injection flaws", "Custom APIs", "Autonomous system numbers(ASNs)", "SSL Certificates and Attribution", "WHOIS records, contacts and history", "TCP/IP ports", "Public and private cloud", "Web server services such as emails and databases", "Shadow IT", "Poor implementation of access controls", "Malicious insiders", "Social engineering", "Insufficient physical security controls", "Authentication issues"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["External/Removable media", "Loss or Theft of equipment", "Attrition", "Web", "Account takeover", "Inadequate encryption", "Browser-based attack", "Application compromise", "Open port", "Vulnerability exploit", "Ransomware", "Malware", "Man in The Middle(MiTM)", "Session hijacking", "Brute-force attack", "Distributed Denial of Service(DDoS)", "Watering-hole", "Compromised and weak credentials", "SIM Swap", "Security misconfigurations and vulnerabilities", "Web forms", "IP address and IP blocks", "Domains and subdomains", "Botnet", "Credential compromise", "Telephony Denial of Service(TDoS)", "Replay Attack", "Cryptanalysis Attacks", "Side Channel Attacks", "Hardware Trojans", "Covert Attacks", "Sleep Deprivation Attack", "Clock Skewing", "Attacks Targeting System Reputation", "Data and Command Integrity Attack", "Eavesdropping", "Command and Control Attacks", "Phishing", "Impersonations/Spoofing", "Improper usage", "Dumpster diving", "Advanced Persistent Threat(APT)", "Baiting", "Shoulder surfing", "Reverse social engineering", "Business Email Compromise(BEC)", "Advanced Fee", "Extortion"]
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Social engineering</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2015-5119 [CWE-200]: Improper Input Validation in Microsoft Windows Kernel</kev>
+            <capec>CAPEC ID: 164: Mobile Phishing</capec>
+            <description>Attackers send spear-phishing emails to energy sector employees containing malicious PDF/Word attachments. These files exploit the CVE-2015-5119 vulnerability to execute arbitrary code, installing backdoors for later exploitation.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Public-Facing Vulnerability</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2025-32756 [CWE-250]: Improper Check of Function Return Value</kev>
+            <capec>CAPEC ID: 121: Exploit Non-Production Interfaces</capec>
+            <description>Attackers exploit unpatched SCADA systems (e.g., default credentials or outdated firmware) using CVE-2025-32756 to execute arbitrary commands on energy grid management interfaces.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disrupt Critical Systems</technique_name>
+            <surface>Vulnerability</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 583: Disabling Network Hardware</capec>
+            <description>Using access gained from prior stages, attackers overload control systems or manipulate grid parameters to trigger localized blackouts or physical damage to infrastructure components.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation MidnightEclipse uses phishing to infiltrate energy sector networks, exploits SCADA vulnerabilities to gain remote access, and ultimately disrupts critical infrastructure operations, causing localized power outages and potential equipment failure.
+    </summary>
+</Scenario>

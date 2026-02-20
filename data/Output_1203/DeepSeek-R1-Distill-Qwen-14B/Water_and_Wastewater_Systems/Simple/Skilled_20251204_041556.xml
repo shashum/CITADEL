@@ -1,0 +1,47 @@
+<Scenario>
+    <title>Water Treatment System Hacked via Phishing and SCADA Exploit</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        <description>The attack begins with a phishing campaign targeting employees, followed by exploitation of SCADA system vulnerabilities to disrupt operations.</description>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Triangulation</campaign_or_group>
+        <motivation>Disruption of critical infrastructure</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing via Email Attachments</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2025-4632 (Suggested)</kev>
+            <capec>CAPEC ID: 163 Name: Spear Phishing</capec>
+            <description>Adversaries send phishing emails to employees, leveraging CVE-2025-4632 to gain initial access. The spear phishing attack targets specific users to maximize deception and exploit known vulnerabilities in email handling processes.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploitation of SCADA System Vulnerabilities</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2023-41993 (Suggested)</kev>
+            <capec>CAPEC ID: 523 Name: Malicious Software Implanted</capec>
+            <description>Once inside, attackers exploit CVE-2023-41993 to gain control over SCADA systems. This allows them to execute arbitrary commands and manipulate system configurations, leading to potential operational disruptions.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Tampering</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Application compromise</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 675 Name: Retrieve Data from Decommissioned Devices</capec>
+            <description>Attackers modify data within SCADA databases, potentially altering chemical concentrations in water treatment processes. This tampering can lead to unsafe water quality conditions or system malfunctions.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The attack starts with a phishing email exploiting CVE-2025-4632, followed by SCADA system exploitation using CVE-2023-41993, ultimately resulting in data tampering that disrupts water treatment operations.
+    </summary>
+</Scenario>

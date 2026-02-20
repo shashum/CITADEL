@@ -1,0 +1,133 @@
+<Scenario>
+    <title>SPACEHOP Cyber Intrusion in Energy Sector</title>
+    <overview>
+        <Target>Energy sector organizations</Target>
+        <Complexity>Complex</Complexity>
+        This scenario outlines a multi-stage cyber attack attributed to the SPACEHOP activity campaign, leveraging basic attacker skills to compromise systems through reconnaissance, resource development, and persistent lateral movement within the energy industry infrastructure.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=SPACEHOP Activity</campaign_or_group>
+        <motivation>Gather sensitive data or disrupt operations for potential financial or strategic benefit.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web or Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Operational systems, User endpoints, Network infrastructure, Shared resources
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Social engineering, Malware delivery, Proxy usage, Network scanning, Credential stuffing, Stolen credentials
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>An attacker uses artificial intelligence tools to analyze publicly available data sources, such as corporate websites or job listings, to identify potential targets and gather preliminary information on system configurations or employee roles relevant to the energy sector.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1547.014: Active Setup</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-532: Altered Installed BIOS</capec>
+            <description>The attacker configures or exploits leased virtual private servers (VPS) and operationally relayed box (ORB) networks to anonymize further attack activities, facilitating covert operations within the energy environment.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1595.001: Scanning IP Blocks</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-27198: Authentication bypass vulnerability in JetBrains TeamCity allowing admin actions</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>By sending simple phishing emails to employees, the attacker tricks them into opening malicious attachments or links, leading to credential disclosure or execution of malware that establishes an initial foothold on internal systems.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1202: Indirect Command Execution</technique_name>
+            <surface>Command Prompt</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>CVE-2025-24472: Authentication bypass vulnerability in Fortinet FortiOS/FortiProxy granting super-admin privileges</kev>
+            <capec>CAPEC-9: Buffer Overflow in Local Command-Line Utilities</capec>
+            <description>Once initial access is obtained, the attacker runs malicious scripts or commands via built-in utilities like PowerShell or cmd.exe to execute unauthorized processes, potentially exploiting known vulnerabilities to gain deeper control over the compromised endpoint.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1484.002: Trust Modification</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-473: Signature Spoof</capec>
+            <description>Malicious code is added to modify registry settings or create scheduled tasks to ensure the attacker maintains access even after system reboots or routine maintenance in the energy sector's operational technology (OT) environment.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1110.002: Password Cracking</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-50: Password Recovery Exploitation</capec>
+            <description>Using basic cracking tools or social engineering, the attacker attempts to guess or brute-force common passwords associated with user accounts already accessed, elevating privileges to administrative levels for greater control over energy-related systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1070: Indicator Removal</technique_name>
+            <surface>Scheduled Job</surface>
+            <vector>Scheduled Job Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-506: Tapjacking</capec>
+            <description>To avoid detection, logs are deleted or modified using simple scripting, obscuring the attacker's tracks in the energy organization's monitoring systems and reducing the chances of alerting security teams.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T0806: Brute Force I/O</technique_name>
+            <surface>Operational Databases</surface>
+            <vector>Process History/Live Data (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>Via brute-forcing techniques, the attacker systematically tests username-password combinations on accessible operational database interfaces within the energy sector, aiming to harvest additional login credentials for expanded access.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1595.003: Wordlist Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-406: Dumpster Diving</capec>
+            <description>Open ports and active hosts are identified through network scans, possibly using hidden proxy hops, to map out the internal energy network structure and locate valuable assets or data points that can be targeted next.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1654: Log Enumeration</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-93: Log Injection-Tampering-Forging</capec>
+            <description>With stolen credentials, the attacker moves laterally across the energy network by querying SMB shares or other file-based protocols to access more systems, escalating the scope of the intrusion beyond the initial entry point.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Sensitive files containing proprietary information, employee details, or system configurations are copied from targeted energy systems, often deleting originals to minimize forensic evidence left behind during exfiltration preparation.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1406.001: Steganography</technique_name>
+            <surface>System Image</surface>
+            <vector>Steganography</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-636: Hiding Malicious Data or Code within Files</capec>
+            <description>Collected data is concealed within seemingly normal files, such as images or PDFs, using steganographic methods, and transferred out via encrypted channels or disguised emails sent through proxy networks to obscure the origin in the energy sector.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>A denial-of-service attack is launched by overwhelming network traffic or disrupting communication protocols, specifically targeting critical energy systems like SCADA controllers or web servers to degrade or halt essential operations intentionally.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The SPACEHOP campaign demonstrates a coordinated attack starting with basic reconnaissance and phishing, progressing through execution and persistence to achieve widespread lateral movement and data collection within the energy industry, culminating in disruptive impacts aimed at compromising organizational stability.
+    </summary>
+</Scenario>

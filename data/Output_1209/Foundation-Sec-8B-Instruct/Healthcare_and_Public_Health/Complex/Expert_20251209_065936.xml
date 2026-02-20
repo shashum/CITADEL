@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>KV Botnet Activity</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated cyber attack orchestrated by the KV Botnet group targets healthcare organizations. Utilizing expert-level skills, the attackers engage in a multi-stage operation designed to infiltrate, persist, and disrupt critical systems. Their aim is to exfiltrate sensitive data while ensuring minimal detection and maximum impact.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=KV Botnet Group</campaign_or_group>
+        <motivation>Data Theft and Operational Disruption</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Exploit Public-Facing Application</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, Command & Control Server, Target System Artifact, User Account, Public IP/Network Block, Logon Session
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Network Traffic Flow (Mechanism), Response Metadata (Mechanism), Web Shell, Abuse Elevation Control Mechanism, Hide Artifacts, User Account Authentication (Mechanism), Network Service Scanning, Network Traffic Flow (Mechanism), Logon Session Creation (Mechanism), Exfiltration Over C2 Channel, Process Creation (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>The attackers conduct extensive network scans to identify vulnerable healthcare systems, mapping out network topology to pinpoint entry points.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The adversaries establish command and control servers and acquire infrastructure necessary for the botnet operation, setting the stage for future attacks.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attackers exploit known vulnerabilities in end-of-life SOHO devices commonly found in healthcare networks to gain initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1623: Command and Scripting Interpreter</technique_name>
+            <surface>Malicious Payload</surface>
+            <vector>Command and Scripting Interpreter</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-160: Exploit Script-Based APIs</capec>
+            <description>Post-exploitation, the attackers execute malicious scripts to further penetrate the system and establish footholds.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Command & Control Server</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-650: Upload a Web Shell to a Web Server</capec>
+            <description>To maintain persistent access, the attackers deploy web shells on compromised servers, allowing them to re-enter the system at will.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attackers escalate privileges to gain higher-level access within the network, enabling deeper infiltration.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1628: Hide Artifacts</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Hide Artifacts</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-498: Probe iOS Screenshots</capec>
+            <description>To evade detection, the attackers hide their artifacts and actions, making it difficult for security tools to trace their activities.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attackers employ brute force methods to steal valid credentials, gaining unauthorized access to user accounts.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>Once inside, the attackers map out the internal network, identifying services and potential paths for lateral movement.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers move laterally across the network using remote services, remaining undetected as they seek valuable data.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0811: Data from Information Repositories</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>The attackers systematically collect sensitive data from repositories, focusing on information that could be monetized or used for further attacks.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>Stolen data is transferred to attacker-controlled servers via established command and control channels, ensuring secure and covert exfiltration.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1490: Inhibit System Recovery</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-607: Obstruction</capec>
+            <description>The final phase involves disrupting operations by inhibiting system recovery processes, causing significant operational downtime.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The KV Botnet group employs a complex, multi-stage attack strategy targeting healthcare organizations. They begin with reconnaissance to identify vulnerable systems, develop resources for persistence, and gain initial access through exploiting public-facing applications. Once inside, they execute scripts, establish persistence, and escalate privileges. Defense evasion techniques are employed to avoid detection, followed by credential theft and network discovery. Lateral movement allows them to collect sensitive data, which is then exfiltrated over command and control channels. The attack culminates in impacting the victim's ability to recover from disruptions, causing significant operational damage.
+    </summary>
+</Scenario>

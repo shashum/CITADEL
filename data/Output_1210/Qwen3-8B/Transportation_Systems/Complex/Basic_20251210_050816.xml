@@ -1,0 +1,133 @@
+<Scenario>
+    <title>SolarWinds Compromise in Transportation Systems</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated multi-stage attack targeting transportation infrastructure leverages supply chain compromises, phishing, and lateral movement to disrupt critical operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=SolarWinds Compromise</campaign_or_group>
+        <motivation>Espionage</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Open Source Intelligence (OSINT), File System, Internet-facing assets, Application Log, Windows Registry, Domain Name Registrar, OS Process, Windows Service, Process, Network Traffic, File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Software Packing, General Access Method, Application Log Content (Mechanism), Windows Registry Key Creation (Mechanism), Pass the Hash, Process Injection, Keylogging, Reg.exe Utility, Network Traffic Flow (Mechanism), File Modification (Mechanism), Process Creation (Mechanism), Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker uses artificial intelligence tools to harvest publicly available data on transportation vendors' software ecosystems, identifying unpatched SCADA systems and network architecture weaknesses.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1045: Software Packing</technique_name>
+            <surface>File System</surface>
+            <vector>Software Packing</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-523: Malicious Software Implanted</capec>
+            <description>A custom firmware update is crafted with malicious packing to evade detection, targeting industrial control systems used in transportation infrastructure.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>Maintenance staff are targeted via spoofed vendor emails containing malicious attachments, granting attackers initial access to internal networks.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>Exploiting unpatched SCADA system logs, the attacker triggers execution of embedded malicious payloads to establish a foothold.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>A scheduled task is created in the registry to maintain persistent access during routine system updates.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>Credentials are harvested via pass-the-hash techniques to escalate privileges and access administrative control systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is injected into legitimate system processes to hide network activity and evade detection mechanisms.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1417.001: Keylogging</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Keylogging</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-568: Capture Credentials via Keylogger</capec>
+            <description>A keylogger is deployed within a Windows service to capture operator credentials for further access.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>Network traffic is analyzed using Reg.exe to map internal network topology and locate high-value targets like traffic management systems.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>Lateral movement occurs via remote services, exploiting predictable network traffic patterns to infiltrate interconnected transportation networks.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Operational data, including route schedules and parameters, is exfiltrated by modifying and extracting files from compromised systems.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1219.001: IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <description>Data is stealthily transferred via process creation tunnels to command-and-control servers, masking exfiltration activities.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>Network traffic is manipulated to disable critical infrastructure components, creating physical safety risks and operational disruptions.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        A complex attack leveraging AI-driven reconnaissance, supply chain exploitation, and lateral movement disrupts transportation systems, demonstrating the vulnerability of critical infrastructure to advanced persistent threats.
+    </summary>
+</Scenario>

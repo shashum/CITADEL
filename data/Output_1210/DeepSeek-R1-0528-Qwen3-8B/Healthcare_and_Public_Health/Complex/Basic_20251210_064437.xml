@@ -1,0 +1,94 @@
+```xml
+<Scenario>
+    <title>HomeLand Justice Cyber Extortion Attack</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        This attack scenario outlines a sophisticated yet basic-skilled campaign targeting healthcare organizations, leveraging multiple phases including reconnaissance, resource development, and various post-exploitation steps to achieve ransomware deployment and disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=HomeLand Justice</campaign_or_group>
+        <motivation>Ransom Demand for Financial Gain / Extortion</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Open Source Intelligence (OSINT)</initial_attack_surface>
+        <initial_attack_vector>Artificial Intelligence</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>AVAILABLE_SURFACES: Open Source Intelligence (OSINT), Hacking Tool, Internet-facing assets, File, Windows Registry, Logon Session, Public IP/Network Block, User Account, Internet Scan, Domain Name Registrar, Command, Network Traffic, Container</attack_surface>
+    <attack_vector>AVAILABLE_VECTORS: Artificial Intelligence, Download Basic Phishing Toolkit, General Access Method, File Creation (Mechanism), Windows Registry Key Creation (Mechanism), Logon Session Creation (Mechanism), Disabling Security Tools, User Account Authentication (Mechanism), Response Content (Mechanism), Pass the Hash, Command Execution (Mechanism), Network Traffic Flow (Mechanism), Container Start (Mechanism)</attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>An attacker uses artificial intelligence tools to automate the collection of open-source intelligence from public websites, forums, and social media, identifying key personnel, network configurations, and potential vulnerabilities in healthcare organizations.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Download Basic Phishing Toolkit</technique_name>
+            <surface>Hacking Tool</surface>
+            <vector>Download Basic Phishing Toolkit</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>A novice attacker downloads publicly available phishing kits, such as email templates or scripts from repositories like GitHub, to craft targeted spearphishing campaigns exploiting human error in the healthcare sector.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attacker gains initial access by sending spearphished emails disguised as legitimate communications from healthcare services, prompting recipients to click malicious links or download infected attachments that compromise internet-facing systems.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1204.001: Malicious Link</technique_name>
+            <surface>File</surface>
+            <vector>File Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>Upon successful phishing, a malicious file created by the attacker is executed, leading to the launch of lightweight malware or scripts that establish command-and-control communication and begin extracting sensitive data from endpoints.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>To maintain long-term access, the attacker configures scheduled tasks in the Windows operating system, creating persistent entries in the registry that trigger malicious activities upon system startup or reboot.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1078.001: Default Accounts</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-70: Try Common or Default Usernames and Passwords</capec>
+            <description>The compromised account attempts to escalate privileges by guessing or using default credentials, such as administrator passwords, to gain higher-level access across the network and execute more advanced commands.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1089: Disabling Security Tools</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Disabling Security Tools</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-578: Disable Security Software</capec>
+            <description>By manipulating processes or registry settings, the attacker disables security tools like antivirus or firewalls, particularly affecting public network interfaces, to reduce the risk of detection during subsequent exploitation phases.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110.003: Password Spraying</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-565: Password Spraying</capec>
+            <description>Credential theft involves password spraying attacks against user accounts, combined with tools like LSASS dumps, to harvest credentials from memory and access protected user accounts within the healthcare infrastructure.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1584.008: Network Devices</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-700: Network Boundary Bridging</capec>
+            <description>After gaining footholds, attackers scan internal networks and connected devices to map the organizational landscape, discovering vulnerable points and valuable assets such as servers storing patient records in the healthcare setting.</description>
+        </stage>
+        <stage name="Lateral Movement">

@@ -1,0 +1,73 @@
+<Scenario>
+    <metadata>
+        <title>Healthcare Industry Phishing and Malware Attack Scenario</title>
+        <created_by>Threat Intelligence Analyst</created_by>
+        <date>2024-07-26</date>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        Healthcare professionals targeted with spearphishing emails and exploited using drive-by compromises, leading to malware execution and data exfiltration.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>C0033</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Command, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Command Execution (Mechanism), Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attackers send targeted phishing emails to healthcare professionals, tricking them into revealing sensitive information.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attackers exploit vulnerabilities in outdated software on the healthcare organization's website to compromise user devices.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-663: Exploitation of Transient Instruction Execution</capec>
+            <description>The attackers use StrongPity malware to execute malicious code on compromised devices.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attackers steal sensitive patient data for financial gain.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attackers disrupt healthcare services by overloading systems with traffic.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This scenario involves a simple attack chain targeting healthcare professionals with spearphishing emails and exploiting vulnerabilities in outdated software on the healthcare organization's website. The attackers then execute malware on compromised devices and steal sensitive patient data for financial gain while disrupting healthcare services.
+    </summary>
+</Scenario>

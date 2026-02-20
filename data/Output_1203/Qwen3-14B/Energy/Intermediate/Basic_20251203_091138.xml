@@ -1,0 +1,76 @@
+<Scenario>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Intermediate</Complexity>
+        A sophisticated yet intermediate-level attack targeting the energy sector through phishing and ICS exploitation, orchestrated by the FunnyDream campaign. The attackers aim to manipulate SCADA systems and establish persistent access to disrupt grid operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=FunnyDream</campaign_or_group>
+        <motivation>Disruption of critical infrastructure and espionage</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Social engineering</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Social engineering", "Vulnerability", "Improper configuration", "Weak passwords", "Custom APIs"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Phishing", "Vulnerability exploit", "Security misconfigurations and vulnerabilities", "Malware", "Web"]
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Social engineering</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2015-1427 (Suggested)</kev>
+            <capec>CAPEC ID: 164</capec>
+            <description>Attackers send spear-phishing emails containing malicious Excel macro attachments to energy sector employees. These macros exploit the CVE-2015-1427 vulnerability to execute arbitrary code, granting initial access to the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Software Vulnerability</technique_name>
+            <surface>Vulnerability</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2024-26169 (Suggested)</kev>
+            <capec>CAPEC ID: 184</capec>
+            <description>Post-initial access, attackers exploit unpatched ICS software vulnerabilities (e.g., CVE-2024-26169) to execute arbitrary code on industrial control systems, establishing a foothold within the SCADA environment.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task</technique_name>
+            <surface>Improper configuration</surface>
+            <vector>Security misconfigurations and vulnerabilities</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654</capec>
+            <description>Attackers create hidden scheduled tasks using default administrator permissions on outdated energy infrastructure to maintain access across system reboots, bypassing proper configuration practices.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploitation of Remote Services</technique_name>
+            <surface>Weak passwords</surface>
+            <vector>Security misconfigurations and vulnerabilities</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 603</capec>
+            <description>Using default credentials on misconfigured RDP services, attackers escalate privileges to domain administrator levels, enabling broader lateral movement and control over the network.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Obfuscated Files or Information</technique_name>
+            <surface>Insufficient implementation of access controls</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 636</capec>
+            <description>Malware payloads are encrypted and encoded with base64 to evade signature-based detection mechanisms on under-resourced energy company networks, reducing visibility to defenders.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Manipulation</technique_name>
+            <surface>Custom APIs</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 153</capec>
+            <description>Attackers alter sensor readings in SCADA systems via manipulated API calls, triggering false alarms or destabilizing grid operations, consistent with the FunnyDream campaign’s sabotage patterns.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The FunnyDream campaign exploited human and technical vulnerabilities in the energy sector through phishing, ICS exploits, and persistence mechanisms to manipulate SCADA systems, demonstrating a coordinated effort to disrupt critical infrastructure.
+    </summary>
+</Scenario>

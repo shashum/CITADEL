@@ -1,0 +1,273 @@
+<Scenario>
+    <metadata>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Juicy Mix</campaign>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        Brief summary of the attack: The Juicy Mix campaign targets transportation systems with a complex attack plan involving multiple stages, including reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Juicy Mix</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Cloud Instance
+            Target Artifact (Tasks)
+            Target Artifact (Social media)
+            OS Process
+            Target Artifact (Application)
+            Target Artifact (Boot)
+            Application Log
+            Target Artifact (Mechanisms)
+            Dynamic Link Library
+            File System
+            Credential Store
+            Network Traffic
+            User Account
+            File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Email
+            Artificial Intelligence
+            Social Media
+            Process Creation (Mechanism)
+            Delivery Method
+            Code Injection
+            Memory Injection
+            Scheduled Task/Job
+            Bootkit
+            Application Log Content (Mechanism)
+            Abuse Elevation Control Mechanism
+            SIP and Trust Provider Hijacking
+            Command Execution (Mechanism)
+            Windows Registry Key Access (Mechanism)
+            Pass the Hash
+            Reg.exe Utility
+            Network Traffic Flow (Mechanism)
+            User Account Authentication (Mechanism)
+            File Access (Mechanism)
+            File and Directory Discovery
+            Exfiltration Over Alternative Protocol
+            Data Encrypted
+            Network Traffic Content (Mechanism)
+            File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker uses artificial intelligence to gather information about transportation systems' networks and vulnerabilities.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>T1593.001: Social Media</technique_name>
+            <surface>Target Artifact (Social media)</surface>
+            <vector>Social Media</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker identifies potential targets and their employees through social media and online platforms.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Cloud Instance</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>The attacker creates a custom backdoor like Mango to bypass detection.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-43461 (Suggested): Microsoft Windows MSHTML Platform contains a user interface (UI) misrepresentation of critical information vulnerability that allows an attacker to spoof a web page.</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker sends targeted phishing emails to transportation system employees with a link to the custom malware.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2021-21985 (Suggested): VMware vSphere Client contains an improper input validation vulnerability in the Virtual SAN Health Check plug-in, which is enabled by default in vCenter Server, which allows for remote code execution.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker compromises transportation system websites or third-party vendors' websites to infect visitors.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>Target Artifact (Application)</surface>
+            <vector>Code Injection</vector>
+            <kev>CVE-2022-1388 (Suggested): F5 BIG-IP contains a missing authentication in critical function vulnerability which can allow for remote code execution, creation or deletion of files, or disabling services.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attacker injects the custom malware into the compromised system.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1093: Process Hollowing</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Hollowing</vector>
+            <kev>CVE-2023-22527 (Suggested): Atlassian Confluence Data Center and Server contain an unauthenticated OGNL template injection vulnerability that can lead to remote code execution.</kev>
+            <capec>CAPEC-671: Requirements for ASIC Functionality Maliciously Altered</capec>
+            <description>The attacker bypasses detection by hiding the malicious code within legitimate processes.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1603: Scheduled Task/Job</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker schedules tasks to maintain persistence on the compromised system.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1067: Bootkit</technique_name>
+            <surface>Target Artifact (Boot)</surface>
+            <vector>Bootkit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-552: Install Rootkit</capec>
+            <description>The attacker modifies the boot process to ensure persistence even after reboot.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker exploits vulnerabilities in public-facing applications to gain elevated privileges.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target Artifact (Mechanisms)</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attacker uses existing elevation control mechanisms to escalate privileges.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1198: SIP and Trust Provider Hijacking</technique_name>
+            <surface>DYNAMIC LINK LIBRARY</surface>
+            <vector>SIP and Trust Provider Hijacking</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-614: Rooting SIM Cards</capec>
+            <description>The attacker disables anti-virus software to evade detection.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1647: Plist File Modification</technique_name>
+            <surface>File System</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-556: Replace File Extension Handlers</capec>
+            <description>The attacker modifies system firmware to hide evidence of the attack.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1552: Unsecured Credentials</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-226: Session Credential Falsification through Manipulation</capec>
+            <description>The attacker steals credentials from compromised accounts.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>The attacker uses stolen hashes to access other systems.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker scans the network for vulnerable systems.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1012: Query Registry</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-203: Manipulate Registry Information</capec>
+            <description>The attacker queries the registry for sensitive information.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attacker uses remote services to move laterally across the network.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attacker uses valid accounts to move laterally.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1074: Data Staged</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-231: Oversized Serialized Data Payloads</capec>
+            <description>The attacker stages collected data for exfiltration.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1420: File and Directory Discovery</technique_name>
+            <surface>File System</surface>
+            <vector>File and Directory Discovery</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-497: File Discovery</capec>
+            <description>The attacker discovers files and directories containing sensitive information.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1639: Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Target Artifact (Alternate)</surface>
+            <vector>Exfiltration Over Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>The attacker exfiltrates data using alternative protocols.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1022: Data Encrypted</technique_name>
+            <surface>Target Artifact (Exfiltration)</surface>
+            <vector>Data Encrypted</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-609: Cellular Traffic Intercept</capec>
+            <description>The attacker encrypts data before exfiltration.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker disrupts transportation systems to cause maximum impact.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker destroys data to cause long-term damage.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Juicy Mix campaign targets transportation systems with a complex attack plan involving multiple stages, including reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </summary>
+</Scenario>

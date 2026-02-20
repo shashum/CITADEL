@@ -1,0 +1,67 @@
+<Scenario>
+    <metadata>
+        <target_industry>Energy</target_industry>
+        <complexity_level>Simple</complexity_level>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>SolarWinds Compromise</campaign>
+    </metadata>
+    
+    <overview>
+        <Target>Energy Sector Organization</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a targeted attack against an energy sector organization using basic techniques, specifically leveraging phishing for initial access followed by straightforward command-based execution and automated exfiltration.
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=SolarWinds Compromise</campaign_or_group>
+        <motivation>Espionage/Damage Caustion</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Endpoint Systems, Network Infrastructure
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: Social Engineering, Malicious Software, Command Execution, Web, Email
+    </attack_vector>
+    
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2016-7892 (Suggested): Adobe Flash Player has an exploitable use-after-free vulnerability in the TextField class.</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An attacker crafts a deceptive email mimicking a legitimate communication, often directed towards employees with remote access privileges. The email contains a malicious hyperlink designed to exploit vulnerabilities in web browsers or applications hosted on internet-facing systems, potentially leveraging outdated software like Adobe Flash Player mentioned in the KEV data.</description>
+        </stage>
+        
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Endpoint Systems</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>CVE-2021-1048 (Suggested): Android kernel contains a use-after-free vulnerability that allows for privilege escalation.</kev>
+            <capec>CAPEC-663: Exploitation of Transient Instruction Execution</capec>
+            <description>Upon receiving the malicious email, an unsuspecting employee clicks the embedded link or opens the attachment, inadvertently executing a payload on their endpoint system. This action grants the attacker immediate access to the compromised machine, enabling further actions within the network.</description>
+        </stage>
+        
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Network Assets</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>With access established, the attacker deploys scripts or tools to automatically gather sensitive data from the energy organization's systems. This data, which could include operational secrets or proprietary information, is exfiltrated covertly using command mechanisms, possibly escalating privileges temporarily to facilitate transfer out of the network.</description>
+        </stage>
+    </attack_flow>
+    
+    <summary>
+        A simple phishing campaign leads to user-executed malware, resulting in automated data theft from an energy sector target.
+    </summary>
+</Scenario>

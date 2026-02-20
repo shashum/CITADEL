@@ -1,0 +1,51 @@
+<Scenario>
+    <title>Transportation System Phishing and Denial of Service Attack</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        A basic-skilled threat group leverages phishing and unpatched software vulnerabilities to disrupt transportation traffic control systems through denial-of-service attacks.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0017</campaign_or_group>
+        <motivation>Disruption of critical infrastructure operations</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Target System Artifact, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method, Exploit TEE Vulnerability, Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The attacker sends fraudulent emails impersonating official maintenance alerts or ticketing systems, tricking employees into clicking malicious links hosted on internet-facing assets.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit TEE Vulnerability</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exploit TEE Vulnerability</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-67: String Format Overflow in syslog()</capec>
+            <description>The attacker exploits known vulnerabilities in outdated ticketing systems (target system artifacts) to execute arbitrary code and gain initial foothold.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker floods traffic control systems with malformed network packets, overwhelming infrastructure and causing operational disruptions.</description>
+        </stage>
+    </attack_flow>
+    <summary>A basic-skilled adversary uses phishing to compromise transportation systems, exploits unpatched software for execution, and deploys denial-of-service attacks to disrupt critical operations.</summary>
+</Scenario>

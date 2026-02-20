@@ -1,0 +1,47 @@
+<Scenario>
+    <title>Phishing-Based Communication Sector Cyberattack</title>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Simple</Complexity>
+        This scenario describes a simple cyberattack targeting the communications sector through a phishing campaign, leading to data destruction.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name="Cutting Edge"</campaign_or_group>
+        <motivation>Mission to disrupt communication infrastructure</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2020-0688 (Suggested)</kev>
+            <capec>CAPEC ID: 164 Name: Mobile Phishing</capec>
+            <description>The attack begins with a phishing email containing malicious links or attachments designed to trick employees into revealing their credentials. This technique leverages human error and social engineering to gain initial access to the target network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Remote Access Tool (RAT)</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2023-34048 (Suggested)</kev>
+            <capec>CAPEC ID: 180 Name: Exploiting Incorrectly Configured Access Control Security Levels</capec>
+            <description>After gaining initial access through phishing, the attacker deploys a Remote Access Tool (RAT) to establish persistent control over the compromised system. This allows the attacker to execute commands remotely and prepare for further actions.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Destruction</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 675 Name: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker executes data destruction activities to erase or corrupt critical communication data stored in shared databases or directories. This results in significant operational disruption for the communications sector.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        A simple cyberattack targeting the communications sector begins with a phishing campaign, followed by the deployment of a Remote Access Tool (RAT) to gain control, and culminates in data destruction to disrupt operations.
+    </summary>
+</Scenario>

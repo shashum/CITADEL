@@ -1,0 +1,132 @@
+<Scenario>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated cyber attack targeting water and wastewater systems begins with spearphishing to gain initial access, followed by lateral movement and manipulation of critical infrastructure to disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Sharpshooter</campaign_or_group>
+        <motivation>Disruption of critical infrastructure and potential environmental harm</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Social engineering</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Social engineering"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["Phishing"]
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>OSINT Gathering</technique_name>
+            <surface>WHOIS records, contacts and history</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 121</capec>
+            <description>The threat actor gathers public information about the target organization, including WHOIS records and contact details, to identify potential vulnerabilities and personnel for targeted attacks.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Compromised Legitimate Infrastructure</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 544</capec>
+            <description>The attacker compromises servers within the same industry to establish a foothold, enabling future attacks against similar targets.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Attachment</technique_name>
+            <surface>Social engineering</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2015-1641 (Suggested)</kev>
+            <capec>CAPEC ID: 511</capec>
+            <description>A tailored phishing email containing a malicious attachment is sent to employees, exploiting social engineering to install malware and gain initial network access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2019-1253 (Suggested)</kev>
+            <capec>CAPEC ID: 121</capec>
+            <description>The attacker exploits unpatched SCADA or PLC interfaces exposed to the internet to execute arbitrary code and establish persistence.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task/Job</technique_name>
+            <surface>Custom APIs</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 654</capec>
+            <description>Malware schedules recurring tasks to maintain access and re-establish connections if detected, ensuring continued presence in the network.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploitation of Remote Services</technique_name>
+            <surface>Weak passwords</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 603</capec>
+            <description>The attacker leverages default credentials or misconfigured services on industrial controllers to escalate privileges and gain deeper access.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Indicator Removal from Host</technique_name>
+            <surface>SSL Certificates and Attribution</surface>
+            <vector>Inadequate encryption</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 292</capec>
+            <description>Logs and artifacts are deleted from infected systems to evade detection by basic SIEM tools, masking the attacker's activities.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Dumping Passwords</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 406</capec>
+            <description>Passwords are extracted from memory to enable lateral movement across the network, allowing access to additional systems.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>Network Share Discovery</technique_name>
+            <surface>Shared DB or directory</surface>
+            <vector>Open port</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 643</capec>
+            <description>The attacker maps shared drives and directories to locate sensitive operational technology (OT) assets and plan further exploitation.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>RDP or SSH</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 324</capec>
+            <description>Using stolen credentials, the attacker accesses other systems within the OT network via RDP or SSH to expand their control.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data from Local System</technique_name>
+            <surface>Custom APIs</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 328</capec>
+            <description>Configuration files, control logic, and sensor data from SCADA systems are harvested for analysis and potential exploitation.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>Exfiltration Over C2 Channel</technique_name>
+            <surface>Public and private cloud</surface>
+            <vector>Botnet</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 24</capec>
+            <description>Stolen data is encrypted and transmitted via covert channels embedded in legitimate traffic to external command-and-control servers.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Manipulation</technique_name>
+            <surface>Obsolescent products</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 153</capec>
+            <description>Chemical treatment parameters in water systems are altered to cause contamination or service disruptions, directly impacting public safety.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Sharpshooter begins with spearphishing to breach water/wastewater networks, escalates privileges, and manipulates critical infrastructure to cause environmental harm.
+    </summary>
+</Scenario>

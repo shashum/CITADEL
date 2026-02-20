@@ -1,0 +1,166 @@
+<Scenario>
+    <metadata>
+        <title>Complex Communications Industry Threat Scenario</title>
+        <target_industry>Communications</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>C0015</campaign>
+    </metadata>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated threat actor group C0015 targets the communications industry using a multi-stage attack plan involving AI-powered reconnaissance, resource development, initial access, execution, persistence, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>C0015</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Target Artifact (Tasks)
+            OS Process
+            File
+            User Account
+            Credential Store
+            Internet Scan
+            Alternate
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Delivery Method
+            Artificial Intelligence
+            Response Metadata (Mechanism)
+            Process Injection
+            Scheduled Task/Job
+            Bootkit
+            File Metadata (Mechanism)
+            User Account Authentication (Mechanism)
+            Reg.exe Utility
+            Exfiltration Over Alternative Protocol
+            Response Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker uses artificial intelligence to gather information about the target's tasks.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attacker acquires infrastructure through internet scans.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2018-0798 (Suggested): Microsoft Office contains a memory corruption vulnerability due to the way objects are handled in memory. Successful exploitation allows for remote code execution in the context of the current user. This vulnerability is known to be chained with CVE-2018-0802.</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attacker gains initial access through spear phishing via services.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-43770 (Suggested): Roundcube Webmail contains a persistent cross-site scripting (XSS) vulnerability that can lead to information disclosure via malicious link references in plain/text messages.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker gains initial access through drive-by compromise.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>CVE-2025-57819 (Suggested): Sangoma FreePBX contains an authentication bypass vulnerability due to insufficiently sanitized user-supplied data allows unauthenticated access to FreePBX Administrator leading to arbitrary database manipulation and remote code execution.</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>The attacker executes malicious code through process injection.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1603: Scheduled Task/Job</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>CVE-2023-46748 (Suggested): F5 BIG-IP Configuration utility contains an SQL injection vulnerability that may allow an authenticated attacker with network access through the BIG-IP management port and/or self IP addresses to execute system commands. This vulnerability can be used in conjunction with CVE-2023-46747.</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker executes malicious code through scheduled tasks/jobs.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1067: Bootkit</technique_name>
+            <surface>Target Artifact (Boot)</surface>
+            <vector>Bootkit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-552: Install Rootkit</capec>
+            <description>The attacker establishes persistence through bootkits.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1027.010: Command Obfuscation</technique_name>
+            <surface>File</surface>
+            <vector>File Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-191: Read Sensitive Constants Within an Executable</capec>
+            <description>The attacker evades detection through command obfuscation.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attacker accesses credentials through brute force attacks.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker discovers sensitive information through network sniffing.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attacker moves laterally through valid accounts.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1074: Data Staged</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-231: Oversized Serialized Data Payloads</capec>
+            <description>The attacker collects data through staged data.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1639: Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Target Artifact (Alternate)</surface>
+            <vector>Exfiltration Over Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>The attacker exfiltrates data over alternative protocols.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1592.002: Software</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-581: Security Software Footprinting</capec>
+            <description>The attacker achieves impact through software footprinting.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This complex attack scenario involves multiple stages, including reconnaissance, resource development, initial access, execution, persistence, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact. The attacker uses various techniques, including artificial intelligence, spear phishing, drive-by compromise, process injection, scheduled tasks/jobs, bootkits, command obfuscation, brute force attacks, network sniffing, valid accounts, data staging, and exfiltration over alternative protocols.
+    </summary>
+</Scenario>

@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Water and Wastewater Systems</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>C0010</campaign>
+    </metadata>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        A highly skilled and well-resourced threat actor group, C0010, conducts a multi-stage cyber attack targeting critical infrastructure in the water and wastewater sector. Their objective is to disrupt operations and exfiltrate sensitive data. They employ sophisticated techniques to infiltrate, maintain persistence, escalate privileges, evade defenses, and ultimately impact the targeted systems.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0010</campaign_or_group>
+        <motivation>Disruption and Data Theft</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Supply Chain Compromise</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, Script File, Target Artifact, Application Log, Logon Session, Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Network Traffic Flow, Response Metadata, Web Shell, Abuse Elevation Control Mechanism, Hide Artifacts, Mimikatz Tool, System Network Configuration Discovery, Application Log Content, Logon Session Creation, Data Interchange Protocol Manipulation, Exfiltration Over C2 Channel, Process Creation
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309; Name: Network Topology Mapping</capec>
+            <description>The attackers conduct extensive network scans to identify vulnerabilities in the water and wastewater systems' network architecture.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522; Name: Malicious Hardware Component Replacement</capec>
+            <description>The attackers establish command and control servers and acquire infrastructure necessary for malware deployment and communication channels.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0862: Supply Chain Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2017-6334 (Suggested): dnslookup.cgi on NETGEAR DGN2200 devices with firmware through 10.0.0.50 allows remote authenticated users to execute arbitrary OS commands</kev>
+            <capec>CAPEC ID: 439; Name: Manipulation During Distribution</capec>
+            <description>The attackers infiltrate the OT environment by compromising software updates, leading to unauthorized execution of commands on internet-facing assets.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>CVE-2023-6345 (Suggested): Google Chromium Skia contains an integer overflow vulnerability that allows a remote attacker, who has compromised the renderer process, to potentially perform a sandbox escape via a malicious file.</kev>
+            <capec>CAPEC ID: 121; Name: Exploit Non-Production Interfaces</capec>
+            <description>Exploiting known vulnerabilities in web interfaces, the attackers gain initial access and execute malicious payloads.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Script File</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 650; Name: Upload a Web Shell to a Web Server</capec>
+            <description>To maintain persistent access, the attackers deploy web shells on vulnerable script files within the system.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target Artifact (Mechanisms)</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 233; Name: Privilege Escalation</capec>
+            <description>The attackers escalate their privileges within the OT environment to gain higher-level access and control over critical processes.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1628: Hide Artifacts</technique_name>
+            <surface>Target Artifact (Artifacts)</surface>
+            <vector>Hide Artifacts</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 498; Name: Probe iOS Screenshots</capec>
+            <description>To avoid detection, the attackers hide artifacts associated with their malicious activities, making it difficult for security tools to detect their presence.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 226; Name: Session Credential Falsification through Manipulation</capec>
+            <description>The attackers steal credentials using tools like Mimikatz to facilitate lateral movement throughout the network.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1422: System Network Configuration Discovery</technique_name>
+            <surface>Target Artifact (Discovery)</surface>
+            <vector>System Network Configuration Discovery</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309; Name: Network Topology Mapping</capec>
+            <description>Understanding the network layout, the attackers plan their lateral movement to maximize impact.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1550: Use Alternate Authentication Material</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 151; Name: Identity Spoofing</capec>
+            <description>Using stolen credentials, the attackers move laterally across the network to reach critical systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0811: Data from Information Repositories</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 277; Name: Data Interchange Protocol Manipulation</capec>
+            <description>The attackers gather sensitive data related to system configurations and operations.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target Artifact (Channel)</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 24; Name: Filter Failure through Buffer Overflow</capec>
+            <description>Data collected is transferred back to the attackers' controlled infrastructure via established C2 channels.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1490: Inhibit System Recovery</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 607; Name: Obstruction</capec>
+            <description>The attackers disrupt services by destroying backup data and corrupting systems, aiming to inhibit recovery efforts.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The complex cyber attack orchestrated by the expert threat actor group C0010 against the water and wastewater systems involves multiple stages of reconnaissance, resource development, initial access, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact. The attackers meticulously plan and execute each phase to achieve maximum disruption and data theft, demonstrating a high level of sophistication and determination.
+    </summary>
+</Scenario>

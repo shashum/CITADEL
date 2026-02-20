@@ -1,0 +1,77 @@
+<Scenario>
+    <title>Energy Sector Disruption via Web App Exploitation</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Intermediate</Complexity>
+        The attacker targets vulnerable web applications in the energy sector to gain initial access, then moves laterally and escalates privileges before deploying disruptive malware to industrial control systems.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0017</campaign_or_group>
+        <motivation>Financial Gain / Espionage</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing Assets</initial_attack_surface>
+        <initial_attack_vector>Vulnerability Exploit</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing Assets, Domain Controller, Memory, Industrial Control Systems (ICS), Compromised Server, Compromised System
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Scripting Language, Legitimate Tools, Credential Access, Upload, Vulnerability Exploit, Supply Chain Compromise
+    </attack_vector>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Exploiting Vulnerable Web Applications</technique_name>
+            <surface>Internet-facing Assets</surface>
+            <vector>Vulnerability Exploit</vector>
+            <kev>CVE-2024-34102</kev>
+            <capec>CAPEC-267: Leverage Alternate Encoding</capec>
+            <description>The attacker exploits a vulnerability in an internet-facing web application, likely a SCADA system or energy trading platform, using alternate encoding to bypass input validation.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Living off the Land (LoTL)</technique_name>
+            <surface>Compromised System</surface>
+            <vector>Legitimate Tools</vector>
+            <kev>CVE-2021-39226</kev>
+            <capec>CAPEC-406: Dumpster Diving</capec>
+            <description>The attacker uses built-in tools and scripts to perform tasks on the compromised system, avoiding detection by blending in with legitimate activity.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Web Shell</technique_name>
+            <surface>Compromised Server</surface>
+            <vector>Upload</vector>
+            <kev></kev>
+            <capec>CAPEC-650: Upload a Web Shell to a Web Server</capec>
+            <description>The attacker uploads a web shell to a compromised server, allowing them to maintain access and execute commands remotely.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Pass-the-Hash</technique_name>
+            <surface>Domain Controller</surface>
+            <vector>Credential Access</vector>
+            <kev></kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>The attacker steals credentials from the domain controller and uses them to escalate privileges within the network.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Fileless Malware</technique_name>
+            <surface>Memory</surface>
+            <vector>Scripting Language</vector>
+            <kev></kev>
+            <capec>CAPEC-44: Overflow Binary Resource File</capec>
+            <description>The attacker employs fileless malware written in a scripting language to avoid traditional antivirus detection.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disruptive Malware</technique_name>
+            <surface>Industrial Control Systems (ICS)</surface>
+            <vector>Supply Chain Compromise</vector>
+            <kev></kev>
+            <capec>CAPEC-698: Install Malicious Extension</capec>
+            <description>The attacker introduces malware into industrial control systems via a supply chain compromise, causing disruption or damage to energy production processes.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The C0017 group targets the energy sector by exploiting vulnerabilities in web applications, moving laterally, and escalating privileges before deploying disruptive malware to critical infrastructure, leading to potential disruptions in energy production.
+    </summary>
+</Scenario>

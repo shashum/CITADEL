@@ -1,0 +1,53 @@
+<Scenario>
+    <title>Nearest Neighbor Attack Scenario for Transportation Systems</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a straightforward cyber attack leveraging phishing techniques to compromise endpoints and disrupt operations within the Transportation Systems sector.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=APT28 Nearest Neighbor Campaign</campaign_or_group>
+        <motivation>Potentially espionage-related activities aimed at disrupting critical infrastructure operations.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Distribution Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, File System
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Spearphishing Attachment, File Access (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Distribution Method</vector>
+            <kev>CVE-2022-26318 (Suggested): On WatchGuard Firebox and XTM appliances, an unauthenticated user can execute arbitrary code.</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An adversary initiates contact with potential victims using legitimate communication channels associated with internet-facing assets, specifically employing phishing emails crafted to deceive recipients into divulging credentials or opening malicious attachments. These emails often mimic trusted sources common within the transportation industry, exploiting human psychology rather than complex software vulnerabilities.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1193: Spearphishing Attachment</technique_name>
+            <surface>File System</surface>
+            <vector>Spearphishing Attachment</vector>
+            <kev>CVE-2020-13927 (Suggested): The previous default setting for Airflow's Experimental API was to allow all API requests without authentication.</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>Upon receiving a convincing spearphishing email, the victim opens the attached file, typically disguised as a routine document related to their work. Once executed, the malicious script gains unauthorized privileges on the endpoint, establishing a foothold within the internal network accessible via the compromised file system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attackers leverage the execution capabilities gained during the prior stages to modify or delete critical files stored locally on the affected system, particularly those managing schedules or operational parameters essential for transportation services. This action leads to significant operational downtime, impacting service reliability and safety.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This simple attack chain demonstrates how phishing serves as the primary entry point for adversaries targeting the Transportation Systems sector, ultimately aiming to disrupt operations by compromising local data integrity.
+    </summary>
+</Scenario>

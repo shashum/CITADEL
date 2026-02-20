@@ -1,0 +1,83 @@
+<Scenario>
+    <metadata>
+        <title>APT41 DUST Healthcare Attack Scenario</title>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>APT41 DUST</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare Staff</Target>
+        <Complexity>Simple</Complexity>
+        APT41 DUST targets healthcare organizations using spear phishing and drive-by compromise to gain initial access, followed by custom command and control protocols and PowerShell exploitation for execution, leading to automated exfiltration and denial-of-service attacks.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>APT41 DUST</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Target Artifact (Protocols), PowerShell Interpreter, Command, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Custom Command and Control Protocol, PowerShell Script, Command Execution (Mechanism), Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2013-6282 (Suggested): The get_user and put_user API functions of the Linux kernel fail to validate the target address when being used on ARM v6k/v7 platforms.</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attacker sends spear phishing emails to healthcare staff using compromised email accounts, exploiting the trust relationship between the sender and recipient.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-29059 (Suggested): Microsoft.NET Framework contains an information disclosure vulnerability that exposes the ObjRef URI to an attacker, ultimately enabling remote code execution.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker compromises public health websites with malware-laced ads or malicious code, infecting visitors' devices during a drive-by download.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1094: Custom Command and Control Protocol</technique_name>
+            <surface>Target Artifact (Protocols)</surface>
+            <vector>Custom Command and Control Protocol</vector>
+            <kev>CVE-2020-5849 (Suggested): Unraid contains an authentication bypass vulnerability that allows attackers to gain access to the administrative interface.</kev>
+            <capec>CAPEC-248: Command Injection</capec>
+            <description>The attacker establishes command and control servers to remotely access compromised systems, utilizing custom command and control protocols for communication.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1086: PowerShell</technique_name>
+            <surface>PowerShell Interpreter</surface>
+            <vector>PowerShell Script</vector>
+            <kev>CVE-2021-27860 (Suggested): A vulnerability in the web management interface of FatPipe WARP, IPVPN, and MPVPN software allows a remote, unauthenticated attacker to upload a file to any location on the filesystem.</kev>
+            <capec>CAPEC-108: Command Line Execution through SQL Injection</capec>
+            <description>The attacker utilizes PowerShell to execute malicious scripts on compromised systems, taking advantage of the powerful scripting capabilities of PowerShell.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attacker steals sensitive patient data and medical records through automated exfiltration, compromising the confidentiality and integrity of the data.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker disrupts critical healthcare services and causes operational downtime through denial-of-service attacks, impacting the availability of essential services.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        APT41 DUST conducts a series of attacks against healthcare organizations, starting with spear phishing and drive-by compromise to gain initial access, followed by custom command and control protocols and PowerShell exploitation for execution, culminating in automated exfiltration and denial-of-service attacks.
+    </summary>
+</Scenario>

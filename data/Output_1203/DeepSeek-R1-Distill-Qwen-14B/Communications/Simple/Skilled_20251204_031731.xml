@@ -1,0 +1,44 @@
+<Scenario>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Simple</Complexity>
+        <Summary>Operation Dust Storm is a cyber campaign targeting the communications sector through a phased attack involving phishing, remote command and control, and a disruptive DDoS attack.</Summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Dust Storm</campaign_or_group>
+        <motivation>Disruption of communication infrastructure to impair critical services.</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2023-27532 (Suggested)</kev>
+            <capec>CAPEC ID: 164 Name: Mobile Phishing Description: An adversary targets mobile phone users with a phishing attack for the purpose of soliciting account passwords or sensitive information from the user.</capec>
+            <description>The attackers initiate the attack by sending phishing emails containing malicious links to employees of the communications company. These links lead to a fake login page designed to steal credentials, exploiting human error and social engineering techniques.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Remote Command and Control</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Open port</vector>
+            <kev>CVE-2020-16009 (Suggested)</kev>
+            <capec>CAPEC ID: 555 Name: Remote Services with Stolen Credentials Description: This pattern of attack involves an adversary that uses stolen credentials to leverage remote services such as RDP, telnet, SSH, and VNC to log into a system.</capec>
+            <description>Once initial access is gained via phishing, the attackers establish a remote command and control (C2) channel using stolen credentials. This allows them to issue commands and execute malicious activities within the network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>DDoS</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Distributed Denial of Service(DDoS)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 488 Name: HTTP Flood Description: An adversary may execute a flooding attack using the HTTP protocol with the intent to deny legitimate users access to a service by consuming resources at the application layer such as web services and their infrastructure.</capec>
+            <description>The attackers launch a DDoS attack using an HTTP flood technique, overwhelming the target's communications infrastructure with excessive requests, rendering it unavailable to legitimate users.</description>
+        </stage>
+    </attack_flow>
+    <summary>Operation Dust Storm employs a multi-stage attack strategy starting with phishing to gain initial access, followed by establishing remote command and control, and culminating in a disruptive DDoS attack to impact the communications infrastructure.</summary>
+</Scenario>

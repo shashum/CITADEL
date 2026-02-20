@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Operation Ghost: Multi-Stage Cyber Attack on Healthcare Infrastructure</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        [A sophisticated multi-stage attack leveraging AI-driven reconnaissance, custom malware, and lateral movement to compromise healthcare systems and disrupt operations]
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Ghost</campaign_or_group>
+        <motivation>Financial Gain & Espionage</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Open Source Intelligence (OSINT)</initial_attack_surface>
+        <initial_attack_vector>Artificial Intelligence</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: OS Process, Windows Registry, Application Log, Command, Network Traffic, File, Process, Domain Name Registrar, Internet-facing assets, Script
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Code Injection, Windows Registry Key Creation, Application Log Content, Process Hollowing, Pass the Hash, Command Execution, Network Traffic Flow, File Access, Process Creation, Delivery Method, Script Execution, TCP Options Probe, TCP (ISN) Sequence Predictability, IP ID Sequencing
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attackers deploy AI algorithms to analyze public data sources, identifying healthcare providers' IT infrastructure configurations and employee contact details, enabling precise targeting of high-value assets.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T0802: Automated Collection</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>Malware is developed using automated collection scripts tailored to exploit vulnerabilities in medical devices and Picture Archiving Communication Systems (PACS), ensuring stealth and compatibility with healthcare-specific protocols.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1566.004: Spearphishing Voice</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-656: Voice Phishing</capec>
+            <description>Voice phishing calls mimic legitimate supplier communications, tricking staff into divulging credentials or initiating malicious workflows that grant initial access to internal networks.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1540: Code Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Code Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious scripts are injected into legitimate processes to execute payloads without user interaction, exploiting weak input validation in healthcare software applications.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>A persistent scheduled task is created in the Windows Registry to maintain access across system reboots, ensuring long-term control over compromised endpoints.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0866: Exploitation of Remote Services</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-603: Blockage</capec>
+            <description>Attackers manipulate application log content to escalate privileges, leveraging misconfigured logging mechanisms to gain administrative rights over critical systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1093: Process Hollowing</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Hollowing</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-671: Requirements for ASIC Functionality Maliciously Altered</capec>
+            <description>Legitimate processes are hijacked using process hollowing techniques to evade endpoint detection solutions while executing malicious code.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>Credentials extracted during privilege escalation are used to authenticate to other systems, expanding the attack surface across the healthcare network.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0840: Network Connection Enumeration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-327: TCP Options Probe</capec>
+            <description>Network connection enumeration commands are executed to identify vulnerable hosts, shared resources, and potential pathways for lateral movement.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>Remote services are exploited to move laterally between segmented networks, avoiding detection by traditional firewall rules.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>Sensitive patient data, including radiology records, is exfiltrated by accessing local files on compromised systems.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1219.001: IDE Tunneling</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-317: IP ID Sequencing Probe</capec>
+            <description>Data is transferred covertly using IDE tunneling over encrypted channels, masking exfiltration traffic as normal network activity.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>Malicious deployment tools are used to encrypt electronic health records (EHRs), crippling operational capabilities and demanding ransom payments.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        [Operation Ghost executes a complex, multi-phase attack on healthcare systems, combining AI-driven reconnaissance, custom malware, and advanced evasion techniques to infiltrate networks, exfiltrate sensitive data, and disrupt critical operations through ransomware deployment.]
+    </summary>
+</Scenario>

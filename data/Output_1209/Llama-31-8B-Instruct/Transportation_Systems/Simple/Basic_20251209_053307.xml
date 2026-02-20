@@ -1,0 +1,81 @@
+<Scenario>
+    <metadata>
+        <title>2016 Ukraine Electric Power Attack Scenario</title>
+        <date>2016</date>
+        <author>Threat Intelligence Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        Basic attackers targeting transportation systems may use drive-by compromises, exploit public-facing applications, and leverage custom command and control protocols to disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>2016 Ukraine Electric Power Attack</campaign_or_group>
+        <motivation>Disruption of Critical Infrastructure</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Active Directory, Network Traffic, File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Custom Command and Control Protocol, Command Execution (Mechanism), Network Traffic Content (Mechanism), File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker uses public Wi-Fi or unsecured networks near transportation hubs to compromise devices through drive-by downloads.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker exploits known vulnerabilities in outdated software used by transportation systems.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1094: Custom Command and Control Protocol</technique_name>
+            <surface>Active Directory</surface>
+            <vector>Custom Command and Control Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-248: Command Injection</capec>
+            <description>The attacker establishes a C2 server using compromised devices or cloud services.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0853: Scripting</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-160: Exploit Script-Based APIs</capec>
+            <description>The attacker uses simple scripting languages like Python or PowerShell to automate tasks.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker overloads transportation systems with traffic or data requests to cause disruptions.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker deletes or corrupts critical system files to cause long-term damage.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This scenario outlines a basic attack plan targeting transportation systems, utilizing drive-by compromises, exploiting public-facing applications, and leveraging custom command and control protocols to achieve disruption.
+    </summary>
+</Scenario>

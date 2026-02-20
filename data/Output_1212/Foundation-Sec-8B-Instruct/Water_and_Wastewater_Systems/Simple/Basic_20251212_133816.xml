@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Water and Wastewater Systems</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>C0026</campaign>
+    </metadata>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        A basic-level cyber attack targeting water and wastewater systems begins with phishing attempts against internet-facing assets, leading to the execution of malicious files via reg.exe utility, ultimately resulting in data manipulation impacting system operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0026</campaign_or_group>
+        <motivation>Disruption</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, File System, OS Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Reg.exe Utility, Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2020-5902 (Suggested): F5 BIG-IP TMUI RCE</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An attacker sends phishing emails to employees, tricking them into clicking on malicious links or opening infected attachments which leads to initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1204.002: Malicious File</technique_name>
+            <surface>File System</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>CVE-2016-1555: NETGEAR Wireless AP Command Injection</kev>
+            <capec>CAPEC-635: Alternative Execution Due to Deceptive Filenames</capec>
+            <description>Upon successful phishing, the malicious attachment is executed using the reg.exe utility, allowing the attacker to run arbitrary commands on the compromised system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1641: Data Manipulation</technique_name>
+            <surface>OS Process</surface>
+            <vector>Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-153: Input Data Manipulation</capec>
+            <description>The attacker manipulates data within the system processes to disrupt operations, potentially causing operational failures or safety hazards within the water and wastewater systems.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This simple cyber attack involves phishing to gain initial access, followed by executing malicious files to manipulate critical system data, thereby disrupting the operations of water and wastewater systems.
+    </summary>
+</Scenario>

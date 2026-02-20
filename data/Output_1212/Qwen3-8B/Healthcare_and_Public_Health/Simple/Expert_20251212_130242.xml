@@ -1,0 +1,51 @@
+<Scenario>
+    <title>Unitronics Defacement Campaign in Healthcare Sector</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a targeted spearphishing campaign compromising healthcare organizations through internet-facing assets, leading to data manipulation and operational disruption.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Unitronics Defacement Campaign</campaign_or_group>
+        <motivation>Disruption and misinformation dissemination</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Script File, OS Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Command and Scripting Interpreter, Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2018-19943 (CWE-79): A cross-site scripting vulnerability affecting QNAP NAS File Station could allow remote attackers to inject malicious code.</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker sends targeted phishing emails containing malicious hyperlinks to healthcare staff, exploiting vulnerable internet-facing assets. The link leverages a cross-site scripting (XSS) vulnerability (CVE-2018-19943) to deliver a payload, bypassing authentication mechanisms through social engineering.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Command and Scripting Interpreter</technique_name>
+            <surface>Script File</surface>
+            <vector>Command and Scripting Interpreter</vector>
+            <kev>CVE-2022-40139 (CWE-200): Trend Micro Apex One contains an improper validation of rollback mechanism components that could lead to remote code execution.</kev>
+            <capec>CAPEC-160: Exploit Script-Based APIs</capec>
+            <description>After initial access, the attacker executes malicious scripts on compromised systems, exploiting a remote code execution (RCE) flaw (CVE-2022-40139) in Trend Micro software. The script-based API exploitation allows the attacker to run arbitrary commands, escalating privileges and establishing persistence.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Manipulation</technique_name>
+            <surface>OS Process</surface>
+            <vector>Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-153: Input Data Manipulation</capec>
+            <description>The attacker manipulates critical OS processes to alter patient records and public health data, leveraging poor input validation (CAPEC-153). This disrupts medical operations and spreads misinformation, achieving strategic objectives through data integrity violations.</description>
+        </stage>
+    </attack_flow>
+    <summary>A sophisticated spearphishing campaign targets healthcare providers, exploiting internet-facing vulnerabilities to execute malicious scripts and manipulate sensitive data, causing operational disruption and reputational damage.</summary>
+</Scenario>

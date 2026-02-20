@@ -1,0 +1,165 @@
+<Scenario>
+    <metadata>
+        <title>Maroochy Water Breach Scenario</title>
+        <date>2023-07-26</date>
+        <author>Cybersecurity Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        <brief_summary>A sophisticated cyber attack targeting the Maroochy Water Treatment Plant.</brief_summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Maroochy Water Breach</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES:
+            Internet-facing assets
+            Open Source Intelligence (OSINT)
+            File
+            Windows Registry
+            Command
+            Network Traffic
+            Target System Artifact
+            Windows Service
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS:
+            Delivery Method
+            Artificial Intelligence
+            Reg.exe Utility
+            File Modification (Mechanism)
+            Command Execution (Mechanism)
+            Windows Registry Key Creation (Mechanism)
+            Exploit TEE Vulnerability
+            User Evasion
+            Keylogging
+            Network Traffic Flow (Mechanism)
+            Stolen Equipment
+            Systemd Service
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attackers gather information about the healthcare organization's IT infrastructure and personnel using artificial intelligence tools.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attackers identify potential entry points and vulnerabilities in the network using network sniffing.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1070.010: Relocate Malware</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-542: Targeted Malware</capec>
+            <description>The attackers develop a custom malware that can bypass security measures and gain access to the system.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attackers trick an employee into opening a malicious email attachment or link.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-663: Exploitation of Transient Instruction Execution</capec>
+            <description>The attackers execute the malware on the compromised machine.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attackers schedule a task to run the malware at regular intervals.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1405: Exploit TEE Vulnerability</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exploit TEE Vulnerability</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-67: String Format Overflow in syslog()</capec>
+            <description>The attackers escalate privileges using a known vulnerability in the system.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1618: User Evasion</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>User Evasion</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-212: Functionality Misuse</capec>
+            <description>The attackers bypass anti-virus software to avoid detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1417.001: Keylogging</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Keylogging</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-568: Capture Credentials via Keylogger</capec>
+            <description>The attackers steal login credentials from employees.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1059.008: Network Device CLI</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-700: Network Boundary Bridging</capec>
+            <description>The attackers gain access to network devices and systems.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers move laterally through the network using remote services.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attackers extract sensitive data from the system.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>Stolen Equipment</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Stolen Equipment</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>The attackers use stolen engineering equipment to disrupt the wastewater control system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1501: Systemd Service</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Systemd Service</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-550: Install New Service</capec>
+            <description>The attackers disrupt the wastewater control system and release raw sewage into the community.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Maroochy Water Breach scenario involves a complex attack chain with multiple stages, including reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </summary>
+</Scenario>

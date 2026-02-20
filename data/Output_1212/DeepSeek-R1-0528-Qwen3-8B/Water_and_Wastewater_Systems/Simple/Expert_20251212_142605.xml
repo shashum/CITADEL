@@ -1,0 +1,53 @@
+<Scenario>
+    <title>Pikabot Attack Scenario for Water Sector</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a targeted cyber attack against water and wastewater infrastructure, utilizing spear-phishing techniques to gain initial access, followed by automated execution through domain generation algorithms, resulting in operational impacts by manipulating control systems.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Water Curupira Pikabot Distribution</campaign_or_group>
+        <motivation>Disrupt operations or exfiltrate sensitive data.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Distribution</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Email systems, Internet-facing devices, Network endpoints.
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Web, Phishing, Social engineering, Malware payload.
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1193: Spearphishing Attachment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Distribution</vector>
+            <kev>CVE-2025-22457 (Stack-based buffer overflow allowing remote code execution)</kev>
+            <capec>CAPEC-163: Spear Phishing</capec>
+            <description>The attacker sends highly targeted spear-phishing emails containing malicious attachments designed to compromise specific employees or systems within the water and wastewater sector. Upon opening the attachment, the payload exploits a vulnerability in software associated with internet-facing assets, potentially leveraging a stack-based buffer overflow (as referenced in CVE-2025-22457) to execute arbitrary code and establish an initial foothold in the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1520: Domain Generation Algorithms</technique_name>
+            <surface>Target Artifact (Command control)</surface>
+            <vector>Domain Generation Algorithms</vector>
+            <kev>CVE-2022-41040 (Microsoft Exchange Server vulnerability enabling server-side request forgery)</kev>
+            <capec>CAPEC-481: Contradictory Destinations in Traffic Routing Schemes</capec>
+            <description>Once the initial access is achieved via the spear-phishing attachment, the malware employs domain generation algorithms (DGAs) to dynamically create and resolve domain names for communication purposes. This allows the threat actors to evade detection by frequently changing command-and-control domains, facilitating persistent control over infected systems. The use of DGAs is tied to the exploitation capabilities mentioned in KEV, such as the ProxyNotShell vulnerability (CVE-2022-41040), which enables server-side request forgery to support the malware's autonomous operation.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0831: Manipulation of Control</technique_name>
+            <surface>Target Artifact (Control)</surface>
+            <vector>Manipulation of Control</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-166: Force the System to Reset Values</capec>
+            <description>With elevated privileges obtained during earlier stages, the attackers manipulate control mechanisms within the water and wastewater systems, specifically targeting SCADA or industrial control systems. By resetting configurations or altering parameters, such as water flow rates or sensor readings, they disrupt normal operations, potentially causing service interruptions or safety hazards. This tactic leverages the ability to force the system back to a vulnerable state, as described in CAPEC-166, ensuring sustained impact post-compromise.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        A simple attack campaign targeting water and wastewater systems begins with spear-phishing emails exploiting known vulnerabilities in internet-facing assets, progresses to dynamic domain resolution for command control, and culminates in unauthorized alterations to operational controls, leading to significant disruption.
+    </summary>
+</Scenario>

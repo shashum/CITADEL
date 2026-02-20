@@ -1,0 +1,131 @@
+<Scenario>
+    <title>Juicy Mix Attack on Water/Wastewater Infrastructure</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated multi-stage attack targeting industrial control systems (ICS) in water/wastewater facilities, leveraging zero-day vulnerabilities, social engineering, and lateral movement to disrupt critical operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Juicy Mix</campaign_or_group>
+        <motivation>Disruption of Critical Infrastructure</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Target System Artifact, Script, Internet-facing assets, OS Process, Network Traffic, File System, Application Log, Target Artifact (Privileges), Target Artifact (Stored)
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Open-Source Intelligence (OSINT) Gathering, Script Execution (Mechanism), Delivery Method, Exploit TEE Vulnerability, Stored Data Manipulation, Application Log Content (Mechanism), Process Injection, Mimikatz Tool, Network Traffic Content (Mechanism), Pass-the-Hash Over Industrial Networks, File Access (Mechanism), Network Connection Creation (Mechanism), Runtime Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>Open-Source Intelligence (OSINT) Gathering</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Open-Source Intelligence (OSINT) Gathering</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>The attacker collects publicly available information about the water/wastewater facility's infrastructure, vendor ecosystems, and network architecture to identify potential entry points and vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Automated Collection</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>The threat actor develops custom scripts targeting ICS/SCADA protocols to craft payloads capable of exploiting vulnerabilities in legacy industrial systems.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Stripped Payloads</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2025-3248 (Suggested): Langflow missing authentication vulnerability</kev>
+            <capec>CAPEC-231: Oversized Serialized Data Payloads</capec>
+            <description>The attacker exploits a vulnerability in Langflow's API to deliver stripped payloads via spear-phishing emails, bypassing authentication mechanisms to compromise endpoints.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit TEE Vulnerability</technique_name>
+            <surface>Target Artifact (Privileges)</surface>
+            <vector>Exploit TEE Vulnerability</vector>
+            <kev>CVE-2018-0798 (Suggested): Microsoft Office memory corruption</kev>
+            <capec>CAPEC-67: String Format Overflow in syslog()</capec>
+            <description>Malicious code is executed via unpatched ICS software, leveraging memory corruption flaws to escalate privileges and establish a foothold in the network.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Stored Data Manipulation</technique_name>
+            <surface>Target Artifact (Stored)</surface>
+            <vector>Stored Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-153: Input Data Manipulation</capec>
+            <description>The attacker modifies system schedules to persist malicious processes, ensuring continued access even after rebooting affected devices.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploitation for Privilege Escalation</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>Default/admin credentials in ICS systems are exploited by manipulating application logs to gain elevated privileges across the OT network.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is hidden within legitimate system processes to avoid detection by security tools and maintain stealth.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-226: Session Credential Falsification through Manipulation</capec>
+            <description>Authentication credentials are extracted from memory using Mimikatz to access restricted system components and propagate laterally.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>Non-Application Layer Protocol</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-220: Client-Server Protocol Manipulation</capec>
+            <description>Network traffic analysis identifies critical assets like pumps, sensors, and control systems within the OT network to prioritize targets.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Pass-the-Hash Over Industrial Networks</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Pass-the-Hash Over Industrial Networks</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>Stolen credentials are used to move laterally between devices without triggering traditional endpoint defenses, expanding the attack surface.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>Operational data is collected from local systems to identify targets for disruption, including process statuses and configuration files.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>Data Transfer Size Limits</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Connection Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-495: UDP Fragmentation</capec>
+            <description>Stolen data is exfiltrated using fragmented UDP packets to evade detection while maintaining low-profile communication over public networks.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Runtime Data Manipulation</technique_name>
+            <surface>OS Process</surface>
+            <vector>Runtime Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-230: Serialized Data with Nested Payloads</capec>
+            <description>Fake commands are injected into running processes to alter water flow rates or disable critical equipment, causing operational disruptions.</description>
+        </stage>
+    </attack_flow>
+    <summary>A complex, multi-phase attack leveraging OSINT, zero-day exploits, and lateral movement to compromise water/wastewater infrastructure, culminating in operational sabotage through runtime data manipulation.</summary>
+</Scenario>

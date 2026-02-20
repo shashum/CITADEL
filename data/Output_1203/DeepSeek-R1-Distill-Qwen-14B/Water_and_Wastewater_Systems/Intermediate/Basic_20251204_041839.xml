@@ -1,0 +1,71 @@
+<Scenario>
+    <overview>
+        <Title>Phishing-Based Malware Deployment Against Water Infrastructure</Title>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Intermediate</Complexity>
+        <Summary>A basic-level cyber attack targeting water and wastewater systems through a phishing campaign followed by malware deployment to disrupt operations.</Summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=2022 Ukraine Electric Power Attack</campaign_or_group>
+        <motivation>Disruption of critical infrastructure, potentially linked to geopolitical conflicts.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Intermediate">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Phishing</vector>
+            <kev>CVE-2022-3075 (Suggested)</kev>
+            <capec>CAPEC ID: 164 Name: Mobile Phishing Description: Targets mobile users with phishing attacks to solicit sensitive info.</capec>
+            <description>The attack begins with a phishing email containing a malicious link, designed to trick employees into clicking and revealing credentials or downloading malware.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Malware Deployment</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Application compromise</vector>
+            <kev>CVE-2013-0625 (Suggested)</kev>
+            <capec>CAPEC ID: 445 Name: Malicious Logic Insertion into Product Software via Configuration Management Manipulation Description: Exploits a configuration management system to insert malicious logic into software builds.</capec>
+            <description>After gaining initial access via phishing, the attacker deploys malware (e.g., CaddyWiper) to disrupt operations by targeting SCADA systems.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Backdoor Creation</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 673 Name: Developer Signing Maliciously Altered Software Description: Malicious code is inserted into legitimate software, signed by the developer unknowingly.</capec>
+            <description>The attacker creates a backdoor to maintain persistent access, ensuring they can re-enter the system later to escalate privileges or deploy further attacks.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>SCADA System Exploitation</technique_name>
+            <surface>Open port</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522 Name: Malicious Hardware Component Replacement Description: Replaces legitimate hardware with counterfeit components to cause disruption or allow further compromise.</capec>
+            <description>The attacker exploits vulnerabilities in the SCADA system to gain higher privileges, enabling direct control over industrial processes.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Antivirus Disabling</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 456 Name: Infected Memory Description: Injects malicious logic into memory to evade detection and achieve long-term presence.</capec>
+            <description>By disabling antivirus software, the attacker ensures their malware remains undetected, allowing continued manipulation of the system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Control System Tampering</technique_name>
+            <surface>SCADA system</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522 Name: Malicious Hardware Component Replacement Description: Replaces legitimate hardware with counterfeit components to cause disruption or allow further compromise.</capec>
+            <description>The attacker modifies control parameters within the SCADA system, leading to operational disruptions such as pump failures or unintended valve openings.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The attack starts with a phishing email targeting employees, leading to malware deployment and subsequent system compromises. Through persistence and privilege escalation, the attacker gains control over critical infrastructure, resulting in significant operational impacts.
+    </summary>
+</Scenario>

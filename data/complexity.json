@@ -1,0 +1,39 @@
+{
+  "Simple": {
+    "tactics": [
+      "Initial Access",
+      "Execution",
+      "Impact"
+    ],
+    "purpose": "Use it when you want to quickly deliver the business impact of a particular threat."
+  },
+  "Intermediate": {
+    "tactics": [
+      "Initial Access",
+      "Execution",
+      "Persistence",
+      "Privilege Escalation",
+      "Defense Evasion",
+      "Impact"
+    ],
+    "purpose": "Use to analyze common threats and to train response procedures."
+  },
+  "Complex": {
+    "tactics": [
+      "Reconnaissance",
+      "Resource Development",
+      "Initial Access",
+      "Execution",
+      "Persistence",
+      "Privilege Escalation",
+      "Defense Evasion",
+      "Credential Access",
+      "Discovery",
+      "Lateral Movement",
+      "Collection",
+      "Exfiltration",
+      "Impact"
+    ],
+    "purpose": "Use for emulation, red team operational planning, and in-depth forensics analysis for specific attack groups."
+  }
+}

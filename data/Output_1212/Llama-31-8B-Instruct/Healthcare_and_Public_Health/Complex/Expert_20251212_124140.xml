@@ -1,0 +1,253 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Outer Space</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        The Outer Space campaign aims to disrupt healthcare services by compromising healthcare organizations' systems and stealing sensitive data.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Outer Space</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            User Account
+            Network Traffic
+            File System
+            Network Share
+            Script File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Email
+            Delivery Method
+            PowerShell Script
+            Network Traffic Flow (Mechanism)
+            File Access (Mechanism)
+            Network Share Access (Mechanism)
+            Web Shell
+            Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <!-- Reconnaissance -->
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker gathers information about healthcare and public health sector targets using artificial intelligence.</description>
+        </stage>
+        <!-- Resource Development -->
+        <stage name="Resource Development">
+            <technique>Custom Tool Development</technique>
+            <surface>Target System Artifact</surface>
+            <vector>Custom Tool Development</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>The attacker creates custom tools for the Outer Space campaign.</description>
+        </stage>
+        <!-- Initial Access -->
+        <stage name="Initial Access">
+            <technique>T1194: Spearphishing via Service</technique>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-2033 (Suggested): Google Chromium V8 Engine contains a type confusion vulnerability that allows a remote attacker to potentially exploit heap corruption via a crafted HTML page.</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>The attacker uses compromised email accounts to send targeted phishing emails to healthcare personnel.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique>T0817: Drive-by Compromise</technique>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2017-9248 (Suggested): Progress Telerik UI for ASP.NET AJAX and Sitefinity have a cryptographic weakness in Telerik.Web.UI.dll that can be exploited to disclose encryption keys (Telerik.Web.UI.DialogParametersEncryptionKey and/or the MachineKey), perform cross-site-scripting (XSS) attacks, compromise the ASP.NET ViewState, and/or upload and download files.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker compromises healthcare websites using drive-by downloads.</description>
+        </stage>
+        <!-- Execution -->
+        <stage name="Execution">
+            <technique>T1086: PowerShell</technique>
+            <surface>PowerShell Interpreter</surface>
+            <vector>PowerShell Script</vector>
+            <kev>CVE-2021-1675 (Suggested): Microsoft Windows Print Spooler contains an unspecified vulnerability that allows for remote code execution.</kev>
+            <capec>CAPEC-108: Command Line Execution through SQL Injection</capec>
+            <description>The attacker uses PowerShell to execute malicious scripts on compromised systems.</description>
+        </stage>
+        <stage name="Execution">
+            <technique>T1047: Windows Management Instrumentation</technique>
+            <surface>Network Traffic</surface>
+            <vector>PowerShell Script</vector>
+            <kev>CVE-2023-36884 (Suggested): Microsoft Windows Search contains an unspecified vulnerability that could allow an attacker to evade Mark of the Web (MOTW) defenses via a specially crafted malicious file, leading to remote code execution.</kev>
+            <capec>CAPEC-323: TCP (ISN) Counter Rate Probe</capec>
+            <description>The attacker uses WMI to execute malicious code on compromised systems.</description>
+        </stage>
+        <!-- Persistence -->
+        <stage name="Persistence">
+            <technique>T1603: Scheduled Task/Job</technique>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker schedules tasks to maintain persistence on compromised systems.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique>T1067: Bootkit</technique>
+            <surface>Target Artifact (Boot)</surface>
+            <vector>Bootkit</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-552: Install Rootkit</capec>
+            <description>The attacker installs bootkits to maintain persistence at the firmware level.</description>
+        </stage>
+        <!-- Privilege Escalation -->
+        <stage name="Privilege Escalation">
+            <technique>T0819: Exploit Public-Facing Application</technique>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker exploits vulnerabilities in public-facing applications to gain elevated privileges.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique>T1626: Abuse Elevation Control Mechanism</technique>
+            <surface>Target Artifact (Mechanisms)</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attacker uses elevation control mechanisms to escalate privileges.</description>
+        </stage>
+        <!-- Defense Evasion -->
+        <stage name="Defense Evasion">
+            <technique>T1027.010: Command Obfuscation</technique>
+            <surface>File</surface>
+            <vector>File Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-191: Read Sensitive Constants Within an Executable</capec>
+            <description>The attacker obfuscates malware code to evade detection.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique>T1198: SIP and Trust Provider Hijacking</technique>
+            <surface>Dynamic Link Library</surface>
+            <vector>SIP and Trust Provider Hijacking</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-614: Rooting SIM Cards</capec>
+            <description>The attacker tampers with anti-virus software to evade detection.</description>
+        </stage>
+        <!-- Credential Access -->
+        <stage name="Credential Access">
+            <technique>T1110: Brute Force</technique>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attacker uses brute-force attacks to obtain credentials.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique>T1417.001: Keylogging</technique>
+            <surface>Target Artifact (Accessibility)</surface>
+            <vector>Keylogging</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-568: Capture Credentials via Keylogger</capec>
+            <description>The attacker uses keyloggers to capture login credentials.</description>
+        </stage>
+        <!-- Discovery -->
+        <stage name="Discovery">
+            <technique>T0842: Network Sniffing</technique>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker sniffs network traffic to gather information about healthcare networks.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique>T1426: System Information Discovery</technique>
+            <surface>Target Artifact (Android)</surface>
+            <vector>System Information Discovery</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attacker discovers system information to identify potential targets.</description>
+        </stage>
+        <!-- Lateral Movement -->
+        <stage name="Lateral Movement">
+            <technique>T0859: Valid Accounts</technique>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attacker uses valid accounts to move laterally within the network.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique>T0886: Remote Services</technique>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attacker uses remote services to move laterally within the network.</description>
+        </stage>
+        <!-- Collection -->
+        <stage name="Collection">
+            <technique>T0893: Data from Local System</technique>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attacker collects data from local systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique>T1039: Data from Network Shared Drive</technique>
+            <surface>Network Share</surface>
+            <vector>Network Share Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-643: Identify Shared Files/Directories on System</capec>
+            <description>The attacker collects data from network shared drives.</description>
+        </stage>
+        <!-- Exfiltration -->
+        <stage name="Exfiltration">
+            <technique>T1071.002: File Transfer Protocols</technique>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>The attacker uses FTP to exfiltrate stolen data.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique>T1100: Web Shell</technique>
+            <surface>Script File</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-650: Upload a Web Shell to a Web Server</capec>
+            <description>The attacker uses web shells to exfiltrate stolen data.</description>
+        </stage>
+        <!-- Impact -->
+        <stage name="Impact">
+            <technique>T0814: Denial of Service</technique>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker uses DoS attacks to disrupt healthcare services.</description>
+        </stage>
+        <stage name="Impact">
+            <technique>T0809: Data Destruction</technique>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker destroys sensitive data to cause maximum impact.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Outer Space campaign involves a complex attack flow that includes reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact phases.
+    </summary>
+</Scenario>

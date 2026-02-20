@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Water and Wastewater Systems</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>HomeLand Justice</campaign>
+    </metadata>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        [The HomeLand Justice group, with basic skill levels, targets water and wastewater systems. They employ a multi-stage complex attack involving reconnaissance, resource development, initial access via phishing, execution through application exploitation, persistence with web shells, privilege escalation abusing elevation controls, defense evasion disabling security tools, credential access through brute forcing, discovery mapping networks, lateral movement using alternate authentication materials, collection of local system data, exfiltration over command and control channels, and impact through disrupting inter-process communication.]
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=HomeLand Justice</campaign_or_group>
+        <motivation>Unknown</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, Script File, Windows Registry, User Account, Target Artifact (Mobile device), Application Log, File System, Target Artifact (Channel)
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Network Traffic Flow (Mechanism), Response Metadata (Mechanism), Delivery Method, Application Log Content (Mechanism), Web Shell, Abuse Elevation Control Mechanism, Disabling Security Tools, User Account Authentication (Mechanism), Network Service Scanning, Module Load (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309 Name: Network Topology Mapping</capec>
+            <description>The attackers conduct active scanning to identify potential vulnerabilities in the water and wastewater systems' public-facing infrastructure.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522 Name: Malicious Hardware Component Replacement</capec>
+            <description>The attackers establish proxy servers and email accounts to mask their operations and avoid direct tracing.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2021-42237 (Suggested): Sitcore XP contains an insecure deserialization vulnerability which can allow for remote code execution.</kev>
+            <capec>CAPEC ID: 164 Name: Mobile Phishing</capec>
+            <description>Attackers send phishing emails to employees with login credentials or links to compromised websites mimicking official portals.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>CVE-2023-50224 (Suggested): TP-Link TL-WR841N contains an authentication bypass by spoofing vulnerability within the httpd service.</kev>
+            <capec>CAPEC ID: 121 Name: Exploit Non-Production Interfaces</capec>
+            <description>Attackers exploit known vulnerabilities in web applications used by the water system to execute unauthorized commands.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Script File</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 650 Name: Upload a Web Shell to a Web Server</capec>
+            <description>Attackers install a backdoor on a server to maintain persistent access post-compromise.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target Artifact (Mechanisms)</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 233 Name: Privilege Escalation</capec>
+            <description>Attackers escalate privileges within the network to gain higher-level permissions.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1089: Disabling Security Tools</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Disabling Security Tools</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 578 Name: Disable Security Software</capec>
+            <description>Attackers turn off antivirus software and logging mechanisms to evade detection and cover their tracks.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 49 Name: Password Brute Forcing</capec>
+            <description>Attackers attempt to gain valid credentials through repeated login attempts.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Target Artifact (Mobile device)</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309 Name: Network Topology Mapping</capec>
+            <description>Attackers map out the internal network structure to identify valuable assets.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1550: Use Alternate Authentication Material</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 151 Name: Identity Spoofing</capec>
+            <description>Using stolen credentials, attackers move laterally across the network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 328 Name: TCP 'RST' Flag Checksum Probe</capec>
+            <description>Attackers gather sensitive data related to operational technology (OT) systems.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target Artifact (Channel)</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 24 Name: Filter Failure through Buffer Overflow</capec>
+            <description>Collected data is transferred to attacker-controlled servers.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1559: Inter-Process Communication</technique_name>
+            <surface>Module</surface>
+            <vector>Module Load (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 276 Name: Inter-component Protocol Manipulation</capec>
+            <description>Attackers disrupt control systems to simulate a wiper malware effect, causing operational failure.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The HomeLand Justice group employs a sophisticated, multi-stage attack targeting water and wastewater systems. Starting with reconnaissance, they identify vulnerabilities, develop resources, and gain initial access through phishing. Execution follows with exploitation of public-facing applications. Persistence is achieved through web shells, while privilege escalation and defense evasion techniques are employed to maintain control. Credential access, discovery, lateral movement, and data collection lead to exfiltration of sensitive data, culminating in impactful disruptions to critical operations.
+    </summary>
+</Scenario>

@@ -1,0 +1,53 @@
+<Scenario>
+    <title>Cutting Edge Attack Scenario</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a targeted attack campaign named 'Cutting Edge', leveraging expert-level spearphishing to achieve initial access, executing commands indirectly, and ultimately impacting transportation operations through denial-of-service tactics.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Cutting Edge</campaign_or_group>
+        <motivation>Potentially espionage or disruption motivated by advanced persistent threats.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Operational Technology endpoints, User Workstations
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Social Engineering, Remote Services, Command Line Interface, Web Application
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Phishing</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>An expert threat actor utilizes highly targeted spearphishing emails, often exploiting employee curiosity or urgency regarding industry-specific topics, embedding malicious hyperlinks designed to compromise accounts associated with internet-facing assets when clicked by specific personnel.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Indirect Command Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Remote Access Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-9: Buffer Overflow in Local Command-Line Utilities</capec>
+            <description>Upon successful credential extraction during initial access, attackers employ indirect command execution techniques, potentially leveraging compromised remote access tools or known vulnerabilities in command interfaces to automate script execution across internal systems, escalating privileges where possible.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service</technative_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Flooding</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>Exploiting weaknesses identified during reconnaissance or direct attacks, adversaries aim to disrupt key operational functions within the transportation sector by overwhelming critical systems, such as booking platforms or real-time tracking networks, with excessive traffic leading to unavailability and significant impact.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The 'Cutting Edge' campaign achieves simple persistence by gaining initial access via targeted spearphishing, executing commands remotely or through flaws, and finally attempting to disable essential network-dependent services in the transportation industry.
+    </summary>
+</Scenario>

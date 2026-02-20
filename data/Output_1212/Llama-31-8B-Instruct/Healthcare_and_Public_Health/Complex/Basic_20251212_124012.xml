@@ -1,0 +1,260 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Operation Dust Storm</campaign>
+    </metadata>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Dust Storm</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Cloud Instance
+            Windows Registry
+            Power Shell Interpreter
+            Network Traffic
+            File System
+            Target Artifact (Tasks)
+            Credential Store
+            Application Log
+            User Account
+            Accessibility
+            Alternate
+            Channel
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            Email
+            Delivery Method
+            Artificial Intelligence
+            Reg.exe Utility
+            PowerShell Script
+            Process Creation (Mechanism)
+            Windows Registry Key Creation (Mechanism)
+            Registry Run Keys / Startup Folder
+            User Account Authentication (Mechanism)
+            Keylogging
+            Mimikatz Tool
+            Security Software Discovery
+            Network Traffic Flow (Mechanism)
+            File and Directory Discovery
+            Exfiltration Over Alternative Protocol
+            Exfiltration Over Other Network Medium
+            Network Traffic Content (Mechanism)
+            File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker uses artificial intelligence to gather information about healthcare and public health organizations.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker identifies vulnerabilities in the network infrastructure by monitoring network traffic between nodes.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Cloud Instance</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>The attacker creates custom malware to bypass security measures by utilizing cloud instances.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-11680 (Suggested): ProjectSend contains an improper authentication vulnerability that allows a remote, unauthenticated attacker to enable unauthorized modification of the application's configuration via crafted HTTP requests to options.php.</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker targets specific employees with tailored phishing emails to gain initial access.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-25280 (Suggested): D-Link DIR-820 routers contain an OS command injection vulnerability that allows a remote, unauthenticated attacker to escalate privileges to root via a crafted payload with the ping_addr parameter to ping.ccp.</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker exploits vulnerabilities in websites visited by employees to gain initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1086: PowerShell</technique_name>
+            <surface>PowerShell Interpreter</surface>
+            <vector>PowerShell Script</vector>
+            <kev>CVE-2010-1297 (Suggested): Adobe Flash Player contains a memory corruption vulnerability that allows remote attackers to execute code or cause denial-of-service (DoS).</kev>
+            <capec>CAPEC-108: Command Line Execution through SQL Injection</capec>
+            <description>The attacker uses PowerShell to execute malicious scripts.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1047: Windows Management Instrumentation</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>PowerShell Script</vector>
+            <kev>CVE-2023-47565 (Suggested): QNAP VioStar NVR contains an OS command injection vulnerability that allows authenticated users to execute commands via a network.</kev>
+            <capec>CAPEC-323: TCP (ISN) Counter Rate Probe</capec>
+            <description>The attacker utilizes WMIC to execute system commands.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker schedules tasks to maintain persistence.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1060: Registry Run Keys / Startup Folder</technique_name>
+            <surface>Target Artifact (Windows currentversion)</surface>
+            <vector>Registry Run Keys / Startup Folder</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-270: Modification of Registry Run Keys</capec>
+            <description>The attacker modifies registry keys for persistence.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1088: Bypass User Account Control</technique_name>
+            <surface>Target Artifact (Elevate)</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-122: Privilege Abuse</capec>
+            <description>The attacker elevates privileges to gain control.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker exploits vulnerabilities in public-facing applications.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1027.010: Command Obfuscation</technique_name>
+            <surface>File</surface>
+            <vector>File Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-191: Read Sensitive Constants Within an Executable</capec>
+            <description>The attacker obfuscates code to evade detection.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T0894: System Binary Proxy Execution</technique_name>
+            <surface>Script</surface>
+            <vector>Script Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-88: OS Command Injection</capec>
+            <description>The attacker executes malicious binaries through system proxy.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attacker attempts brute force login attempts.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1417.001: Keylogging</technique_name>
+            <surface>Target Artifact (Accessibility)</surface>
+            <vector>Keylogging</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-568: Capture Credentials via Keylogger</capec>
+            <description>The attacker captures credentials using keyloggers.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-226: Session Credential Falsification through Manipulation</capec>
+            <description>The attacker dumps system credentials.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1063: Security Software Discovery</technique_name>
+            <surface>Target Artifact (Software)</surface>
+            <vector>Security Software Discovery</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-581: Security Software Footprinting</capec>
+            <description>The attacker discovers installed security software.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attacker moves laterally through remote services.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attacker uses valid accounts to move laterally.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File System</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attacker collects data from local systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T1420: File and Directory Discovery</technique_name>
+            <surface>File System</surface>
+            <vector>File and Directory Discovery</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-497: File Discovery</capec>
+            <description>The attacker discovers files and directories.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1639: Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Target Artifact (Alternate)</surface>
+            <vector>Exfiltration Over Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>The attacker exfiltrates data over alternative protocols.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1438: Exfiltration Over Other Network Medium</technique_name>
+            <surface>Target Artifact (Channel)</surface>
+            <vector>Exfiltration Over Other Network Medium</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>The attacker exfiltrates data over other network mediums.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker disrupts healthcare operations.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker destroys sensitive data.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Dust Storm is a complex cyber attack campaign targeting healthcare and public health organizations. The attackers use various techniques to gather information, gain initial access, persist, elevate privileges, evade defense mechanisms, access credentials, move laterally, collect data, and finally impact the organization by disrupting operations or destroying sensitive data.
+    </summary>
+</Scenario>

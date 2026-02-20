@@ -1,0 +1,51 @@
+<Scenario>
+    <title>Operation Sharpshooter: Targeting Transportation Systems</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        A sophisticated spear-phishing campaign targeting transportation infrastructure leverages known vulnerabilities in industrial control systems to execute remote code and trigger denial-of-service attacks against critical operational technology.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Sharpshooter</campaign_or_group>
+        <motivation>Disrupt critical infrastructure operations</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, File, Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, File Modification (Mechanism), Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2018-17480 (CWE-125) : Google Chromium V8 Engine contains out-of-bounds write vulnerability that allows a remote attacker to execute code inside a sandbox via a crafted HTML page.</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker deploys spear-phishing emails mimicking internal communications to trick employees into clicking malicious links hosted on internet-facing assets. These links exploit the Chromium V8 engine vulnerability to deliver payloads that steal credentials or deploy initial malware.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Patch System Image</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>CVE-2019-0859 (CWE-200) : Microsoft Win32k fails to properly handle objects in memory causing privilege escalation.</kev>
+            <capec>CAPEC-532: Altered Installed BIOS</capec>
+            <description>The attacker modifies legitimate system files to inject malicious code, exploiting the Win32k vulnerability to execute arbitrary code with elevated privileges on industrial control systems.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker overwhelms critical infrastructure networks with volumetric traffic floods, disrupting real-time monitoring and signaling systems by exhausting bandwidth and rendering operational technology inoperable.</description>
+        </stage>
+    </attack_flow>
+    <summary>A multi-stage attack begins with spear-phishing to compromise internet-facing assets, progresses to remote code execution via patched system images, and culminates in denial-of-service attacks against transportation infrastructure networks.</summary>
+</Scenario>

@@ -1,0 +1,174 @@
+<Scenario>
+    <metadata>
+        <title>Leviathan Australian Intrusions Scenario</title>
+        <target_industry>Communications</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Leviathan Australian Intrusions</campaign>
+    </metadata>
+    <overview>
+        <Target>Communications Industry</Target>
+        <Complexity>Complex</Complexity>
+        The Leviathan Australian Intrusions group has been identified as a sophisticated threat actor targeting the communications industry. Their attack chain involves multiple complex steps, including reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Leviathan Australian Intrusions</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Active Directory
+            User Account
+            Open Source Intelligence (OSINT)
+            Scheduled Task
+            Target System Artifact
+            Process
+            File
+            Network Traffic
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            General Access Method
+            Custom Command and Control Protocol
+            PowerShell Script
+            Scheduled Task/Job
+            Abuse Elevation Control Mechanism
+            SIP and Trust Provider Hijacking
+            User Account Authentication (Mechanism)
+            Reg.exe Utility
+            File Access (Mechanism)
+            Network Traffic Content (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker gathers information about the targeted organization's network architecture using artificial intelligence.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1584: Compromise Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-609: Cellular Traffic Intercept</capec>
+            <description>The attacker creates a compromised infrastructure for future use by compromising internet scans.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attacker targets vulnerabilities in publicly exposed applications to gain initial access.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0817: Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-535: Malicious Gray Market Hardware</capec>
+            <description>The attacker uses malicious websites to compromise users' devices.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1094: Custom Command and Control Protocol</technique_name>
+            <surface>Active Directory</surface>
+            <vector>Custom Command and Control Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-248: Command Injection</capec>
+            <description>The attacker establishes communication channels between compromised systems using custom command and control protocols.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1086: PowerShell</technique_name>
+            <surface>Hacking Tool</surface>
+            <vector>PowerShell Script</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-108: Command Line Execution through SQL Injection</capec>
+            <description>The attacker utilizes PowerShell for command execution and persistence.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1603: Scheduled Task/Job</technique_name>
+            <surface>Scheduled Task</surface>
+            <vector>Scheduled Task/Job</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>The attacker schedules tasks to maintain persistent access.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attacker elevates privileges to gain control over the system.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1198: SIP and Trust Provider Hijacking</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>SIP and Trust Provider Hijacking</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-614: Rooting SIM Cards</capec>
+            <description>The attacker disables antivirus software to evade detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>The attacker gains unauthorized access using brute force attacks.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker identifies potential targets within the network.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>The attacker uses legitimate accounts to move laterally through the network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attacker collects sensitive data from compromised systems.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1071.002: File Transfer Protocols</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>The attacker transfers stolen data out of the network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker disrupts critical services to cause maximum damage.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Leviathan Australian Intrusions group employs a complex attack chain involving multiple techniques to compromise the communications industry. They gather information, develop resources, establish initial access, execute commands, persist, escalate privileges, evade defenses, access credentials, discover targets, move laterally, collect data, exfiltrate data, and finally cause impact.
+    </summary>
+</Scenario>

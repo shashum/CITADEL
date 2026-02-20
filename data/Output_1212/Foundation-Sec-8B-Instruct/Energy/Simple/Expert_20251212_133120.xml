@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Energy</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>C0010</campaign>
+    </metadata>
+    <overview>
+        <Target>Energy Sector</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a targeted cyber attack against an energy sector entity, executed by an expert-level threat actor using a 'Simple' complexity approach. The attackers exploit supply chain vulnerabilities to gain initial access, leverage compromised user accounts for execution, and cause impact through data destruction.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0010</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, User Account
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, User Account Authentication (Mechanism), File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0862: Supply Chain Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2024-20953 (Oracle Agile PLM deserialization vulnerability)</kev>
+            <capec>CAPEC-439: Manipulation During Distribution</capec>
+            <description>The attackers exploit a deserialization vulnerability in Oracle Agile Product Lifecycle Management (PLM) software, which is internet-facing, allowing them to compromise the system and gain unauthorized access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>CVE-2021-27852 (Deserialization of Untrusted Data in Checkbox Survey)</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>Using credentials obtained from the initial compromise, the attackers authenticate as legitimate users to execute commands and install malware on the system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attackers modify files crucial to the operation of the energy sector entity, leading to data corruption and potential system failure, thereby disrupting operations and causing impact.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The C0010 campaign targets the energy sector by exploiting supply chain vulnerabilities to gain initial access, leveraging compromised user accounts for execution, and ultimately causing significant disruption through data destruction. The attackers demonstrate expertise in navigating complex systems and exploiting known vulnerabilities.
+    </summary>
+</Scenario>

@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>C0021</campaign>
+    </metadata>
+    <overview>
+        <Target>Communications Industry</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated yet basic-skilled threat actor group C0021 targets the communications sector with a multi-stage attack plan involving extensive reconnaissance, development of resources, and multiple phases of intrusion to achieve their objectives.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0021</campaign_or_group>
+        <motivation>Financial Gain and Espionage</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Spearphishing Link</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Command Interpreter (Bash), Command & Control Server, Public IP/Network Block, Domain Name Registrar, Logon Session, DNS Record, File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method, Bash Script, Web Shell, Application Log Content (Mechanism), User Account Authentication (Mechanism), Network Service Scanning, Remote Desktop Protocol, Logon Session Creation (Mechanism), Exfiltration Over Alternative Protocol, File Modification (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1564.009: Resource Forking</technique_name>
+            <surface>File</surface>
+            <vector>File Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-131: Resource Leak Exposure</capec>
+            <description>The attackers gather information about the target's network infrastructure by analyzing file metadata to identify potential weak points and resources.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attackers establish servers or acquire third-party services to host phishing emails and malware, preparing the groundwork for the attack.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>Specific individuals within the organization receive tailored phishing emails containing malicious links, leading to initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1605: Command-Line Interface</technique_name>
+            <surface>Command Interpreter (Bash)</surface>
+            <vector>Bash Script</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-88: OS Command Injection</capec>
+            <description>Once inside, attackers use command-line interfaces to execute malicious payloads crafted as bash scripts.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Command & Control Server</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-650: Upload a Web Shell to a Web Server</capec>
+            <description>To maintain persistence, attackers install a web shell on a compromised server to allow remote control.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>Attackers exploit vulnerabilities in public-facing applications to escalate privileges and gain administrative control.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1089: Disabling Security Tools</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Disabling Security Tools</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-578: Disable Security Software</capec>
+            <description>Defenses are impaired by disabling antivirus software and other protective measures to avoid detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-49: Password Brute Forcing</capec>
+            <description>Attackers attempt to gain valid credentials through repeated login attempts using password guessing or brute force.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>Mapping the internal network helps identify valuable targets and resources for further exploitation.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1076: Remote Desktop Protocol</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Remote Desktop Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-220: Client-Server Protocol Manipulation</capec>
+            <description>Using RDP, attackers move laterally across the network to access other systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0811: Data from Information Repositories</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>Attackers extract sensitive data from internal repositories like SharePoint or file shares.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1639: Exfiltration Over Alternative Protocol</technique_name>
+            <surface>DNS Record</surface>
+            <vector>Exfiltration Over Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-590: IP Address Blocking</capec>
+            <description>Data is transferred out of the network using less common protocols to evade detection.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Attackers destroy or manipulate critical data to simulate the impact of real-world attacks and disrupt operations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The complex attack orchestrated by the C0021 group involves meticulous planning and execution, targeting the communications sector with a multi-faceted approach. From initial reconnaissance to data exfiltration, the attackers employ a variety of techniques to infiltrate, persist, and ultimately impact the targeted organization.
+    </summary>
+</Scenario>

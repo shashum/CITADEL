@@ -1,0 +1,39 @@
+<Scenario>, then has sections like <title>, <overview>, <threat_actor_profile>, etc., and ends with <attack_flow>. Within <attack_flow>, there's a <stage> block for each attack stage, ordered by the complexity level. But wait, the attack_chain_plan already provides the sequence implicitly since it's listed in order. However, the stages in <attack_flow> must correspond to the tactics mentioned in the complexity-based list.
+
+Let me confirm the complexity levels:
+
+- Simple: Initial Access, Execution, Impact
+
+- Intermediate: Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Impact
+
+- Complex: Includes all those plus Reconnaissance, Resource Development, Discovery, Lateral Movement, Credential Access, Collection, Exfiltration.
+
+From the dossier, the attack_chain_plan covers: Reconnaissance, Resource Development, Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Exfiltration, Impact. So it matches the Complex level perfectly.
+
+I need to ensure that the <stage> names exactly match the Tactic Names from the complexity list. For example, for "Reconnaissance", I'll use that as the stage name, and similarly for others.
+
+Within each <stage>, I must include specific child tags in this order:
+
+- <technique_name>: This should be the technique associated with the tactic in the dossier.
+
+- <surface>: Directly taken from the dossier's surface field.
+
+- <vector>: Directly taken from the dossier's vector field.
+
+- <kev>: Set to "<kev>N/A</kev>" unless kev_ids are provided, but in this case, most are N/A.
+
+- <capec>: Similarly, set to "<capec>N/A</capec>" if no CAPEC data, but I can use the description from capec_data.
+
+- <description>: Needs to be a detailed narrative explaining how the attack works, logically connecting the TTP, KEV/CAPEC, Surface, and Vector. It should be derived from the rationale in the dossier.
+
+Also, before the <attack_flow>, there's a <metadata> section in the output example. Looking back at the user's message, the output format specifies including a simple <metadata> section at the top. But in the Scenario XML, it might be part of the structure. Let me read carefully.
+
+The output format example shows:
+
+```xml
+<Scenario>
+    <metadata>
+        <!-- Something here? Wait, in the example it's shown under <Scenario>, but let's see -->
+    </title>
+    ...
+</Scenario>

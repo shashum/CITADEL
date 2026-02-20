@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>FunnyDream</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        A basic-level cyber attack targeting healthcare institutions involves gaining initial access through phishing, executing malicious files via reg.exe utility, and causing impact by destroying data.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=FunnyDream</campaign_or_group>
+        <motivation>Ransom and Disruption</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Employee endpoints
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Email, Web
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The attacker sends phishing emails with malicious attachments or links to trick employees into downloading and executing them.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1204.002: Malicious File</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-635: Alternative Execution Due to Deceptive Filenames</capec>
+            <description>Upon opening the attachment/link, the reg.exe utility executes the malicious file, allowing the attacker to run unauthorized commands.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attacker modifies critical files, leading to data destruction, which disrupts operations and services within the healthcare institution.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This scenario outlines a simple cyber attack chain executed by the FunnyDream campaign against healthcare organizations. Initial access is achieved through phishing, followed by execution of malicious files using reg.exe, culminating in data destruction impacting critical systems and services.
+    </summary>
+</Scenario>

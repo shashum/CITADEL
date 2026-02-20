@@ -1,0 +1,45 @@
+<Scenario>
+    <title>Night Dragon Communications Campaign</title>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Complex</Complexity>
+        Night Dragon is a sophisticated threat actor known for targeting communications companies. They employ various techniques to gain initial access, including spear phishing and drive-by compromise.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Night Dragon</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Device theft, Weak passwords, Improper configuration, Vulnerability, Internet-facing assets, Shared DB or directory, Obsolete products, Injection flaws, Custom APIs, Autonomous system numbers(ASNs), SSL Certificates and Attribution, WHOIS records, contacts and history, TCP/IP ports, Public and private cloud, Web server services such as emails and databases, Shadow IT, Poor implementation of access controls, Malicious insiders, Social engineering, Insufficient physical security controls, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: External/Removable media, Loss or Theft of equipment, Attrition, Web, Account takeover, Inadequate encryption, Browser-based attack, Application compromise, Open port, Vulnerability exploit, Ransomware, Malware, Man in The Middle(MiTM), Session hijacking, Brute-force attack, Distributed Denial of Service(DDoS), Watering-hole, Compromised and weak credentials, SIM Swap, Security misconfigurations and vulnerabilities, Web forms, IP address and IP blocks, Domains and subdomains, Botnet, Credential compromise, Telephony Denial of Service(TDoS), Replay Attack, Cryptanalysis Attacks, Side Channel Attacks, Hardware Trojans, Covert Attacks, Sleep Deprivation Attack, Clock Skewing, Attacks Targeting System Reputation, Data and Command Integrity Attack, Eavesdropping, Command and Control Attacks, Phishing, Impersonations/Spoofing, Improper usage, Dumpster diving, Advanced Persistent Threat(APT), Baiting, Shoulder surfing, Reverse social engineering, Business Email Compromise(BEC), Advanced Fee, Extortion
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing via Compromised Email Account</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2019-9875 (Suggested)</kev>
+            <capec>163</capec>
+            <description>The attackers send targeted phishing emails to key personnel using compromised email accounts, attempting to trick them into revealing sensitive information.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2023-23529 (Suggested)</kev>
+            <capec>535</capec>
+            <description>The attackers compromise company websites or employee devices through drive-by downloads, exploiting vulnerabilities in web browsers or plugins.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Night Dragon uses complex tactics to gain initial access to communications companies, employing both spear phishing and drive-by compromise techniques to breach defenses.
+    </summary>
+</Scenario>

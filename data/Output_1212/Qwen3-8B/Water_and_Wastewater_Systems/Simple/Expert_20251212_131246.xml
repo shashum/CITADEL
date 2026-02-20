@@ -1,0 +1,51 @@
+<Scenario>
+    <title>Ukraine-Linked Cyber Attack on Water Infrastructure</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        A targeted spearphishing campaign compromises system administrators, leading to execution of malicious payloads and disruption of critical water treatment operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=2022 Ukraine Electric Power Attack</campaign_or_group>
+        <motivation>Disruption of Critical Infrastructure</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Target System Artifact, OS Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Living Off the Land (LotL), Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-29336 (CWE-862) : Microsoft Win32k contains an unspecified vulnerability that allows for privilege escalation up to SYSTEM privileges.</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>The attacker sends targeted emails with malicious hyperlinks to system administrators, exploiting their access to internet-facing systems. Clicking the link downloads a payload that establishes initial foothold.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Living Off the Land (LotL)</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Living Off the Land (LotL)</vector>
+            <kev>CVE-2024-9474 (CWE-78) : Palo Alto Networks PAN-OS contains an OS command injection vulnerability that allows for privilege escalation through the web-based management interface.</kev>
+            <capec>N/A</capec>
+            <description>The attacker leverages built-in system tools like PowerShell to execute arbitrary commands without requiring external dependencies, maintaining operational stealth.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Manipulation</technique_name>
+            <surface>OS Process</surface>
+            <vector>Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-153: Input Data Manipulation</capec>
+            <description>The attacker alters control parameters in water treatment systems, causing operational disruptions such as process shutdowns or incorrect chemical dosing to impair service delivery.</description>
+        </stage>
+    </attack_flow>
+    <summary>A sophisticated spearphishing campaign initiates access to water infrastructure systems, followed by in-memory execution of malicious code and manipulation of operational data to disrupt critical services.</summary>
+</Scenario>

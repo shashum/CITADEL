@@ -1,0 +1,70 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign_id>C0015</campaign_id>
+    </metadata>
+    
+    <title>Healthcare Phishing Campaign Leading to Operational Disruption</title>
+    
+    <overview>
+        <Target>A targeted attack against healthcare facilities aiming to disrupt operations.</Target>
+        <Complexity>Simple</Complexity>
+        <Summary>This scenario outlines a straightforward attack chain beginning with phishing emails designed to compromise endpoints, followed by automated script execution, and culminating in encrypted Active Directory objects impacting system availability.</Summary>
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=C0015</campaign_or_group>
+        <motivation>Economic gain through extortion or disruption affecting services.</motivation>
+        <skill_level>Beginner</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Digital Media</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: Email System, Web Interface, Endpoint Devices, Network Perimeter, Internet-Facing Servers
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: Social Engineering, Spear Phishing, Whaling, Mailing List Compromise, Website Defacement, Drive-by Download, Malicious File Attachment, USB Drop, Physical Observation, Pretext Calling, Impersonation, Vishing, Call Spoofing, SMS Phishing, Clone Squatting, Push Notification Spoofing, Instant Message/Messaging App Phishing, Session Hijacking, Cross-Site Request Forgery, Cross-Site Scripting, Buffer Overflow, Code Signing Spoofing, Insecure Deserialization, Tampering with Third-Party Software Update Mechanisms, Using Stealer Applications, Exploiting Authentication Flaws, Brute Force, Dictionary Attack, Rainbow Table Attack, Password Spraying, Account Guessing, Default Accounts Usage, Shared Accounts Usage, Weak Passwords, Misconfigured Service Accounts, Open Authentication Proxies, Unrestricted Web UI Access, Insufficient Lockout Requirements, Poorly Configured Two-Factor Authentication, Manipulating Kerberos Tickets, Manipulating DNS Resolution, Manipulating DHCP Offerings, Manipulating ARP Tables, Manipulating NetBIOS Name Caching, Manipulating SMB Share Permissions, Manipulating Windows Registry Settings, Manipulating User Account Control Settings, Manipulating Group Policy Objects, Manipulating Active Directory ACLs, Manipulating File System Permissions, Manipulating Application Permissions, Manipulating Database Permissions, Manipulating API Permissions, Manipulating Container Image Permissions, Manipulating Cloud Storage Bucket Permissions, Manipulating IoT Device Configuration, Manipulating Printer Queue, Manipulating VoIP Systems, Manipulating Radio Frequency Identification Tags, Manipulating Near Field Communication Hopping, Manipulating Bluetooth Pairing, Manipulating NFC Transactions, Manipulating RFID Interrogation, Manipulating Industrial Control System Protocols, Manipulating SCADA Systems, Manipulating OT Networks, Manipulating Embedded Systems Interfaces, Manipulating Firmware Updates, Manipulating BIOS/UEFI Settings, Manipulating Trusted Platform Module Operations, Manipulating Secure Enclave Operations, Manipulating Hardware-Based Security Features, Manipulating Supply Chain Dependencies, Manipulating Third-Party Vendor Integration Points, Manipulating Partner Network Connections, Manipulating Guest Wi-Fi Access, Manipulating BYOD Policies, Manipulating VPN Concentrators, Manipulating Load Balancers, Manipulating DNS Forwarders, Manipulating DHCP Servers, Manipulating SMTP Gateways, Manipulating HTTP Proxies, Manipulating FTP Servers, Manipulating Telnet Servers, Manipulating SSH Servers, Manipulating RDP Servers, Manipulating VPN Services, Manipulation of Other Network Services, Manipulation of Internet Protocol Address Allocation, Manipulation of Domain Name System Records, Manipulation of Hypertext Transfer Protocol Headers, Manipulation of File Transfer Protocol Commands, Manipulation of Remote Desktop Protocol Sessions, Manipulation of Virtual Private Network Traffic, Manipulation of Wireless Local Area Network Traffic, Manipulation of Fiber Optic Network Signals, Manipulation of Satellite Communication Links, Manipulation of Cable Modem Termination Systems, Manipulation of Optical Transport Network Equipment, Manipulation of Carrier Ethernet Nodes, Manipulation of Multiprotocol Label Switching Pathologies, Manipulation of Border Gateway Protocol Routing Information, Manipulation of Internet Control Message Protocol Packet Structures, Manipulation of Address Resolution Protocol Cache Poisoning, Manipulation of Dynamic Host Configuration Protocol Parameter Distribution, Manipulation of Domain Name System Query Handling, Manipulation of Simple Mail Transfer Protocol Header Fields, Manipulation of HyperText Markup Language Content Rendering, Manipulation of Cascading Style Sheets Styling Effects, Manipulation of JavaScript Execution Contexts, Manipulation of VBScript Interpretation Engines, Manipulation of Office Document Macros, Manipulation of PDF Action Filters, Manipulation of Image File Metadata, Manipulation of Audio/Video File Embedding Vulnerabilities, Manipulation of Archive File Extraction Processes, Manipulation of Compiled Code Loading Mechanisms, Manipulation of Executable File Signature Checks, Manipulation of Kernel Module Loading, Manipulation of Dynamic Link Library Resolution, Manipulation of Just-In-Time Compiler Settings, Manipulation of Native Code Execution Boundaries, Manipulation of Interpreter-Based Languages, Manipulation of Command-Line Argument Parsing, Manipulation of Shell Metasploit Framework Exploits, Manipulation of Python WMI Toolkit Abuses, Manipulation of PowerShell Empire Modules, Manipulation of Ansible Playbook Syntax Errors, Manipulation of Dockerfile Instruction Order, Manipulation of Kubernetes Manifest Permissions, Manipulation of AWS IAM Role Policies, Manipulation of Azure RBAC Assignments, Manipulation of Google Cloud Project Settings, Manipulation of Salesforce CPQ Configuration, Manipulation of ServiceNow CMDB Discovery Parameters, Manipulation of Palo Alto Networks WildFire Analysis Engine, Manipulation of Cisco Umbrella DLP Policies, Manipulation of Fortinet FortiGate IPS Signatures, Manipulation of Check Point ThreatCloud Blocklists, Manipulation of Symantec Endpoint Protection Behavioral Heuristics, Manipulation of McAfee Total Protection Sandboxing, Manipulation of CrowdStrike Falcon Prevent Rules, Manipulation of Carbon Black Conferencing Detection Models, Manipulation of Splunk Add-on Event Handlers, Manipulation of Elastic SIEM Rule Triggers, Manipulation of QRadar Network Activity Alerts, Manipulation of SolarWinds Orion NCM Baselines, Manipulation of ManageEngine OpManager Thresholds, Manipulation of Nagios XI Monitoring Alert Conditions, Manipulation of Zabbix Agent Performance Data, Manipulation of Prometheus Scraping Intervals, Manipulation of Grafana Dashboard Query Logic, Manipulation of ELK Stack Logstash Filter Plugins, Manipulation of Kibana Visualization Aggregation Pipelines, Manipulation of SNMP Trap Reception Queues, Manipulation of Syslog Forwarding Destinations, Manipulation of Windows Event Log Channel Properties, Manipulation of Linux Syslog-ng Source Definitions, Manipulation of rsyslog Dispatch Rules, Manipulation of Docker Swarm Overlay Networks, Manipulation of Kubernetes Network Policies, Manipulation of AWS VPC Route Tables, Manipulation of Azure Virtual Network NSGs, Manipulation of Google Cloud Firewall Rules, Manipulation of Akamai Property Manager Edge Rules, Manipulation of Cloudflare Workers Script Execution, Manipulation of Fastly Compute@Edge Function Calls, Manipulation of F5 BIG-IP ASM Security Policies, Manipulation of Citrix Netscaler ADC Rewrite Policies, Manipulation of Apache Reverse Proxy ModSecurity Rules, Manipulation of Nginx Http_Forgery Module Settings, Manipulation of HAProxy Request Processing Pipeline, Manipulation of Fiddler Corelet Script Hooks, Manipulation of Burp Suite Extension APIs, Manipulation of OWASP ZAP Attack Plugin Configurations, Manipulation of Nessus Scan Templates, Manipulation of QualysGuard Scanner Policies, Manipulation of Acunetix Web Vulnerability Scanners, Manipulation of WPScan WordPress Theme Enumerations, Manipulation of Shodan Search Queries for Reconnaissance, Manipulation of Metasploit Framework Payload Options, Manipulation of Cobalt Strike Beacon Configuration Files, Manipulation of Empire Stager URLs, Manipulation of BloodHound Graphical AD Enumeration Outputs, Manipulation of Seatbelt PowerShell Script Results, Manipulation of PowerView AD Lateral Movement Scripts, Manipulation of Mimikatz LSASS Memory Dump Techniques, Manipulation of PsExec Remote Execution Utilities, Manipulation of Scheduled Task Propagation Methods, Manipulation of PSEXECUTE ABUSE VIA SMB TRAFFIC, Manipulation of CERTAIN EXPLORATION USING POWER SHELL CODE INJECTI"
+        <vector>Digital Media</vector>
+    </attack_vector>
+    
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Digital Media</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>An adversary uses phishing emails specifically crafted for healthcare personnel to deliver malicious payloads. These emails appear legitimate, often mimicking internal communications or trusted vendors, directing recipients to click on fraudulent links or open infected attachments that bypass traditional security measures.</description>
+        </stage>
+        
+        <stage name="Execution">
+            <technique_name>T1037.004: RC Scripts</technique_name>
+            <surface>Endpoint</surface>
+            <vector>File Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-458: Flash Memory Attacks</capec>
+            <description>After gaining initial access through phishing, the adversary deploys a basic remote-access backdoor script (such as PowerShell or a batch file). This script executes automatically upon delivery, enabling command-and-control communication and establishing persistence without requiring complex configurations typically associated with skilled attackers.</description>
+        </stage>
+        
+        <stage name="Impact">
+            <technique_name>T1556.005: Reversible Encryption</technique_name>
+            <surface>Active Directory</surface>
+            <vector>Active Directory Object Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-608: Cryptanalysis of Cellular Encryption</capec>
+            <description>The adversary leverages reversible encryption techniques targeting Active Directory objects. This allows unauthorized modification or corruption of directory services data, potentially disrupting authentication processes across the healthcare network and denying legitimate users access to critical systems during peak operational hours.</description>
+        </stage>
+    </attack_flow>
+    
+    <summary>
+        This simple attack scenario demonstrates how basic phishing methods combined with rudimentary scripting capabilities can lead to significant operational impact in healthcare environments, particularly when targeting legacy Active Directory infrastructures.
+    </summary>
+</Scenario>

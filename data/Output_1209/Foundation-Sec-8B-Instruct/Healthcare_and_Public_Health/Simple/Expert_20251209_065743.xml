@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>APT28 Nearest Neighbor Campaign</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a targeted phishing campaign aimed at healthcare professionals, leading to ransomware deployment disrupting critical services.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>APT28 Nearest Neighbor Campaign</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Email Systems, File System
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Phishing, Data Encryption
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1192: Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 467; Name: Cross Site Identification</capec>
+            <description>The attackers send spearphishing emails containing malicious links to healthcare professionals, masquerading as trusted entities to gain initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1605: Command-Line Interface</technique_name>
+            <surface>Command Interpreter (Bash)</surface>
+            <vector>Bash Script</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 88; Name: OS Command Injection</capec>
+            <description>Once clicked, the link leads to a webpage that executes a Bash script, leveraging legitimate tools for malicious purposes such as executing unauthorized commands.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1471: Data Encrypted for Impact</technique_name>
+            <surface>File System</surface>
+            <vector>Data Encrypted for Impact</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 609; Name: Cellular Traffic Intercept</capec>
+            <description>The executed script deploys ransomware, encrypting files on the system and demanding a ransom for decryption keys, thereby impacting the availability of critical services.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        APT28 Nearest Neighbor Campaign employs sophisticated spearphishing techniques targeting healthcare professionals, leading to ransomware deployment through execution of malicious scripts, ultimately causing service disruption.
+    </summary>
+</Scenario>

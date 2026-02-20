@@ -1,0 +1,52 @@
+<Scenario>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Simple</Complexity>
+        Operation MidnightEclipse attackers target water and wastewater systems using basic skills to gain initial access through exploitation of public-facing applications and drive-by compromises.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation MidnightEclipse</campaign_or_group>
+        <motivation>Disrupt the operation of the water and wastewater treatment plants.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Device theft, Weak passwords, Improper configuration, Vulnerability, Internet-facing assets, Shared DB or directory, Obsolete products, Injection flaws, Custom APIs, Autonomous system numbers(ASNs), SSL Certificates and Attribution, WHOIS records, contacts and history, TCP/IP ports, Public and private cloud, Web server services such as emails and databases, Shadow IT, Poor implementation of access controls, Malicious insiders, Social engineering, Insufficient physical security controls, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: External/Removable media, Loss or Theft of equipment, Attrition, Web, Account takeover, Inadequate encryption, Browser-based attack, Application compromise, Open port, Vulnerability exploit, Ransomware, Malware, Man in The Middle(MiTM), Session hijacking, Brute-force attack, Distributed Denial of Service(DDoS), Watering-hole, Compromised and weak credentials, SIM Swap, Security misconfigurations and vulnerabilities, Web forms, IP address and IP blocks, Domains and subdomains, Botnet, Credential compromise, Telephony Denial of Service(TDoS), Replay Attack, Cryptanalysis Attacks, Side Channel Attacks, Hardware Trojans, Covert Attacks, Sleep Deprivation Attack, Clock Skewing, Attacks Targeting System Reputation, Data and Command Integrity Attack, Eavesdropping, Command and Control Attacks, Phishing, Impersonations/Spoofing, Improper usage, Dumpster diving, Advanced Persistent Threat(APT), Baiting, Shoulder surfing, Reverse social engineering, Business Email Compromise(BEC), Advanced Fee, Extortion
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2023-28204 (Suggested)</kev>
+            <capec>CAPEC ID: 121</capec>
+            <description>The attackers utilize publicly available information on water and wastewater systems' SCADA systems and their vendors to identify potential vulnerabilities. They then create a malicious website or use an existing one to host malware that exploits the identified vulnerability, gaining initial access to the system.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2020-1054 (Suggested)</kev>
+            <capec>CAPEC ID: 535</capec>
+            <description>The attackers create a malicious website or use an existing one to host malware that exploits the identified vulnerability, leading to a drive-by compromise and initial access to the system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disruption of Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 601</capec>
+            <description>The attackers disrupt the operation of the water and wastewater treatment plants by jamming the communication systems, denying service to legitimate traffic and causing disruptions.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation MidnightEclipse attackers use simple techniques to gain initial access to water and wastewater systems through exploiting public-facing applications and drive-by compromises, ultimately disrupting the operation of the treatment plants.
+    </summary>
+</Scenario>

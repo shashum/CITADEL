@@ -1,0 +1,47 @@
+<Scenario>
+    <title>FrostyGoop Incident: Targeted Cyber Attack on Energy Sector</title>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        <description>The FrostyGoop incident involved a targeted cyber attack against an energy company, leveraging phishing, credential dumping, and operational disruption to achieve its objectives.</description>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=FrostyGoop</campaign_or_group>
+        <motivation>Motivation: Likely nation-state-sponsored actors aiming to disrupt critical infrastructure operations.</motivation>
+        <skill_level>Highly Skilled: Capable of executing sophisticated cyberattacks with clear operational goals.</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2024-12987 (Suggested)</kev>
+            <capec>CAPEC ID: 164 Name: Mobile Phishing</capec>
+            <description>The attackers initiated the attack using a phishing campaign targeting employees of the energy company. The phishing emails contained malicious links that exploited a known vulnerability (CVE-2024-12987), allowing the attackers to gain initial access to the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Credential Dumping</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Application compromise</vector>
+            <kev>CVE-2017-1000486 (Suggested)</kev>
+            <capec>CAPEC ID: 226 Name: Session Credential Falsification through Manipulation</capec>
+            <description>After gaining initial access, the attackers executed credential-dumping activities to extract sensitive information, such as usernames and passwords, from the compromised systems. This allowed them to escalate privileges and move laterally within the network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disruption of Operations</technique_name>
+            <surface>Operational Technology (OT) Systems</surface>
+            <vector>Malware</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 440 Name: Hardware Integrity Attack</capec>
+            <description>The attackers deployed malware to disrupt the operations of the energy company's OT systems, causing significant downtime and impacting their ability to provide essential services. This stage marked the culmination of the attack, achieving the primary objective of operational disruption.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The FrostyGoop incident demonstrates a coordinated cyber attack that progressed through three distinct phases: Initial Access via phishing, Execution through credential dumping, and final Impact achieved by disrupting critical operations. The attackers capitalized on known vulnerabilities and leveraged their skills to execute a successful operation against a key industrial sector.
+    </summary>
+</Scenario>

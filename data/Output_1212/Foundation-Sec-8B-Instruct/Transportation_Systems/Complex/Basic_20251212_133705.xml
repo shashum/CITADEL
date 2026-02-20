@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Maroochy Water Breach</campaign>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated cyber attack targeting transportation systems involves multiple stages, starting with reconnaissance to identify network infrastructure, followed by resource development to establish a foothold, and culminating in impact through disrupting operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Maroochy Water Breach</campaign_or_group>
+        <motivation>Destruction and Disruption</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, User Account, Application Log, Target Artifact (Interact), Mobile device, Logon Session, Channel
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Network Traffic Flow (Mechanism), Response Metadata (Mechanism), Bash Script, Web Shell, Application Log Content (Mechanism), User Account Authentication (Mechanism), Network Service Scanning, Module Load (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309; Name: Network Topology Mapping</capec>
+            <description>The attackers conduct active scanning to map out the network topology of the transportation systems, identifying potential entry points and vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 522; Name: Malicious Hardware Component Replacement</capec>
+            <description>Adversaries setup phishing infrastructure using free email services to prepare for credential harvesting campaigns.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2020-25079 (D-Link DCS-2530L and DCS-2670L devices contains a command injection vulnerability)</kev>
+            <capec>CAPEC ID: 164; Name: Mobile Phishing</capec>
+            <description>Employees receive phishing emails containing login credentials harvesting links, leading to unauthorized access via exploited vulnerabilities in internet-facing assets.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1605: Command-Line Interface</technique_name>
+            <surface>Target Artifact (Interact)</surface>
+            <vector>Bash Script</vector>
+            <kev>CVE-2024-9680 (Mozilla Firefox and Firefox ESR use-after-free vulnerability)</kev>
+            <capec>CAPEC ID: 88; Name: OS Command Injection</capec>
+            <description>Once initial access is gained, adversaries execute malicious scripts using command-line interfaces to exploit identified vulnerabilities.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Script File</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 650; Name: Upload a Web Shell to a Web Server</capec>
+            <description>A web shell is installed on a server to maintain persistent access to the compromised environment.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 121; Name: Exploit Non-Production Interfaces</capec>
+            <description>Attackers find and exploit known vulnerabilities to escalate privileges within the targeted applications.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1629.003: Disable or Modify Tools</technique_name>
+            <surface>Target Artifact (Security tools)</surface>
+            <vector>Disable or Modify Tools</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 578; Name: Disable Security Software</capec>
+            <description>Security tools such as antivirus software are impaired to avoid detection by the attackers.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110: Brute Force</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 49; Name: Password Brute Forcing</capec>
+            <description>Repeated attempts are made to guess passwords, aiming to gain unauthorized access to user accounts.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Target Artifact (Mobile device)</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 309; Name: Network Topology Mapping</capec>
+            <description>Attackers scan the network to discover additional systems and services for lateral movement opportunities.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1550: Use Alternate Authentication Material</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 151; Name: Identity Spoofing</capec>
+            <description>Stolen credentials are used to move laterally across the network, gaining access to new systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0811: Data from Information Repositories</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 277; Name: Data Interchange Protocol Manipulation</capec>
+            <description>Sensitive data related to the operation of the transport systems is collected from repositories.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target Artifact (Channel)</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 24; Name: Filter Failure through Buffer Overflow</capec>
+            <description>Collected data is transferred to attacker-controlled servers over a command and control channel.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1559: Inter-Process Communication</technique_name>
+            <surface>Module</surface>
+            <vector>Module Load (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 276; Name: Inter-component Protocol Manipulation</capec>
+            <description>Operational technology is disrupted to cause damage, impacting the functionality of the transportation system, akin to the Maroochy Water Breach.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The complex cyber attack on the transportation systems involved extensive reconnaissance, resource development, and exploitation of multiple vulnerabilities to achieve persistent access and disrupt critical operations, mirroring the tactics seen in historical incidents like the Maroochy Water Breach.
+    </summary>
+</Scenario>

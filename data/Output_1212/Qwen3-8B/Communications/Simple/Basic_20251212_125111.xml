@@ -1,0 +1,51 @@
+<Scenario>
+    <title>Frankenstein Campaign: Phishing-Driven Data Manipulation in Communications Sector</title>
+    <overview>
+        <Target>Communications</Target>
+        <Complexity>Simple</Complexity>
+        A basic-skilled threat group named Frankenstein launches a targeted attack against communications infrastructure through phishing, exploiting public-facing applications to manipulate critical data flows.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Frankenstein</campaign_or_group>
+        <motivation>Disrupt communication services</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Application Log, OS Process
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Application Log Content, Data Manipulation
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2018-19322 (CWE-200): GPCIDrv and GDrv drivers expose IO port access, enabling code execution with elevated privileges</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>The attacker sends spear-phishing emails containing malicious links disguised as legitimate communications platform updates. Employees click the links, triggering malware delivery that exploits vulnerable drivers in internet-facing assets to establish initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content</vector>
+            <kev>CVE-2015-1769 (CWE-200): Windows Mount Manager allows privilege escalation via symbolic link processing</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>Using compromised credentials from the initial phishing stage, the attacker manipulates application logs to trigger exploitation of the Windows Mount Manager vulnerability. This allows arbitrary code execution on the communications platform's backend servers.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Manipulation</technique_name>
+            <surface>OS Process</surface>
+            <vector>Data Manipulation</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-153: Input Data Manipulation</capec>
+            <description>The attacker injects malicious payloads into active OS processes handling message routing. By corrupting data structures during normal operations, they alter message contents and metadata, causing service disruptions and potential data integrity failures across the communications network.</description>
+        </stage>
+    </attack_flow>
+    <summary>A basic-skilled group leverages phishing to compromise communications infrastructure, exploits a known driver vulnerability to execute malicious code, and manipulates core messaging processes to disrupt service operations.</summary>
+</Scenario>

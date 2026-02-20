@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Cutting Edge</campaign>
+    </metadata>
+    <overview>
+        <Target>Communications Industry</Target>
+        <Complexity>Simple</Complexity>
+        This scenario outlines a targeted cyber attack against a communication company using a known zero-day vulnerability in Ivanti Connect Secure to gain initial access, followed by executing malicious scripts for further control, culminating in encrypting critical communications data to disrupt services.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Cutting Edge</campaign_or_group>
+        <motivation>Ransom and Disruption</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Script File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Command and Scripting Interpreter
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2017-12319 (Suggested): A vulnerability in the Border Gateway Protocol (BGP) over an Ethernet Virtual Private Network (EVPN) for Cisco IOS XE Software could allow an unauthenticated, remote attacker to cause the device to reload, resulting in a denial of service (DoS) condition, or potentially corrupt the BGP routing table, which could result in network instability.</kev>
+            <capec>CAPEC ID: 121 Name: Exploit Non-Production Interfaces Description: An adversary exploits a sample, demonstration, test, or debug interface that is unintentionally enabled on a production system, with the goal of gleaning information or leveraging functionality that would otherwise be unavailable.</capec>
+            <description>The attacker exploits a zero-day vulnerability in Ivanti Connect Secure to gain unauthorized access to the internet-facing application, establishing a foothold within the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1623: Command and Scripting Interpreter</technique_name>
+            <surface>Script File</surface>
+            <vector>Command and Scripting Interpreter</vector>
+            <kev>CVE-2019-1388 (Suggested): Microsoft Windows Certificate Dialog contains a privilege escalation vulnerability, allowing attackers to run processes in an elevated context.</kev>
+            <capec>CAPEC ID: 160 Name: Exploit Script-Based APIs Description: Some APIs support scripting instructions as arguments. Methods that take scripted instructions (or references to scripted instructions) can be very flexible and powerful. However, if an attacker can specify the script that serves as input to...</capec>
+            <description>Following initial access, the attacker executes malicious scripts through the command and scripting interpreter to maintain control and execute additional commands.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1471: Data Encrypted for Impact</technique_name>
+            <surface>Target Artifact (Key)</surface>
+            <vector>Data Encrypted for Impact</vector>
+            <kev></kev>
+            <capec>CAPEC ID: 609 Name: Cellular Traffic Intercept Description: Cellular traffic for voice and data from mobile devices and retransmission devices can be intercepted via numerous methods. Malicious actors can deploy their own cellular tower equipment and intercept cellular traffic surreptitiously. Additiona...</capec>
+            <description>The attacker encrypts key communications data, disrupting services and coercing a ransom payment from the victim organization.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The Cutting Edge campaign targets a communication company with a sophisticated yet straightforward approach. Leveraging a zero-day vulnerability in Ivanti Connect Secure, the attackers gain initial access to the network. They then employ command-line interfaces to execute malicious scripts, escalating privileges and preparing for impact. Finally, they encrypt critical communications data, aiming to disrupt operations and extort a ransom.
+    </summary>
+</Scenario>

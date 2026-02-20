@@ -1,0 +1,141 @@
+<Scenario>
+    <title>ArcaneDoor Water and Wastewater Systems Attack Scenario</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated attack targeting water and wastewater systems, utilizing advanced techniques to gain initial access, persist, and disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>ArcaneDoor</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>High</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Vulnerability exploit</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Device theft", "Weak passwords", "Improper configuration", "Vulnerability", "Internet-facing assets", "Shared DB or directory", "Obsolete products", "Injection flaws", "Custom APIs", "Autonomous system numbers(ASNs)", "SSL Certificates and Attribution", "WHOIS records, contacts and history", "TCP/IP ports", "Public and private cloud", "Web server services such as emails and databases", "Shadow IT", "Poor implementation of access controls", "Malicious insiders", "Social engineering", "Insufficient physical security controls", "Authentication issues"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["External/Removable media", "Loss or Theft of equipment", "Attrition", "Web", "Account takeover", "Inadequate encryption", "Browser-based attack", "Application compromise", "Open port", "Vulnerability exploit", "Ransomware", "Malware", "Man in The Middle(MiTM)", "Session hijacking", "Brute-force attack", "Distributed Denial of Service(DDoS)", "Watering-hole", "Compromised and weak credentials", "SIM Swap", "Security misconfigurations and vulnerabilities", "Web forms", "IP address and IP blocks", "Domains and subdomains", "Botnet", "Credential compromise", "Telephony Denial of Service(TDoS)", "Replay Attack", "Cryptanalysis Attacks", "Side Channel Attacks", "Hardware Trojans", "Covert Attacks", "Sleep Deprivation Attack", "Clock Skewing", "Attacks Targeting System Reputation", "Data and Command Integrity Attack", "Eavesdropping", "Command and Control Attacks", "Phishing", "Impersonations/Spoofing", "Improper usage", "Dumpster diving", "Advanced Persistent Threat(APT)", "Baiting", "Shoulder surfing", "Reverse social engineering", "Business Email Compromise(BEC)", "Advanced Fee", "Extortion"]
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>Open-source Intelligence</technique_name>
+            <surface>Open-source Intelligence</surface>
+            <vector>Information Gathering</vector>
+            <kev>N/A</kev>
+            <capec>538</capec>
+            <description>The attackers gather information about the water and wastewater systems' network architecture, including IP addresses, device types, and software versions.</description>
+        </stage>
+        <stage name="Reconnaissance">
+            <technique_name>Network Scanning</technique_name>
+            <surface>Network Scanning</surface>
+            <vector>Network Scanning</vector>
+            <kev>N/A</kev>
+            <capec>309</capec>
+            <description>The attackers identify open ports and services running on the targeted systems to determine potential entry points.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Custom Tool Development</technique_name>
+            <surface>Custom Tool Development</surface>
+            <vector>Software Development</vector>
+            <kev>N/A</kev>
+            <capec>670</capec>
+            <description>The attackers create a custom tool to exploit vulnerabilities in the identified systems.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2021-1732 (Suggested)</kev>
+            <capec>121</capec>
+            <description>The attackers use the custom tool to exploit a zero-day vulnerability in a public-facing application or service, gaining initial access to the system.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Command and Scripting Interpreter</technique_name>
+            <surface>Execution</surface>
+            <vector>Scripting Language</vector>
+            <kev>CVE-2021-40870 (Suggested)</kev>
+            <capec>160</capec>
+            <description>The attackers use the exploited vulnerability to execute malicious code, potentially using PowerShell or another scripting language.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Modify System Configuration</technique_name>
+            <surface>Persistence</surface>
+            <vector>System Configuration</vector>
+            <kev>N/A</kev>
+            <capec>678</capec>
+            <description>The attackers modify system configuration files or registry entries to maintain persistence, ensuring the attacker can return to the compromised system later.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Abuse Elevation Control-Allowed Vector</technique_name>
+            <surface>Privilege Escalation</surface>
+            <vector>Elevation of Privileges</vector>
+            <kev>N/A</kev>
+            <capec>233</capec>
+            <description>The attackers take advantage of existing elevation control mechanisms, such as misconfigured permissions or weak passwords, to escalate privileges and gain higher-level access.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Process Doppelganging</technique_name>
+            <surface>Defense Evasion</surface>
+            <vector>Process Doppelganging</vector>
+            <kev>N/A</kev>
+            <capec>471</capec>
+            <description>The attackers use process doppelganging techniques to evade detection by creating multiple instances of legitimate processes with malicious payloads.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Brute Force</technique_name>
+            <surface>Credential Access</surface>
+            <vector>Brute Force Attack</vector>
+            <kev>N/A</kev>
+            <capec>49</capec>
+            <description>The attackers attempt to brute-force credentials for sensitive accounts, taking advantage of weak password policies or default credentials.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>System Information Discovery</technique_name>
+            <surface>Discovery</surface>
+            <vector>System Information</vector>
+            <kev>N/A</kev>
+            <capec>522</capec>
+            <description>The attackers gather information about the compromised system, including network topology, user accounts, and system configurations.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Remote Services</technique_name>
+            <surface>Lateral Movement</surface>
+            <vector>Remote Services</vector>
+            <kev>N/A</kev>
+            <capec>324</capec>
+            <description>The attackers use remote services, such as RDP or SSH, to move laterally within the network, exploiting trust relationships between systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data from Local System</technique_name>
+            <surface>Collection</surface>
+            <vector>Data Collection</vector>
+            <kev>N/A</kev>
+            <capec>328</capec>
+            <description>The attackers collect sensitive data from the compromised system, including confidential documents, user credentials, or system configurations.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Exfiltration</surface>
+            <vector>Alternative Protocol</vector>
+            <kev>N/A</kev>
+            <capec>590</capec>
+            <description>The attackers exfiltrate collected data over alternative protocols, such as Tor or VPNs, to avoid detection.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service</technique_name>
+            <surface>Impact</surface>
+            <vector>Denial of Service</vector>
+            <kev>N/A</kev>
+            <capec>583</capec>
+            <description>The attackers disrupt or destroy critical systems and infrastructure, causing a denial-of-service condition, ultimately impacting the water and wastewater systems' operations.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The ArcaneDoor campaign targets water and wastewater systems with a complex attack plan involving reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.
+    </summary>
+</Scenario>

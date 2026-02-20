@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Energy</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>Operation CuckooBees</campaign>
+    </metadata>
+    <overview>
+        <Target>Energy Sector</Target>
+        <Complexity>Simple</Complexity>
+        [The attackers, part of Operation CuckooBees, employ a 'Supply Chain Compromise' tactic to gain initial access to internet-facing assets. They then execute their payload using valid accounts before causing impact through data destruction. This operation demonstrates expert-level skill in exploiting trusted relationships and leveraging compromised credentials to disrupt energy sector operations.]
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation CuckooBees</campaign_or_group>
+        <motivation>Disruption of Critical Infrastructure</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, User Account
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, User Account Authentication (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T0862: Supply Chain Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 439; Name: Manipulation During Distribution</capec>
+            <description>The attackers exploit trusted relationships to infiltrate the network via compromised updates or software delivered through internet-facing assets.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T0859: Valid Accounts</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 645; Name: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>Using credentials obtained from the supply chain compromise, the attackers authenticate as legitimate users to execute malicious actions.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 675; Name: Retrieve Data from Decommissioned Devices</capec>
+            <description>The attackers delete critical files, causing data destruction and disrupting operational capabilities within the energy sector.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Expert attackers from Operation CuckooBees have successfully executed a simple yet effective cyber attack against the energy sector. By compromising the supply chain, they gained initial access, leveraged valid accounts for execution, and ultimately caused significant data destruction, impacting critical operations.
+    </summary>
+</Scenario>

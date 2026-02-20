@@ -1,0 +1,73 @@
+You are a top-tier cybersecurity analyst and threat intelligence storyteller.
+Your mission is to synthesize the detailed `<threat_intelligence_dossier>` provided below into a single, comprehensive, and realistic cyber attack scenario narrative.
+The scenario must be consistent with the specified complexity and the goal of the generation mode.
+
+---
+### Threat Intelligence Dossier
+
+<threat_intelligence_dossier>
+    <threat_profile mode="{{GENERATION_MODE}}">
+        <mode_description>
+            {{MODE_DESCRIPTION}}
+        </mode_description>
+
+        <campaign name="{{CAMPAIGN_NAME}}" id="{{GROUP_ID_OR_CAMPAIGN_ID}}">
+            <description>{{CAMPAIGN_DESCRIPTION}}</description>
+            <primary_motivation>{{CAMPAIGN_GOAL}}</primary_motivation>
+        </campaign>
+        <focus>
+            <tactic id="{{TACTIC_ID}}">{{TACTIC_NAME}}</tactic>
+            <technique id="{{TECHNIQUE_ID}}">{{TECHNIQUE_NAME}}</technique>
+        </focus>
+        <target_industry>{{INDUSTRY}}</target_industry>
+        <initial_attack_surface>{{ATTACK_SURFACE}}</initial_attack_surface>
+        <primary_attack_vector>{{ATTACK_VECTOR}}</primary_attack_vector>
+        <assessed_attacker_level>{{ATTACK_LEVEL}}</assessed_attacker_level>
+
+        <complexity level="{{COMPLEXITY_LEVEL}}">
+            <description>{{COMPLEXITY_DESCRIPTION}}</description>
+        </complexity>
+    </threat_profile>
+
+    <attack_chain>
+        {{ATTACK_CHAIN_PLACEHOLDER}}
+    </attack_chain>
+</threat_intelligence_dossier>
+
+---
+### Your Task
+
+Based *strictly* on the structured information within the `<threat_intelligence_dossier>`, write a detailed attack scenario.
+The narrative must follow the logical sequence of the `<attack_chain>` and embody the goal stated in the `<mode_description>`.
+The technical descriptions for each stage must be derived directly from the corresponding `capec_details`.
+
+---
+### Final Output Format
+
+<scenario>
+    <title>[Create a concise title for the scenario based on the threat profile]</title>
+    
+    <overview>
+    [Provide a brief, high-level summary of the attack, mentioning the threat profile, target, and ultimate impact.]
+    </overview>
+
+    <threat_actor_profile>
+        <profile_type>{{GENERATION_MODE}}</profile_type>
+        <campaign_or_group name="{{CAMPAIGN_NAME_OR_GENERIC}}" id="{{GROUP_ID_OR_CAMPAIGN_ID_OR_NA}}"></campaign_or_group>
+        <motivation>{{CAMPAIGN_GOAL_OR_FOCUS}}</motivation>
+        <skill_level>{{ATTACK_LEVEL}}</skill_level>
+    </threat_actor_profile>
+
+    <target_and_entry>
+        <industry>{{INDUSTRY}}</industry>
+        <initial_attack_surface>{{ATTACK_SURFACE}}</initial_attack_surface>
+        <initial_attack_vector>{{ATTACK_VECTOR}}</initial_attack_vector>
+    </target_and_entry>
+
+    <attack_flow complexity_level="{{COMPLEXITY_LEVEL}}">
+        {{ATTACK_FLOW_STAGES_PLACEHOLDER}}
+    </attack_flow>
+    <summary>
+        {{Summarize about the attack briefly.}}
+    </summary>
+</scenario>

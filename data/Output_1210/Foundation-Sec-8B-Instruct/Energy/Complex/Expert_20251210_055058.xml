@@ -1,0 +1,138 @@
+<Scenario>
+    <metadata>
+        <target_industry>Energy</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Expert</attacker_skill>
+        <campaign>C0017</campaign>
+    </metadata>
+    <overview>
+        <Target>Energy Sector</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated cyber attack orchestrated by the expert group C0017 aims to infiltrate and disrupt critical energy infrastructure. The attackers employ a multi-stage approach, starting with extensive reconnaissance and culminating in significant impact operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0017</campaign_or_group>
+        <motivation>Financial Gain and Sabotage</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, Command & Control Server, Windows Registry, Network Traffic, Public IP/Network Block, Target System Artifact, File
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: General Access Method, Network Traffic Flow (Mechanism), Response Metadata (Mechanism), Bash Script, Web Shell, Abuse Elevation Control Mechanism, Reg.exe Utility, Mimikatz Tool, Network Service Scanning, Network Traffic Flow (Mechanism), File Access (Mechanism), Exfiltration Over C2 Channel, Process Creation (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>The attackers conduct active scanning to map the network topology of the energy sector, identifying potential entry points and vulnerabilities.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>The attackers establish command and control servers by acquiring infrastructure to facilitate communication with compromised systems.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>The attackers exploit known vulnerabilities in public-facing web applications to gain initial access to the energy sector's network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1605: Command-Line Interface</technique_name>
+            <surface>Command Interpreter (Bash)</surface>
+            <vector>Bash Script</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-88: OS Command Injection</capec>
+            <description>Once inside, the attackers execute malicious commands using the bash interpreter to further penetrate the system.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1100: Web Shell</technique_name>
+            <surface>Command & Control Server</surface>
+            <vector>Web Shell</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-650: Upload a Web Shell to a Web Server</capec>
+            <description>To maintain access, the attackers deploy a web shell on the compromised server, providing a persistent backdoor.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1626: Abuse Elevation Control Mechanism</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Abuse Elevation Control Mechanism</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-233: Privilege Escalation</capec>
+            <description>The attackers escalate privileges to gain higher-level access within the compromised environment.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1112: Modify Registry</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-203: Manipulate Registry Information</capec>
+            <description>To evade detection, the attackers manipulate registry settings to disable security features and logging.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1003: OS Credential Dumping</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Mimikatz Tool</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-226: Session Credential Falsification through Manipulation</capec>
+            <description>The attackers steal credentials using tools like Mimikatz to enable lateral movement throughout the network.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>The attackers map the internal network to discover valuable targets and plan lateral movements.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>The attackers utilize remote services like RDP or SSH to move laterally across the network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0893: Data from Local System</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-328: TCP 'RST' Flag Checksum Probe</capec>
+            <description>The attackers collect sensitive data from local systems to gather valuable information.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>Data is transferred back to the attacker's controlled infrastructure via established command and control channels.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1490: Inhibit System Recovery</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-607: Obstruction</capec>
+            <description>The attackers inhibit system recovery efforts post-data exfiltration or disruption, ensuring maximum impact.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        The complex cyber attack on the energy sector involves multiple stages, from initial reconnaissance to achieving significant impact. Expert attackers use a variety of techniques to gain access, maintain persistence, and ultimately disrupt operations while evading detection and inhibiting recovery efforts.
+    </summary>
+</Scenario>

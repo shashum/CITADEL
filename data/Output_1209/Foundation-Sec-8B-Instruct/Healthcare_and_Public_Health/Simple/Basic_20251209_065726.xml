@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>2022 Ukraine Electric Power Attack</campaign>
+    </metadata>
+    <overview>
+        <Target>Healthcare and Public Health Sector</Target>
+        <Complexity>Simple</Complexity>
+        A basic-level cyber attack targeting the Healthcare and Public Health sector involves gaining initial access through phishing, executing malicious files, and causing impact by destroying critical data.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=2022 Ukraine Electric Power Attack</campaign_or_group>
+        <motivation>Disruption of Services</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Internal Email System, User Endpoints
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Social Engineering, File Execution
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 164; Name: Mobile Phishing</capec>
+            <description>An attacker sends a phishing email with a malicious attachment or link to lure unsuspecting employees into downloading and opening it.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1204.002: Malicious File</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 635; Name: Alternative Execution Due to Deceptive Filenames</capec>
+            <description>Upon clicking the malicious link or opening the attachment, a malicious file executes, likely using reg.exe utility to run unauthorized commands.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 675; Name: Retrieve Data from Decommissioned Devices</capec>
+            <description>The executed malware deletes or encrypts critical files, leading to data destruction and service disruption.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        This scenario outlines a simple cyber attack chain involving phishing for initial access, execution of malicious files, and subsequent data destruction impacting the Healthcare and Public Health sector.
+    </summary>
+</Scenario>

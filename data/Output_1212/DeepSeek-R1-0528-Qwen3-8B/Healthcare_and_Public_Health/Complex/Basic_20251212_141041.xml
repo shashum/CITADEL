@@ -1,0 +1,56 @@
+```xml
+<Scenario>
+    <metadata>
+        <target_industry>Healthcare and Public Health</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>HomeLand Justice</campaign>
+    </metadata>
+    
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        This attack scenario depicts a multi-phase intrusion targeting healthcare organizations, beginning with information gathering and escalating through various techniques to achieve persistent access and significant impact, driven by basic-skilled actors aiming for operational disruption.
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=HomeLand Justice</campaign_or_group>
+        <motivation>Political activism or justice-related objectives, such as exposing vulnerabilities or disrupting services in the healthcare sector.</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>User Account</initial_attack_surface>
+        <initial_attack_vector>Search Engines</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: User Account, Target Artifact (Links), Internet-facing assets, Target Artifact (Exploits), File System, OS Process, Web Browser, Network Traffic, Target Artifact (Rdp), Target Artifact (Protocols), Target System Artifact
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: Search Engines, Delivery Method, Exploitation for Client Execution, Startup Items, User Account Authentication, OS API Execution, Credentials from Web Browsers, Network Traffic Content, Remote Desktop Protocol, Custom Command and Control Protocol, Deploy Basic Ransomware Variant
+    </attack_vector>
+    
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>Search Engines</technique_name>
+            <surface>User Account</surface>
+            <vector>Search Engines</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-543: Counterfeit Websites</capec>
+            <description>The adversary leverages search engines to scan for publicly accessible information about user accounts and personnel within the healthcare organization, enabling the identification of potential targets for subsequent exploitation phases.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Spearphishing Link</technique_name>
+            <surface>Target Artifact (Links)</surface>
+            <vector>Spearphishing Link</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-467: Cross Site Identification</capec>
+            <description>During resource development, the attacker procures and refines spearphishing links from dark web sources, utilizing them to craft deceptive emails that mimic legitimate communications, thereby increasing the likelihood of engagement by targeted healthcare staff members.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Spearphishing Link</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>

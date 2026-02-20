@@ -1,0 +1,45 @@
+<Scenario>
+    <overview>
+        <title>Energetic Disruption: A Cyber Attack on the Energy Sector</title>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        <summary>A sophisticated cyber attack targeting the energy sector, leveraging spear phishing and SCADA system exploitation to disrupt power grid operations.</summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0021</campaign_or_group>
+        <motivation>Disruption of critical infrastructure for potential geopolitical gain or sabotage.</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2016-6415 (Suggested): Microsoft Windows SMBv2 Client Driver Remote Code Execution Vulnerability</kev>
+            <capec>CAPEC ID: 163 - Spear Phishing</capec>
+            <description>The attackers initiate the attack by sending carefully crafted spear phishing emails to specific employees within the energy company. These emails contain malicious links or attachments designed to exploit a known vulnerability (CVE-2016-6415) in the victim's system, gaining initial access to the network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>SCADA System Exploitation</technique_name>
+            <surface>Industrial control systems</surface>
+            <vector>Vulnerability exploit</vector>
+            <kev>CVE-2024-20953 (Suggested): Vulnerability in SCADA system software allowing unauthorized access</kev>
+            <capec>CAPEC ID: 522 - Malicious Hardware Component Replacement</capec>
+            <description>Once inside the network, the attackers identify and exploit vulnerabilities in the SCADA systems used by the energy grid. This allows them to execute arbitrary commands on the SCADA servers, compromising the integrity of the control systems.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Disruption of Power Grid</technique_name>
+            <surface>Power generation and distribution infrastructure</surface>
+            <vector>Malicious insider</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC ID: 583 - Disabling Network Hardware</capec>
+            <description>The attackers alter system configurations or shut down critical components of the power grid, leading to widespread disruption of energy supply. This results in significant operational and financial losses for the energy company and impacts its customers.</description>
+        </stage>
+    </attack_flow>
+    <summary>The attack begins with a spear phishing campaign targeting specific employees, followed by exploitation of SCADA systems to gain control over critical infrastructure, ultimately leading to the disruption of power grid operations. This scenario highlights the vulnerabilities in industrial control systems and the importance of securing communication channels and authentication mechanisms.</summary>
+</Scenario>

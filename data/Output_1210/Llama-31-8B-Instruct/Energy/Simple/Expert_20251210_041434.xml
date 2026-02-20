@@ -1,0 +1,81 @@
+<Scenario>
+    <metadata>
+        <title>Operation Ghost Energy Sector Attack Scenario</title>
+        <date>2023-07-25</date>
+        <author>Cybersecurity Analyst</author>
+    </metadata>
+    <overview>
+        <Target>Energy</Target>
+        <Complexity>Simple</Complexity>
+        Operation Ghost targets the energy sector by exploiting vulnerabilities in internet-facing assets and executing malicious scripts to disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Ghost</campaign_or_group>
+        <motivation>Economic Espionage</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Energy</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Email Phishing</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: 
+            Internet-facing assets
+            Domain Name Registrar
+            Network Traffic
+            Command
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: 
+            General Access Method
+            PowerShell Script
+            Network Traffic Content (Mechanism)
+            Command Execution (Mechanism)
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>An attacker sends a spear phishing email using compromised credentials from an employee's email account to gain access to the energy company's network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1504: PowerShell Profile</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>PowerShell Script</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-579: Replace Winlogon Helper DLL</capec>
+            <description>The attacker uses PowerShell Empire to establish a command and control channel for lateral movement within the energy company's network.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1047: Windows Management Instrumentation</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>PowerShell Script</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-323: TCP (ISN) Counter Rate Probe</capec>
+            <description>The attacker uses WMI to execute malicious code on remote systems and maintain persistence within the energy company's network.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1020: Automated Exfiltration</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>The attacker exfiltrates sensitive data related to the energy company's operations, including grid management and customer information.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0814: Denial of Service</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-583: Disabling Network Hardware</capec>
+            <description>The attacker launches a DoS attack on the energy company's critical infrastructure, causing a temporary disruption to power distribution and impacting customers.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Ghost is a sophisticated attack targeting the energy sector, utilizing spear phishing emails to gain initial access, followed by execution of malicious scripts to disrupt operations and exfiltrate sensitive data.
+    </summary>
+</Scenario>

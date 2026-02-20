@@ -1,0 +1,135 @@
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Complex</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Operation Sharpshooter</campaign>
+    </metadata>
+    <overview>
+        <Target>Communications Sector</Target>
+        <Complexity>Complex</Complexity>
+        <summary>A sophisticated cyber espionage campaign named 'Operation Sharpshooter' targeting the communications sector aims to exfiltrate sensitive data while maintaining stealth and persistence. The attackers employ a multi-stage approach involving reconnaissance, resource development, initial access, execution, persistence, privilege escalation, defense evasion, credential access, discovery, lateral movement, collection, exfiltration, and impact.</summary>
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Sharpshooter</campaign_or_group>
+        <motivation>Economic Espionage</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method (Email)</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Network Traffic, Compromised Account, Public IP/Network Block, File, Logon Session, Target System Artifact
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Email, Network Traffic Flow, Response Metadata, Delivery Method, Bash Script, Registry Run Keys / Startup Folder, Application Log Content, File Access, Network Service Scanning, Network Traffic Flow, Logon Session Creation, Exfiltration Over C2 Channel, File Modification
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1595: Active Scanning</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>The attackers engage in active scanning activities to identify potential targets within the communications sector by mapping network nodes, hosts, devices, and routes.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1583: Acquire Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-522: Malicious Hardware Component Replacement</capec>
+            <description>Operation Sharpshooter sets up phishing domains mimicking legitimate communication services to support their operations.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-164: Mobile Phishing</capec>
+            <description>Attackers send crafted emails to employees pretending to be from trusted vendors or colleagues, leading to initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1605: Command-Line Interface</technique_name>
+            <surface>Command Interpreter (Bash)</surface>
+            <vector>Bash Script</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-88: OS Command Injection</capec>
+            <description>Upon successful phishing, attackers execute malware using command-line interfaces via bash scripts.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1060: Registry Run Keys / Startup Folder</technique_name>
+            <surface>Compromised Account</surface>
+            <vector>Registry Run Keys / Startup Folder</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-270: Modification of Registry Run Keys</capec>
+            <description>To maintain persistence, attackers add entries to the registry ensuring malware runs every time the system boots up.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T0819: Exploit Public-Facing Application</technique_name>
+            <surface>Application Log</surface>
+            <vector>Application Log Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-121: Exploit Non-Production Interfaces</capec>
+            <description>Attackers gain higher-level permissions on compromised systems by exploiting public-facing applications.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1629.003: Disable or Modify Tools</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Disable or Modify Tools</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-578: Disable Security Software</capec>
+            <description>Attackers avoid detection by disabling antivirus software to evade defenses.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1555: Credentials from Password Stores</technique_name>
+            <surface>File</surface>
+            <vector>File Access (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-645: Use of Captured Tickets (Pass The Ticket)</capec>
+            <description>Stolen credentials allow attackers to move laterally within the network.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T1423: Network Service Scanning</technique_name>
+            <surface>Public IP/Network Block</surface>
+            <vector>Network Service Scanning</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-309: Network Topology Mapping</capec>
+            <description>Attackers map out the internal network structure to understand the environment.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T0886: Remote Services</technique_name>
+            <surface>Network Traffic</surface>
+            <vector>Network Traffic Flow (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-324: TCP (ISN) Sequence Predictability Probe</capec>
+            <description>Using stolen credentials, attackers move through the network to reach critical systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0811: Data from Information Repositories</technique_name>
+            <surface>Logon Session</surface>
+            <vector>Logon Session Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-277: Data Interchange Protocol Manipulation</capec>
+            <description>Attackers gather sensitive data relevant to their espionage goals.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1646: Exfiltration Over C2 Channel</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exfiltration Over C2 Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-24: Filter Failure through Buffer Overflow</capec>
+            <description>Collected data is transferred to attacker-controlled servers over a command and control channel.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>As a demonstration of capability and to cause disruption, attackers destroy data within the network.</description>
+        </stage>
+    </attack_flow>
+</Scenario>

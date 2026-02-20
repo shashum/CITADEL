@@ -1,0 +1,51 @@
+<Scenario>
+    <title>Ukraine Electric Power Attack Scenario</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        A skilled attacker compromises transportation system employees through spear phishing or drive-by compromise, then uses various techniques for execution and impact.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>2015 Ukraine Electric Power Attack</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Skilled</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Device theft, Weak passwords, Improper configuration, Vulnerability, Internet-facing assets, Shared DB or directory, Obsolete products, Injection flaws, Custom APIs, Autonomous system numbers(ASNs), SSL Certificates and Attribution, WHOIS records, contacts and history, TCP/IP ports, Public and private cloud, Web server services such as emails and databases, Shadow IT, Poor implementation of access controls, Malicious insiders, Social engineering, Insufficient physical security controls, Authentication issues
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: External/Removable media, Loss or Theft of equipment, Attrition, Web, Account takeover, Inadequate encryption, Browser-based attack, Application compromise, Open port, Vulnerability exploit, Ransomware, Malware, Man in The Middle(MiTM), Session hijacking, Brute-force attack, Distributed Denial of Service(DDoS), Watering-hole, Compromised and weak credentials, SIM Swap, Security misconfigurations and vulnerabilities, Web forms, IP address and IP blocks, Domains and subdomains, Botnet, Credential compromise, Telephony Denial of Service(TDoS), Replay Attack, Cryptanalysis Attacks, Side Channel Attacks, Hardware Trojans, Covert Attacks, Sleep Deprivation Attack, Clock Skewing, Attacks Targeting System Reputation, Data and Command Integrity Attack, Eavesdropping, Command and Control Attacks, Phishing, Impersonations/Spoofing, Improper usage, Dumpster diving, Advanced Persistent Threat(APT), Baiting, Shoulder surfing, Reverse social engineering, Business Email Compromise(BEC), Advanced Fee, Extortion
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing via Compromised Email Account</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2022-22536 (Suggested)</kev>
+            <capec>163</capec>
+            <description>The attacker sends spear phishing emails to transportation system employees from a compromised email account, aiming to trick them into revealing sensitive information.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2017-0261 (Suggested)</kev>
+            <capec>535</capec>
+            <description>The attacker exploits vulnerabilities in websites visited by employees, compromising their devices during web browsing.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Destruction</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>675</capec>
+            <description>The attacker uses KillDisk malware to destroy data on critical systems, simulating the 2015 Ukraine Electric Power Attack.</description>
+        </stage>
+    </attack_flow>
+    <summary>A simple attack scenario involving spear phishing, drive-by compromise, and data destruction, targeting transportation systems.</summary>
+</Scenario>

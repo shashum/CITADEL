@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Ransomware Attack on Healthcare Provider Network</title>
+    <overview>
+        <Target>Healthcare and Public Health</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated ransomware campaign targeting healthcare organizations using AI-driven reconnaissance, compromised cloud infrastructure, and multi-stage lateral movement to encrypt critical patient databases.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0011</campaign_or_group>
+        <motivation>Ransom Demand</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Healthcare and Public Health</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>General Access Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Open Source Intelligence (OSINT), Internet Scan, Internet-facing assets, Target System Artifact, Windows Registry, Domain Name Registrar, OS Process, Process, Windows Service, File, Malware Artifact, File System
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Response Content (Mechanism), General Access Method, Exploit TEE Vulnerability, Windows Registry Key Creation (Mechanism), Pass the Hash, Process Injection, Process Creation (Mechanism), Reg.exe Utility, Service Execution, File Modification (Mechanism), Encrypted Channel, Data Encrypted for Impact
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Open Source Intelligence (OSINT)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker uses AI algorithms to analyze publicly available information from healthcare provider websites and staff directories, identifying vulnerable systems and potential targets for exploitation.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>T1584: Compromise Infrastructure</technique_name>
+            <surface>Internet Scan</surface>
+            <vector>Response Content (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-609: Cellular Traffic Intercept</capec>
+            <description>The group compromises a cloud storage service to host malware payloads, leveraging internet scans to locate unsecured endpoints for later exploitation.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T1194: Spearphishing via Service</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>General Access Method</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-278: Web Services Protocol Manipulation</capec>
+            <description>Spoofed emails disguised as medical forms are sent to clinical staff, containing malicious attachments that exploit unpatched web services to establish initial access.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1405: Exploit TEE Vulnerability</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Exploit TEE Vulnerability</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-67: String Format Overflow in syslog()</capec>
+            <description>Unpatched software on hospital systems is exploited via a TEE vulnerability, allowing automated execution of malware payloads to compromise the target environment.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>A persistent backdoor is created via scheduled tasks in the Windows Registry to ensure malware execution upon system reboot.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Domain Name Registrar</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>Weak password policies are exploited using pass-the-hash techniques to elevate privileges and gain administrative access to critical systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is injected into legitimate processes to evade detection while maintaining persistence across system reboots.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Process</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>Login credentials are captured during clinical staff sessions by manipulating software deployment tools to extract sensitive authentication data.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Process</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>Network sniffing tools like Reg.exe are used to map internal network topology and identify high-value targets such as servers storing patient records.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1035: Service Execution</technique_name>
+            <surface>Windows Service</surface>
+            <vector>Service Execution</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-550: Install New Service</capec>
+            <description>Adversaries install rogue Windows services to move laterally across the network using Remote Desktop Protocol (RDP) credentials obtained earlier.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Electronic health records and research databases are exfiltrated by corrupting files and altering their contents to prepare for ransom demands.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1521: Encrypted Channel</technique_name>
+            <surface>Malware Artifact</surface>
+            <vector>Encrypted Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-216: Communication Channel Manipulation</capec>
+            <description>Stolen data is transferred via TLS-encrypted tunnels established by malware artifacts to obscure the exfiltration activity from network monitoring tools.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1471: Data Encrypted for Impact</technique_name>
+            <surface>File System</surface>
+            <vector>Data Encrypted for Impact</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-609: Cellular Traffic Intercept</capec>
+            <description>Patient databases are encrypted using ransomware, rendering them inaccessible until a cryptocurrency ransom is paid to decrypt the files.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        A complex ransomware campaign targeting healthcare providers combines AI-powered reconnaissance, cloud-based malware hosting, and multi-stage exploitation to infiltrate networks, escalate privileges, and encrypt critical data for financial gain.
+    </summary>
+</Scenario>

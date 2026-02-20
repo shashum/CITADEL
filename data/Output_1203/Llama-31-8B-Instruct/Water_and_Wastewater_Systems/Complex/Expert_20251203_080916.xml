@@ -1,0 +1,205 @@
+<Scenario>
+    <title>Operation Dream Job Water and Wastewater Systems Attack Scenario</title>
+    <overview>
+        <Target>Water and Wastewater Systems</Target>
+        <Complexity>Complex</Complexity>
+        Operation Dream Job attackers target water and wastewater systems with sophisticated attacks, exploiting vulnerabilities in employee devices and networks to disrupt operations.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>Operation Dream Job</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Expert</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Water and Wastewater Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Web</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: ["Device theft", "Weak passwords", "Improper configuration", "Vulnerability", "Internet-facing assets", "Shared DB or directory", "Obsolete products", "Injection flaws", "Custom APIs", "Autonomous system numbers(ASNs)", "SSL Certificates and Attribution", "WHOIS records, contacts and history", "TCP/IP ports", "Public and private cloud", "Web server services such as emails and databases", "Shadow IT", "Poor implementation of access controls", "Malicious insiders", "Social engineering", "Insufficient physical security controls", "Authentication issues"]
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: ["External/Removable media", "Loss or Theft of equipment", "Attrition", "Web", "Account takeover", "Inadequate encryption", "Browser-based attack", "Application compromise", "Open port", "Vulnerability exploit", "Ransomware", "Malware", "Man in The Middle(MiTM)", "Session hijacking", "Brute-force attack", "Distributed Denial of Service(DDoS)", "Watering-hole", "Compromised and weak credentials", "SIM Swap", "Security misconfigurations and vulnerabilities", "Web forms", "IP address and IP blocks", "Domains and subdomains", "Botnet", "Credential compromise", "Telephony Denial of Service(TDoS)", "Replay Attack", "Cryptanalysis Attacks", "Side Channel Attacks", "Hardware Trojans", "Covert Attacks", "Sleep Deprivation Attack", "Clock Skewing", "Attacks Targeting System Reputation", "Data and Command Integrity Attack", "Eavesdropping", "Command and Control Attacks", "Phishing", "Impersonations/Spoofing", "Improper usage", "Dumpster diving", "Advanced Persistent Threat(APT)", "Baiting", "Shoulder surfing", "Reverse social engineering", "Business Email Compromise(BEC)", "Advanced Fee", "Extortion"]
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Initial Access">
+            <technique_name>Spear Phishing via Compromised Email Account</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2024-7965 (Suggested)</kev>
+            <capec>163</capec>
+            <description>The attackers send spear-phishing emails to specific employees, tricking them into revealing their login credentials.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>Drive-by Compromise</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2021-28663 (Suggested)</kev>
+            <capec>535</capec>
+            <description>The attackers exploit vulnerabilities in employee devices to gain initial access to the system.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Code Execution</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2023-45249 (Suggested)</kev>
+            <capec>663</capec>
+            <description>The attackers run malicious code on compromised systems to achieve their objectives.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>Process Injection</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>CVE-2022-22947 (Suggested)</kev>
+            <capec>242</capec>
+            <description>The attackers inject malware into running processes to maintain persistence.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Scheduled Task/Job</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>654</capec>
+            <description>The attackers schedule tasks to maintain persistence on the system.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>Bootkit</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>552</capec>
+            <description>The attackers modify the boot process to maintain persistence on the system.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Abuse of Elevated Privileges</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>234</capec>
+            <description>The attackers use elevated privileges to access sensitive areas of the system.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>Exploitation of Vulnerability</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>121</capec>
+            <description>The attackers exploit vulnerabilities to gain elevated privileges.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Anti-Debugging</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>702</capec>
+            <description>The attackers evade detection by using anti-debugging techniques.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>Code Obfuscation</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>167</capec>
+            <description>The attackers obfuscate malware to avoid detection.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Brute Force</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>49</capec>
+            <description>The attackers attempt to guess login credentials.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>Keylogger</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>568</capec>
+            <description>The attackers capture login credentials using a keylogger.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>Network Service Scanning</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>309</capec>
+            <description>The attackers identify network services and open ports.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>System Information Discovery</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>522</capec>
+            <description>The attackers gather system information.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>324</capec>
+            <description>The attackers move laterally through remote services.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>Valid Accounts</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>645</capec>
+            <description>The attackers use valid accounts to move laterally.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data from Local System</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>328</capec>
+            <description>The attackers collect data from local systems.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>Data from Network Traffic</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>158</capec>
+            <description>The attackers collect data from network traffic.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>Exfiltration Over Alternative Protocol</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>590</capec>
+            <description>The attackers exfiltrate data over alternative protocols.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>File Transfer Protocol (FTP)</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>220</capec>
+            <description>The attackers exfiltrate data using FTP.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Denial of Service (DoS)</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>469</capec>
+            <description>The attackers disrupt water and wastewater systems.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>Data Destruction</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Web</vector>
+            <kev>N/A</kev>
+            <capec>675</capec>
+            <description>The attackers destroy critical data.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Dream Job attackers employ complex tactics to disrupt water and wastewater systems, including spear phishing, drive-by compromise, code execution, and data destruction.
+    </summary>
+</Scenario>

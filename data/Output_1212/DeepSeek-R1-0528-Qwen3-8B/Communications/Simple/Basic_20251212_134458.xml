@@ -1,0 +1,67 @@
+<Scenario>
+    <metadata>
+        <target_industry>Communications</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Operation CuckooBees</campaign>
+    </metadata>
+    
+    <title>Operation CuckooBees: Communications Phishing Attack</title>
+    
+    <overview>
+        <Target>Communications sector organizations</Target>
+        <Complexity>Simple</Complexity>
+        This scenario depicts a targeted attack campaign named Operation CuckooBees, focusing on disrupting communication services through basic phishing techniques aimed at untrained personnel.
+    </overview>
+    
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation CuckoolBees</campaign_or_group>
+        <motivation>To conduct reconnaissance, deploy phishing tools, and achieve impact through service disruption and data exfiltration</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    
+    <target_and_entry>
+        <industry>Communications</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, Command, File
+    </attack_surface>
+    
+    <attack_vector>
+        AVAILABLE_VECTORS: Delivery Method, Command Execution (Mechanism), File Metadata (Mechanism)
+    </attack_vector>
+    
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2017-6744 (Suggested): The Simple Network Management Protocol (SNMP) subsystem of Cisco IOS 1 contains a vulnerability that allows an authenticated remote attacker to send crafted packets for unauthorized code execution or system reload</kev>
+            <capec>CAPEC-164: Mobile Phishing — An adversary targets mobile devices with deceptive emails or messages to steal credentials or initiate connections</capec>
+            <description>In this phase, the threat actor leverages phishing by crafting deceptive emails delivered via various methods to employees in the communications sector, aiming to trick them into revealing login credentials or clicking malicious links on internet-facing assets such as web servers or network interfaces.</description>
+        </stage>
+        
+        <stage name="Execution">
+            <technique_name>T0863: User Execution</technique_name>
+            <surface>Command</surface>
+            <vector>Command Execution (Mechanism)</vector>
+            <kev>CVE-2025-23209 (Suggested): Craft CMS suffers from improper database backup path validation, leading to code injection and remote command execution opportunities</kev>
+            <capec>CAPEC-663: Exploitation of Transient Instruction Execution — By manipulating CPU transient states, an attacker gains unauthorized access to sensitive data or bypasses security controls</capec>
+            <description>Upon successful phishing, the attacker executes arbitrary commands on the compromised endpoint through user actions, such as opening infected attachments or running downloaded scripts, exploiting mechanisms like command injection in vulnerable systems to run malicious payloads directly on the device.</description>
+        </stage>
+        
+        <stage name="Impact">
+            <technique_name>T1564.009: Resource Forking</technique_name>
+            <surface>File</surface>
+            <vector>File Metadata (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-131: Resource Leak Exposure — Utilizes memory leaks or other resource issues to degrade performance and exhaust system resources, denying service to legitimate users</capec>
+            <description>With elevated access obtained from previous stages, the attacker floods communication platforms with malformed file metadata or excessive data transfers, resulting in resource forking that overwhelms servers and networks, causing denial-of-service conditions and facilitating further data collection or disruption.</description>
+        </stage>
+    </attack_flow>
+    
+    <summary>This simple attack scenario begins with phishing emails sent to communication sector employees, leading to direct command execution on compromised machines, and culminating in service disruption through resource exhaustion tactics.</summary>
+</Scenario>

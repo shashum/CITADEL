@@ -1,0 +1,133 @@
+<Scenario>
+    <title>Ransomware Attack on Transportation Infrastructure</title>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Complex</Complexity>
+        A sophisticated ransomware campaign targets transportation infrastructure, leveraging unpatched systems and AI-driven reconnaissance to deploy AvosLocker ransomware, encrypting critical operations while evading detection.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=C0018</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Target Artifact (Tasks), Target System Artifact, Internet-facing assets, Windows Registry, OS Process, User Account, Credential Store, File, Target Artifact (Algorithm), Cloud Instance
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Artificial Intelligence, Use of Pre-Packaged Ransomware, Delivery Method, Bash Script, Windows Registry Key Creation, Vulnerabilities, Process Injection, User Account Authentication, Reg.exe Utility, Pass the Hash, File Modification, Encrypted Channel, Process Creation
+    </attack_vector>
+    <attack_flow complexity_level="Complex">
+        <stage name="Reconnaissance">
+            <technique_name>T1588.007: Artificial Intelligence</technique_name>
+            <surface>Target Artifact (Tasks)</surface>
+            <vector>Artificial Intelligence</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker uses AI to identify exposed servers and outdated software in transportation systems, exploiting vulnerabilities in legacy infrastructure.</description>
+        </stage>
+        <stage name="Resource Development">
+            <technique_name>Use of Pre-Packaged Ransomware</technique_name>
+            <surface>Target System Artifact</surface>
+            <vector>Use of Pre-Packaged Ransomware</vector>
+            <kev>N/A</kev>
+            <capec>N/A</capec>
+            <description>The threat actor prepares AvosLocker ransomware payloads for deployment, leveraging pre-packaged malware to expedite attacks.</description>
+        </stage>
+        <stage name="Initial Access">
+            <technique_name>T0866: Exploitation of Remote Services</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2017-5638 (Suggested): Apache Struts Jakarta Multipart parser allows for malicious file upload using the Content-Type value, leading to remote code execution.</kev>
+            <capec>CAPEC-603: Blockage</capec>
+            <description>The attacker compromises unpatched servers with default credentials via a remote code execution flaw in Apache Struts, establishing initial foothold.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1605: Command-Line Interface</technique_name>
+            <surface>Target Artifact (Interact)</surface>
+            <vector>Bash Script</vector>
+            <kev>CVE-2019-5825 (Suggested): Google Chromium V8 Engine contains an out-of-bounds write vulnerability that allows a remote attacker to potentially exploit heap corruption via a crafted HTML page.</kev>
+            <capec>CAPEC-88: OS Command Injection</capec>
+            <description>The attacker runs AvosLocker ransomware via CLI to execute malicious scripts, avoiding detection by minimizing process visibility.</description>
+        </stage>
+        <stage name="Persistence">
+            <technique_name>T1053.005: Scheduled Task</technique_name>
+            <surface>Windows Registry</surface>
+            <vector>Windows Registry Key Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-654: Credential Prompt Impersonation</capec>
+            <description>A scheduled task is created in the Windows Registry to maintain persistence, ensuring post-reboot access to compromised systems.</description>
+        </stage>
+        <stage name="Privilege Escalation">
+            <technique_name>T1588.006: Vulnerabilities</technique_name>
+            <surface>Target Artifact (Vulnerability)</surface>
+            <vector>Vulnerabilities</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-184: Software Integrity Attack</capec>
+            <description>The attacker exploits unpatched OS components to escalate privileges, gaining administrative access to critical systems.</description>
+        </stage>
+        <stage name="Defense Evasion">
+            <technique_name>T1631: Process Injection</technique_name>
+            <surface>OS Process</surface>
+            <vector>Process Injection</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-242: Code Injection</capec>
+            <description>Malicious code is injected into legitimate processes to hide ransomware activities from monitoring tools.</description>
+        </stage>
+        <stage name="Credential Access">
+            <technique_name>T1110.003: Password Spraying</technique_name>
+            <surface>User Account</surface>
+            <vector>User Account Authentication (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-565: Password Spraying</capec>
+            <description>Password spraying is used to extract credentials from memory, enabling lateral movement across the network.</description>
+        </stage>
+        <stage name="Discovery">
+            <technique_name>T0842: Network Sniffing</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-158: Sniffing Network Traffic</capec>
+            <description>The attacker maps internal network topology by sniffing traffic, identifying key systems and pathways for further exploitation.</description>
+        </stage>
+        <stage name="Lateral Movement">
+            <technique_name>T1075: Pass the Hash</technique_name>
+            <surface>Credential Store</surface>
+            <vector>Pass the Hash</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-461: Web Services API Signature Forgery Leveraging Hash Function Extension Weakness</capec>
+            <description>Stolen credentials are used to move laterally across systems, expanding the attack surface within the transportation network.</description>
+        </stage>
+        <stage name="Collection">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-675: Retrieve Data from Decommissioned Devices</capec>
+            <description>Operational logs and control system files are targeted for destruction, disrupting transportation operations.</description>
+        </stage>
+        <stage name="Exfiltration">
+            <technique_name>T1521: Encrypted Channel</technique_name>
+            <surface>Target Artifact (Algorithm)</surface>
+            <vector>Encrypted Channel</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-216: Communication Channel Manipulation</capec>
+            <description>Data is exfiltrated covertly over HTTPS, masking the transfer within legitimate traffic patterns.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T1072: Software Deployment Tools</technique_name>
+            <surface>Cloud Instance</surface>
+            <vector>Process Creation (Mechanism)</vector>
+            <kev>N/A</kev>
+            <capec>CAPEC-670: Software Development Tools Maliciously Altered</capec>
+            <description>Critical transportation infrastructure systems are encrypted using AvosLocker, crippling operations and demanding ransom payments.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        A complex ransomware campaign leverages AI-driven reconnaissance, unpatched vulnerabilities, and pre-packaged malware to infiltrate transportation systems. By combining privilege escalation, lateral movement, and encrypted exfiltration, the attacker disrupts operations and demands payment, highlighting the risks of outdated infrastructure and weak security practices.
+    </summary>
+</Scenario>

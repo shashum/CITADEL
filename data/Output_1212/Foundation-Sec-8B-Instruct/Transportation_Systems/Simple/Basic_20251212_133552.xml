@@ -1,0 +1,58 @@
+<Scenario>
+    <metadata>
+        <target_industry>Transportation Systems</target_industry>
+        <complexity>Simple</complexity>
+        <attacker_skill>Basic</attacker_skill>
+        <campaign>Operation Dream Job</campaign>
+    </metadata>
+    <overview>
+        <Target>Transportation Systems</Target>
+        <Complexity>Simple</Complexity>
+        Basic attackers from Operation Dream Job target transportation systems using phishing to gain initial access, execute malicious files, and impact operations through data destruction.
+    </overview>
+    <threat_actor_profile>
+        <campaign_or_group>name=Operation Dream Job</campaign_or_group>
+        <motivation>Financial Gain</motivation>
+        <skill_level>Basic</skill_level>
+    </threat_actor_profile>
+    <target_and_entry>
+        <industry>Transportation Systems</industry>
+        <initial_attack_surface>Internet-facing assets</initial_attack_surface>
+        <initial_attack_vector>Delivery Method</initial_attack_vector>
+    </target_and_entry>
+    <attack_surface>
+        AVAILABLE_SURFACES: Internet-facing assets, File System, Network Infrastructure
+    </attack_surface>
+    <attack_vector>
+        AVAILABLE_VECTORS: Email, Web, Reg.exe Utility
+    </attack_vector>
+    <attack_flow complexity_level="Simple">
+        <stage name="Initial Access">
+            <technique_name>T1660: Phishing</technique_name>
+            <surface>Internet-facing assets</surface>
+            <vector>Delivery Method</vector>
+            <kev>CVE-2023-36845 (Suggested): Juniper Junos OS on EX Series and SRX Series contains a PHP external variable modification vulnerability.</kev>
+            <capec>CAPEC ID: 164; Name: Mobile Phishing</capec>
+            <description>An email impersonating a legitimate entity is sent to employees, tricking them into clicking a link or opening an attachment leading to credential harvesting or malware download.</description>
+        </stage>
+        <stage name="Execution">
+            <technique_name>T1204.002: Malicious File</technique_name>
+            <surface>File System</surface>
+            <vector>Reg.exe Utility</vector>
+            <kev>CVE-2023-28229 (Suggested): Microsoft Windows CNG Key Isolation Service contains an unspecified vulnerability allowing privilege escalation.</kev>
+            <capec>CAPEC ID: 635; Name: Alternative Execution Due to Deceptive Filenames</capec>
+            <description>A malicious file disguised as a legitimate document is executed via reg.exe utility, enabling unauthorized command execution on the system.</description>
+        </stage>
+        <stage name="Impact">
+            <technique_name>T0809: Data Destruction</technique_name>
+            <surface>File</surface>
+            <vector>File Modification (Mechanism)</vector>
+            <kev></kev>
+            <capec>CAPEC ID: 675; Name: Retrieve Data from Decommissioned Devices</capec>
+            <description>Once inside the system, the attacker deletes or corrupts critical files, causing operational disruption and data loss.</description>
+        </stage>
+    </attack_flow>
+    <summary>
+        Operation Dream Job employs phishing to gain initial access to transportation systems, executes malicious files to escalate privileges, and impacts operations by destroying critical data.
+    </summary>
+</Scenario>
